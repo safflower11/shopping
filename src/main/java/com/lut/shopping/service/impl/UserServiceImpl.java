@@ -1,6 +1,7 @@
 package com.lut.shopping.service.impl;
 
 import com.lut.shopping.bean.User;
+import com.lut.shopping.mapper.UserMapper;
 import com.lut.shopping.mapper.ex.UserEXMapper;
 import com.lut.shopping.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,17 @@ import java.util.Map;
 public class UserServiceImpl implements IUserService {
     @Autowired
     private UserEXMapper userEXMapper;
+    @Autowired
+    private UserMapper userMapper;
     @Override
     public User selectByUserName(Map<String, Object> map) throws RuntimeException {
         return userEXMapper.selectByUserName(map);
+    }
+
+    @Override
+    public boolean addUser(User user) throws RuntimeException {
+        boolean b = userEXMapper.addUser(user);
+
+        return b;
     }
 }

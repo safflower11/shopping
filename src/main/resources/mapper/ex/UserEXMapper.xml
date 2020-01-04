@@ -7,4 +7,8 @@
         where unum = #{unum} and password = #{password} and code=#{code}
     </select>
 
+    <insert id="addUser" parameterType="com.lut.shopping.bean.User" keyProperty="id" useGeneratedKeys="true">
+        insert into shop_user
+        values (#{id},#{unum},#{code},#{name},#{password},#{question},#{answer})
+    </insert>
 </mapper>
