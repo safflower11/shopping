@@ -1,4 +1,6 @@
 package com.lut.shopping.bean.Ex;
 
-public class CommodityEx {
+import java.io.Serializable;
+
+public class CommodityEx implements Serializable {
 }
