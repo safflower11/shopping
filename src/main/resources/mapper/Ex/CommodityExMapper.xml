@@ -6,15 +6,13 @@
         <result column="coname"  property="name" />
         <result column="cotype"  property="type" />
         <result column="coprice"  property="price" />
-        <result column="conumber" property="number" />
-        <result column="shname" property=""></result>
+        <result column="shname" property="shname"></result>
     </resultMap>
 
-
 <select id="selectshow" resultMap="selectco">
-    select co.id coid,co.name coname,co.type cotype,co.price coprice,co.number conumber,sh.name shname
-    from shop_commodity co,shop_shop sh
+    select co.id coid,co.name coname,co.type cotype,co.price coprice,sh.name shname
+    from shop_commodity co,shop_shop sh,shop_cs cs
+    where cs.shop_id=sh.id and cs.commodity_id=co.id
 </select>
-
 
 </mapper>
