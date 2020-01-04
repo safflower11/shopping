@@ -1,14 +1,14 @@
 package com.lut.shopping.bean.Ex;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class CommodityEx implements Serializable {
     private Integer id;
     private String name;
     private String type;
     private Double price;
-    private Integer number;
-
+    private String shname;
     public Integer getId() {
         return id;
     }
@@ -41,11 +41,11 @@ public class CommodityEx implements Serializable {
         this.price = price;
     }
 
-    public Integer getNumber() {
-        return number;
+    public String getShname() {
+        return shname;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setShname(String shname) {
+        this.shname = shname;
     }
 }

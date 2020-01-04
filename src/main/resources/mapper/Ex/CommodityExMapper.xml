@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lut.shopping.mapper.Ex.CommodityExMapper">
+    <resultMap id="selectco" type="com.lut.shopping.bean.Ex.CommodityEx">
+        <id column="coid"  property="id" />
+        <result column="coname"  property="name" />
+        <result column="cotype"  property="type" />
+        <result column="coprice"  property="price" />
+        <result column="conumber" property="number" />
+        <result column="shname" property=""></result>
+    </resultMap>
+
+
+<select id="selectshow" resultMap="selectco">
+    select co.id coid,co.name coname,co.type cotype,co.price coprice,co.number conumber,sh.name shname
+    from shop_commodity co,shop_shop sh
+</select>
 
 
 </mapper>

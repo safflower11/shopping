@@ -1,13 +1,10 @@
 package com.lut.shopping.bean.Ex;
 
-<<<<<<< HEAD
 import java.io.Serializable;
-
-public class LogisticEx implements Serializable {
-=======
 import java.util.Date;
 
-public class LogisticEx {
+public class LogisticEx implements Serializable {
+
     private int id;
     private String company;
     private String code;
@@ -58,7 +55,7 @@ public class LogisticEx {
     public Date getDeliverdate() {
         return deliverdate;
     }
->>>>>>> 5e35812cc6238a5b0ae90e8f42a05299f0ed49cb
+
 
     public void setDeliverdate(Date deliverdate) {
         this.deliverdate = deliverdate;
