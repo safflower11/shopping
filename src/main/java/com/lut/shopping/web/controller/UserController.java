@@ -41,7 +41,7 @@ public class UserController {
     @GetMapping("/adduser")
     public Message addUser(User user){
         boolean b = userService.addUser(user);
-        if (b){
+        if (b==true){
             return MessageUtil.success("注册成功");
         }else {
             return MessageUtil.success("注册失败");

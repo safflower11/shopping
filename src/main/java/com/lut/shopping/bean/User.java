@@ -1,8 +1,11 @@
 package com.lut.shopping.bean;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
+    @ApiModelProperty(hidden = true)
     private Integer id;
 
     private Integer unum;
