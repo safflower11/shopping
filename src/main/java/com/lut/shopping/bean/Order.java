@@ -18,9 +18,9 @@ public class Order implements Serializable {
 
     private Integer userId;
 
-    private Integer commodityId;
-
     private Integer addressId;
+
+    private Integer logisticId;
 
     private static final long serialVersionUID = 1L;
 
@@ -80,20 +80,20 @@ public class Order implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getCommodityId() {
-        return commodityId;
-    }
-
-    public void setCommodityId(Integer commodityId) {
-        this.commodityId = commodityId;
-    }
-
     public Integer getAddressId() {
         return addressId;
     }
 
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
+    }
+
+    public Integer getLogisticId() {
+        return logisticId;
+    }
+
+    public void setLogisticId(Integer logisticId) {
+        this.logisticId = logisticId;
     }
 
     @Override
@@ -109,8 +109,8 @@ public class Order implements Serializable {
         sb.append(", number=").append(number);
         sb.append(", totalprice=").append(totalprice);
         sb.append(", userId=").append(userId);
-        sb.append(", commodityId=").append(commodityId);
         sb.append(", addressId=").append(addressId);
+        sb.append(", logisticId=").append(logisticId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

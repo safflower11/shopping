@@ -164,6 +164,66 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andUnumIsNull() {
+            addCriterion("unum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumIsNotNull() {
+            addCriterion("unum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumEqualTo(Integer value) {
+            addCriterion("unum =", value, "unum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumNotEqualTo(Integer value) {
+            addCriterion("unum <>", value, "unum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumGreaterThan(Integer value) {
+            addCriterion("unum >", value, "unum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("unum >=", value, "unum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumLessThan(Integer value) {
+            addCriterion("unum <", value, "unum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumLessThanOrEqualTo(Integer value) {
+            addCriterion("unum <=", value, "unum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumIn(List<Integer> values) {
+            addCriterion("unum in", values, "unum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumNotIn(List<Integer> values) {
+            addCriterion("unum not in", values, "unum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumBetween(Integer value1, Integer value2) {
+            addCriterion("unum between", value1, value2, "unum");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnumNotBetween(Integer value1, Integer value2) {
+            addCriterion("unum not between", value1, value2, "unum");
+            return (Criteria) this;
+        }
+
         public Criteria andCodeIsNull() {
             addCriterion("code is null");
             return (Criteria) this;

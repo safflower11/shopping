@@ -5,11 +5,15 @@ import java.io.Serializable;
 public class Appraise implements Serializable {
     private Integer id;
 
+    private String label;
+
+    private String name;
+
     private Double score;
 
     private Integer userId;
 
-    private Integer shopId;
+    private Integer questionId;
 
     private static final long serialVersionUID = 1L;
 
@@ -19,6 +23,22 @@ public class Appraise implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label == null ? null : label.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public Double getScore() {
@@ -37,12 +57,12 @@ public class Appraise implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getShopId() {
-        return shopId;
+    public Integer getQuestionId() {
+        return questionId;
     }
 
-    public void setShopId(Integer shopId) {
-        this.shopId = shopId;
+    public void setQuestionId(Integer questionId) {
+        this.questionId = questionId;
     }
 
     @Override
@@ -52,9 +72,11 @@ public class Appraise implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", label=").append(label);
+        sb.append(", name=").append(name);
         sb.append(", score=").append(score);
         sb.append(", userId=").append(userId);
-        sb.append(", shopId=").append(shopId);
+        sb.append(", questionId=").append(questionId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

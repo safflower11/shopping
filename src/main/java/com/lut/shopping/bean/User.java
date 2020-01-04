@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class User implements Serializable {
     private Integer id;
 
+    private Integer unum;
+
     private Integer code;
 
     private String name;
@@ -23,6 +25,14 @@ public class User implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getUnum() {
+        return unum;
+    }
+
+    public void setUnum(Integer unum) {
+        this.unum = unum;
     }
 
     public Integer getCode() {
@@ -72,6 +82,7 @@ public class User implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", unum=").append(unum);
         sb.append(", code=").append(code);
         sb.append(", name=").append(name);
         sb.append(", password=").append(password);

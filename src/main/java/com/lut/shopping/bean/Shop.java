@@ -11,6 +11,8 @@ public class Shop implements Serializable {
 
     private Integer userId;
 
+    private Integer repertoryId;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -45,6 +47,14 @@ public class Shop implements Serializable {
         this.userId = userId;
     }
 
+    public Integer getRepertoryId() {
+        return repertoryId;
+    }
+
+    public void setRepertoryId(Integer repertoryId) {
+        this.repertoryId = repertoryId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -55,6 +65,7 @@ public class Shop implements Serializable {
         sb.append(", name=").append(name);
         sb.append(", score=").append(score);
         sb.append(", userId=").append(userId);
+        sb.append(", repertoryId=").append(repertoryId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

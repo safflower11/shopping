@@ -9,13 +9,15 @@ public class Address implements Serializable {
 
     private String deliveraddress;
 
+    private String delivername;
+
     private String receivename;
 
-    private String phone;
+    private String deliverphone;
+
+    private String receivephone;
 
     private Integer userId;
-
-    private Integer shopId;
 
     private static final long serialVersionUID = 1L;
 
@@ -43,6 +45,14 @@ public class Address implements Serializable {
         this.deliveraddress = deliveraddress == null ? null : deliveraddress.trim();
     }
 
+    public String getDelivername() {
+        return delivername;
+    }
+
+    public void setDelivername(String delivername) {
+        this.delivername = delivername == null ? null : delivername.trim();
+    }
+
     public String getReceivename() {
         return receivename;
     }
@@ -51,12 +61,20 @@ public class Address implements Serializable {
         this.receivename = receivename == null ? null : receivename.trim();
     }
 
-    public String getPhone() {
-        return phone;
+    public String getDeliverphone() {
+        return deliverphone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+    public void setDeliverphone(String deliverphone) {
+        this.deliverphone = deliverphone == null ? null : deliverphone.trim();
+    }
+
+    public String getReceivephone() {
+        return receivephone;
+    }
+
+    public void setReceivephone(String receivephone) {
+        this.receivephone = receivephone == null ? null : receivephone.trim();
     }
 
     public Integer getUserId() {
@@ -65,14 +83,6 @@ public class Address implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public Integer getShopId() {
-        return shopId;
-    }
-
-    public void setShopId(Integer shopId) {
-        this.shopId = shopId;
     }
 
     @Override
@@ -84,10 +94,11 @@ public class Address implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", getaddress=").append(getaddress);
         sb.append(", deliveraddress=").append(deliveraddress);
+        sb.append(", delivername=").append(delivername);
         sb.append(", receivename=").append(receivename);
-        sb.append(", phone=").append(phone);
+        sb.append(", deliverphone=").append(deliverphone);
+        sb.append(", receivephone=").append(receivephone);
         sb.append(", userId=").append(userId);
-        sb.append(", shopId=").append(shopId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

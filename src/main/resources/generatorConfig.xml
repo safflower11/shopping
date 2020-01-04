@@ -51,10 +51,17 @@
 		<!-- 映射配置 -->
 		<table tableName="shop_address" domainObjectName="Address"></table>
 		<table tableName="shop_appraise" domainObjectName="Appraise"></table>
+		<table tableName="shop_co" domainObjectName="Co"></table>
+
 		<table tableName="shop_commodity" domainObjectName="Commodity"></table>
+		<table tableName="shop_cs" domainObjectName="Cs"></table>
+
 		<table tableName="shop_logistic" domainObjectName="Logistic"></table>
 		<table tableName="shop_order" domainObjectName="Order"></table>
 		<table tableName="shop_pay" domainObjectName="Pay"></table>
+		<table tableName="shop_qsn" domainObjectName="Qsn"></table>
+		<table tableName="shop_question" domainObjectName="Question"></table>
+
 		<table tableName="shop_repertory" domainObjectName="Repertory"></table>
 		<table tableName="shop_shop" domainObjectName="Shop"></table>
 		<table tableName="shop_shoppingcar" domainObjectName="Shoppingcar"></table>

@@ -16,12 +16,6 @@ public class Logistic implements Serializable {
 
     private Date deliverdate;
 
-    private Integer commodityId;
-
-    private Integer orderId;
-
-    private Integer addressId;
-
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -72,30 +66,6 @@ public class Logistic implements Serializable {
         this.deliverdate = deliverdate;
     }
 
-    public Integer getCommodityId() {
-        return commodityId;
-    }
-
-    public void setCommodityId(Integer commodityId) {
-        this.commodityId = commodityId;
-    }
-
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
-    public Integer getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -108,9 +78,6 @@ public class Logistic implements Serializable {
         sb.append(", status=").append(status);
         sb.append(", getdate=").append(getdate);
         sb.append(", deliverdate=").append(deliverdate);
-        sb.append(", commodityId=").append(commodityId);
-        sb.append(", orderId=").append(orderId);
-        sb.append(", addressId=").append(addressId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

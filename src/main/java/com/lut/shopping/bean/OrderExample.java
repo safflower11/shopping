@@ -545,66 +545,6 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andCommodityIdIsNull() {
-            addCriterion("commodity_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdIsNotNull() {
-            addCriterion("commodity_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdEqualTo(Integer value) {
-            addCriterion("commodity_id =", value, "commodityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdNotEqualTo(Integer value) {
-            addCriterion("commodity_id <>", value, "commodityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdGreaterThan(Integer value) {
-            addCriterion("commodity_id >", value, "commodityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("commodity_id >=", value, "commodityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdLessThan(Integer value) {
-            addCriterion("commodity_id <", value, "commodityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdLessThanOrEqualTo(Integer value) {
-            addCriterion("commodity_id <=", value, "commodityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdIn(List<Integer> values) {
-            addCriterion("commodity_id in", values, "commodityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdNotIn(List<Integer> values) {
-            addCriterion("commodity_id not in", values, "commodityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdBetween(Integer value1, Integer value2) {
-            addCriterion("commodity_id between", value1, value2, "commodityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCommodityIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("commodity_id not between", value1, value2, "commodityId");
-            return (Criteria) this;
-        }
-
         public Criteria andAddressIdIsNull() {
             addCriterion("address_id is null");
             return (Criteria) this;
@@ -662,6 +602,66 @@ public class OrderExample {
 
         public Criteria andAddressIdNotBetween(Integer value1, Integer value2) {
             addCriterion("address_id not between", value1, value2, "addressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdIsNull() {
+            addCriterion("logistic_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdIsNotNull() {
+            addCriterion("logistic_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdEqualTo(Integer value) {
+            addCriterion("logistic_id =", value, "logisticId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdNotEqualTo(Integer value) {
+            addCriterion("logistic_id <>", value, "logisticId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdGreaterThan(Integer value) {
+            addCriterion("logistic_id >", value, "logisticId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("logistic_id >=", value, "logisticId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdLessThan(Integer value) {
+            addCriterion("logistic_id <", value, "logisticId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdLessThanOrEqualTo(Integer value) {
+            addCriterion("logistic_id <=", value, "logisticId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdIn(List<Integer> values) {
+            addCriterion("logistic_id in", values, "logisticId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdNotIn(List<Integer> values) {
+            addCriterion("logistic_id not in", values, "logisticId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdBetween(Integer value1, Integer value2) {
+            addCriterion("logistic_id between", value1, value2, "logisticId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("logistic_id not between", value1, value2, "logisticId");
             return (Criteria) this;
         }
     }

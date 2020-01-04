@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lut.shopping.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.lut.shopping.bean.User">
+<mapper namespace="com.lut.shopping.mapper.CoMapper">
+  <resultMap id="BaseResultMap" type="com.lut.shopping.bean.Co">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="unum" jdbcType="INTEGER" property="unum" />
-    <result column="code" jdbcType="INTEGER" property="code" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="question" jdbcType="VARCHAR" property="question" />
-    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="commodity_id" jdbcType="INTEGER" property="commodityId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, unum, code, name, password, question, answer
+    id, commodity_id, order_id
   </sql>
-  <select id="selectByExample" parameterType="com.lut.shopping.bean.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.lut.shopping.bean.CoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from shop_user
+    from shop_co
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,105 +84,67 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from shop_user
+    from shop_co
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from shop_user
+    delete from shop_co
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.lut.shopping.bean.UserExample">
-    delete from shop_user
+  <delete id="deleteByExample" parameterType="com.lut.shopping.bean.CoExample">
+    delete from shop_co
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.lut.shopping.bean.User">
-    insert into shop_user (id, unum, code, 
-      name, password, question, 
-      answer)
-    values (#{id,jdbcType=INTEGER}, #{unum,jdbcType=INTEGER}, #{code,jdbcType=INTEGER}, 
-      #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
-      #{answer,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.lut.shopping.bean.Co">
+    insert into shop_co (id, commodity_id, order_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.lut.shopping.bean.User">
-    insert into shop_user
+  <insert id="insertSelective" parameterType="com.lut.shopping.bean.Co">
+    insert into shop_co
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="unum != null">
-        unum,
+      <if test="commodityId != null">
+        commodity_id,
       </if>
-      <if test="code != null">
-        code,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="question != null">
-        question,
-      </if>
-      <if test="answer != null">
-        answer,
+      <if test="orderId != null">
+        order_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="unum != null">
-        #{unum,jdbcType=INTEGER},
+      <if test="commodityId != null">
+        #{commodityId,jdbcType=INTEGER},
       </if>
-      <if test="code != null">
-        #{code,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="question != null">
-        #{question,jdbcType=VARCHAR},
-      </if>
-      <if test="answer != null">
-        #{answer,jdbcType=VARCHAR},
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.lut.shopping.bean.UserExample" resultType="java.lang.Long">
-    select count(*) from shop_user
+  <select id="countByExample" parameterType="com.lut.shopping.bean.CoExample" resultType="java.lang.Long">
+    select count(*) from shop_co
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update shop_user
+    update shop_co
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.unum != null">
-        unum = #{record.unum,jdbcType=INTEGER},
+      <if test="record.commodityId != null">
+        commodity_id = #{record.commodityId,jdbcType=INTEGER},
       </if>
-      <if test="record.code != null">
-        code = #{record.code,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.question != null">
-        question = #{record.question,jdbcType=VARCHAR},
-      </if>
-      <if test="record.answer != null">
-        answer = #{record.answer,jdbcType=VARCHAR},
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -194,50 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update shop_user
+    update shop_co
     set id = #{record.id,jdbcType=INTEGER},
-      unum = #{record.unum,jdbcType=INTEGER},
-      code = #{record.code,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      question = #{record.question,jdbcType=VARCHAR},
-      answer = #{record.answer,jdbcType=VARCHAR}
+      commodity_id = #{record.commodityId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lut.shopping.bean.User">
-    update shop_user
+  <update id="updateByPrimaryKeySelective" parameterType="com.lut.shopping.bean.Co">
+    update shop_co
     <set>
-      <if test="unum != null">
-        unum = #{unum,jdbcType=INTEGER},
+      <if test="commodityId != null">
+        commodity_id = #{commodityId,jdbcType=INTEGER},
       </if>
-      <if test="code != null">
-        code = #{code,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="question != null">
-        question = #{question,jdbcType=VARCHAR},
-      </if>
-      <if test="answer != null">
-        answer = #{answer,jdbcType=VARCHAR},
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lut.shopping.bean.User">
-    update shop_user
-    set unum = #{unum,jdbcType=INTEGER},
-      code = #{code,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      question = #{question,jdbcType=VARCHAR},
-      answer = #{answer,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.lut.shopping.bean.Co">
+    update shop_co
+    set commodity_id = #{commodityId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

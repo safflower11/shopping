@@ -9,8 +9,8 @@
     <result column="number" jdbcType="INTEGER" property="number" />
     <result column="totalprice" jdbcType="DECIMAL" property="totalprice" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="commodity_id" jdbcType="INTEGER" property="commodityId" />
     <result column="address_id" jdbcType="INTEGER" property="addressId" />
+    <result column="logistic_id" jdbcType="INTEGER" property="logisticId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, status, code, orderdate, number, totalprice, user_id, commodity_id, address_id
+    id, status, code, orderdate, number, totalprice, user_id, address_id, logistic_id
   </sql>
   <select id="selectByExample" parameterType="com.lut.shopping.bean.OrderExample" resultMap="BaseResultMap">
     select
@@ -106,11 +106,11 @@
   <insert id="insert" parameterType="com.lut.shopping.bean.Order">
     insert into shop_order (id, status, code, 
       orderdate, number, totalprice, 
-      user_id, commodity_id, address_id
+      user_id, address_id, logistic_id
       )
     values (#{id,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{orderdate,jdbcType=TIMESTAMP}, #{number,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, 
-      #{userId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}
+      #{userId,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, #{logisticId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.lut.shopping.bean.Order">
@@ -137,11 +137,11 @@
       <if test="userId != null">
         user_id,
       </if>
-      <if test="commodityId != null">
-        commodity_id,
-      </if>
       <if test="addressId != null">
         address_id,
+      </if>
+      <if test="logisticId != null">
+        logistic_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -166,11 +166,11 @@
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="commodityId != null">
-        #{commodityId,jdbcType=INTEGER},
-      </if>
       <if test="addressId != null">
         #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="logisticId != null">
+        #{logisticId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -204,11 +204,11 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.commodityId != null">
-        commodity_id = #{record.commodityId,jdbcType=INTEGER},
-      </if>
       <if test="record.addressId != null">
         address_id = #{record.addressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.logisticId != null">
+        logistic_id = #{record.logisticId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -224,8 +224,8 @@
       number = #{record.number,jdbcType=INTEGER},
       totalprice = #{record.totalprice,jdbcType=DECIMAL},
       user_id = #{record.userId,jdbcType=INTEGER},
-      commodity_id = #{record.commodityId,jdbcType=INTEGER},
-      address_id = #{record.addressId,jdbcType=INTEGER}
+      address_id = #{record.addressId,jdbcType=INTEGER},
+      logistic_id = #{record.logisticId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -251,11 +251,11 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="commodityId != null">
-        commodity_id = #{commodityId,jdbcType=INTEGER},
-      </if>
       <if test="addressId != null">
         address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="logisticId != null">
+        logistic_id = #{logisticId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -268,8 +268,8 @@
       number = #{number,jdbcType=INTEGER},
       totalprice = #{totalprice,jdbcType=DECIMAL},
       user_id = #{userId,jdbcType=INTEGER},
-      commodity_id = #{commodityId,jdbcType=INTEGER},
-      address_id = #{addressId,jdbcType=INTEGER}
+      address_id = #{addressId,jdbcType=INTEGER},
+      logistic_id = #{logisticId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

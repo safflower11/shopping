@@ -5,10 +5,11 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="getaddress" jdbcType="VARCHAR" property="getaddress" />
     <result column="deliveraddress" jdbcType="VARCHAR" property="deliveraddress" />
+    <result column="delivername" jdbcType="VARCHAR" property="delivername" />
     <result column="receivename" jdbcType="VARCHAR" property="receivename" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="deliverphone" jdbcType="VARCHAR" property="deliverphone" />
+    <result column="receivephone" jdbcType="VARCHAR" property="receivephone" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, getaddress, deliveraddress, receivename, phone, user_id, shop_id
+    id, getaddress, deliveraddress, delivername, receivename, deliverphone, receivephone, 
+    user_id
   </sql>
   <select id="selectByExample" parameterType="com.lut.shopping.bean.AddressExample" resultMap="BaseResultMap">
     select
@@ -103,11 +105,11 @@
   </delete>
   <insert id="insert" parameterType="com.lut.shopping.bean.Address">
     insert into shop_address (id, getaddress, deliveraddress, 
-      receivename, phone, user_id, 
-      shop_id)
+      delivername, receivename, deliverphone, 
+      receivephone, user_id)
     values (#{id,jdbcType=INTEGER}, #{getaddress,jdbcType=VARCHAR}, #{deliveraddress,jdbcType=VARCHAR}, 
-      #{receivename,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{shopId,jdbcType=INTEGER})
+      #{delivername,jdbcType=VARCHAR}, #{receivename,jdbcType=VARCHAR}, #{deliverphone,jdbcType=VARCHAR}, 
+      #{receivephone,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lut.shopping.bean.Address">
     insert into shop_address
@@ -121,17 +123,20 @@
       <if test="deliveraddress != null">
         deliveraddress,
       </if>
+      <if test="delivername != null">
+        delivername,
+      </if>
       <if test="receivename != null">
         receivename,
       </if>
-      <if test="phone != null">
-        phone,
+      <if test="deliverphone != null">
+        deliverphone,
+      </if>
+      <if test="receivephone != null">
+        receivephone,
       </if>
       <if test="userId != null">
         user_id,
-      </if>
-      <if test="shopId != null">
-        shop_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -144,17 +149,20 @@
       <if test="deliveraddress != null">
         #{deliveraddress,jdbcType=VARCHAR},
       </if>
+      <if test="delivername != null">
+        #{delivername,jdbcType=VARCHAR},
+      </if>
       <if test="receivename != null">
         #{receivename,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
+      <if test="deliverphone != null">
+        #{deliverphone,jdbcType=VARCHAR},
+      </if>
+      <if test="receivephone != null">
+        #{receivephone,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="shopId != null">
-        #{shopId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -176,17 +184,20 @@
       <if test="record.deliveraddress != null">
         deliveraddress = #{record.deliveraddress,jdbcType=VARCHAR},
       </if>
+      <if test="record.delivername != null">
+        delivername = #{record.delivername,jdbcType=VARCHAR},
+      </if>
       <if test="record.receivename != null">
         receivename = #{record.receivename,jdbcType=VARCHAR},
       </if>
-      <if test="record.phone != null">
-        phone = #{record.phone,jdbcType=VARCHAR},
+      <if test="record.deliverphone != null">
+        deliverphone = #{record.deliverphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivephone != null">
+        receivephone = #{record.receivephone,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
-      </if>
-      <if test="record.shopId != null">
-        shop_id = #{record.shopId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -198,10 +209,11 @@
     set id = #{record.id,jdbcType=INTEGER},
       getaddress = #{record.getaddress,jdbcType=VARCHAR},
       deliveraddress = #{record.deliveraddress,jdbcType=VARCHAR},
+      delivername = #{record.delivername,jdbcType=VARCHAR},
       receivename = #{record.receivename,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      shop_id = #{record.shopId,jdbcType=INTEGER}
+      deliverphone = #{record.deliverphone,jdbcType=VARCHAR},
+      receivephone = #{record.receivephone,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -215,17 +227,20 @@
       <if test="deliveraddress != null">
         deliveraddress = #{deliveraddress,jdbcType=VARCHAR},
       </if>
+      <if test="delivername != null">
+        delivername = #{delivername,jdbcType=VARCHAR},
+      </if>
       <if test="receivename != null">
         receivename = #{receivename,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
+      <if test="deliverphone != null">
+        deliverphone = #{deliverphone,jdbcType=VARCHAR},
+      </if>
+      <if test="receivephone != null">
+        receivephone = #{receivephone,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="shopId != null">
-        shop_id = #{shopId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -234,10 +249,11 @@
     update shop_address
     set getaddress = #{getaddress,jdbcType=VARCHAR},
       deliveraddress = #{deliveraddress,jdbcType=VARCHAR},
+      delivername = #{delivername,jdbcType=VARCHAR},
       receivename = #{receivename,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER},
-      shop_id = #{shopId,jdbcType=INTEGER}
+      deliverphone = #{deliverphone,jdbcType=VARCHAR},
+      receivephone = #{receivephone,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
