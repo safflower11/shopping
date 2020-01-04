@@ -353,66 +353,6 @@ public class ShopExample {
             addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
-
-        public Criteria andRepertoryIdIsNull() {
-            addCriterion("repertory_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdIsNotNull() {
-            addCriterion("repertory_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdEqualTo(Integer value) {
-            addCriterion("repertory_id =", value, "repertoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdNotEqualTo(Integer value) {
-            addCriterion("repertory_id <>", value, "repertoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdGreaterThan(Integer value) {
-            addCriterion("repertory_id >", value, "repertoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("repertory_id >=", value, "repertoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdLessThan(Integer value) {
-            addCriterion("repertory_id <", value, "repertoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdLessThanOrEqualTo(Integer value) {
-            addCriterion("repertory_id <=", value, "repertoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdIn(List<Integer> values) {
-            addCriterion("repertory_id in", values, "repertoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdNotIn(List<Integer> values) {
-            addCriterion("repertory_id not in", values, "repertoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdBetween(Integer value1, Integer value2) {
-            addCriterion("repertory_id between", value1, value2, "repertoryId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepertoryIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("repertory_id not between", value1, value2, "repertoryId");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {

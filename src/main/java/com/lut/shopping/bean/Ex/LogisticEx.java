@@ -1,5 +1,7 @@
 package com.lut.shopping.bean.Ex;
 
-public class LogisticEx {
+import java.io.Serializable;
+
+public class LogisticEx implements Serializable {
 
 }
