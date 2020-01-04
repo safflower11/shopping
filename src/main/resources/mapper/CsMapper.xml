@@ -3,8 +3,8 @@
 <mapper namespace="com.lut.shopping.mapper.CsMapper">
   <resultMap id="BaseResultMap" type="com.lut.shopping.bean.Cs">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="commodity_id" jdbcType="INTEGER" property="commodityId" />
     <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="commodity_id" jdbcType="INTEGER" property="commodityId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, commodity_id, shop_id
+    id, shop_id, commodity_id
   </sql>
   <select id="selectByExample" parameterType="com.lut.shopping.bean.CsExample" resultMap="BaseResultMap">
     select
@@ -98,9 +98,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lut.shopping.bean.Cs">
-    insert into shop_cs (id, commodity_id, shop_id
+    insert into shop_cs (id, shop_id, commodity_id
       )
-    values (#{id,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.lut.shopping.bean.Cs">
@@ -109,22 +109,22 @@
       <if test="id != null">
         id,
       </if>
-      <if test="commodityId != null">
-        commodity_id,
-      </if>
       <if test="shopId != null">
         shop_id,
+      </if>
+      <if test="commodityId != null">
+        commodity_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="commodityId != null">
-        #{commodityId,jdbcType=INTEGER},
-      </if>
       <if test="shopId != null">
         #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityId != null">
+        #{commodityId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -140,11 +140,11 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.commodityId != null">
-        commodity_id = #{record.commodityId,jdbcType=INTEGER},
-      </if>
       <if test="record.shopId != null">
         shop_id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.commodityId != null">
+        commodity_id = #{record.commodityId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -154,8 +154,8 @@
   <update id="updateByExample" parameterType="map">
     update shop_cs
     set id = #{record.id,jdbcType=INTEGER},
-      commodity_id = #{record.commodityId,jdbcType=INTEGER},
-      shop_id = #{record.shopId,jdbcType=INTEGER}
+      shop_id = #{record.shopId,jdbcType=INTEGER},
+      commodity_id = #{record.commodityId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -163,19 +163,19 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lut.shopping.bean.Cs">
     update shop_cs
     <set>
-      <if test="commodityId != null">
-        commodity_id = #{commodityId,jdbcType=INTEGER},
-      </if>
       <if test="shopId != null">
         shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityId != null">
+        commodity_id = #{commodityId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lut.shopping.bean.Cs">
     update shop_cs
-    set commodity_id = #{commodityId,jdbcType=INTEGER},
-      shop_id = #{shopId,jdbcType=INTEGER}
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      commodity_id = #{commodityId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

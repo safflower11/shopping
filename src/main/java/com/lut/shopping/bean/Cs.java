@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Cs implements Serializable {
     private Integer id;
 
-    private Integer commodityId;
-
     private Integer shopId;
+
+    private Integer commodityId;
 
     private static final long serialVersionUID = 1L;
 
@@ -19,20 +19,20 @@ public class Cs implements Serializable {
         this.id = id;
     }
 
-    public Integer getCommodityId() {
-        return commodityId;
-    }
-
-    public void setCommodityId(Integer commodityId) {
-        this.commodityId = commodityId;
-    }
-
     public Integer getShopId() {
         return shopId;
     }
 
     public void setShopId(Integer shopId) {
         this.shopId = shopId;
+    }
+
+    public Integer getCommodityId() {
+        return commodityId;
+    }
+
+    public void setCommodityId(Integer commodityId) {
+        this.commodityId = commodityId;
     }
 
     @Override
@@ -42,8 +42,8 @@ public class Cs implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", commodityId=").append(commodityId);
         sb.append(", shopId=").append(shopId);
+        sb.append(", commodityId=").append(commodityId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
