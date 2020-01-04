@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lut.shopping.mapper.ex.UserEXMapper">
+    <select id="selectByUserName" resultType="com.lut.shopping.bean.User">
+        select *
+        from shop_user
+        where unum = #{unum} and password = #{password} and code=#{code}
+    </select>
+
+</mapper>
