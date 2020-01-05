@@ -21,12 +21,14 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public boolean addUser(User user) throws RuntimeException {
+    public boolean addUser(User user,String password) throws RuntimeException {
         if(user==null){
             throw new RuntimeException("参数错误");
         }
-        if(user.getId()==null){
-            return userEXMapper.addUser(user);
+        if(user.getId()==null&&password==user.getPassword()){
+            user.setCode(3);
+            userMapper.insert(user);
+            return true;
         }else {
             return false;
         }

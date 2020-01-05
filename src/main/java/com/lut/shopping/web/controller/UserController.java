@@ -5,6 +5,7 @@ import com.lut.shopping.service.IUserService;
 import com.lut.shopping.util.Message;
 import com.lut.shopping.util.MessageUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,12 +40,14 @@ public class UserController {
         }
     }
     @GetMapping("/adduser")
-    public Message addUser(User user){
-        boolean b = userService.addUser(user);
+    @ApiImplicitParam(name = "repassword", value = "再次输入密码",paramType = "query",dataType = "String")
+    public Message addUser(User user,String repassword){
+
+        boolean b = userService.addUser(user,repassword);
         if (b==true){
             return MessageUtil.success("注册成功");
         }else {
-            return MessageUtil.success("注册失败");
+            return MessageUtil.success("两次密码输入不一致");
         }
 
     }
