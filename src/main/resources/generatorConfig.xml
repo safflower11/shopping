@@ -50,9 +50,7 @@
 
 		<!-- 映射配置 -->
 
-		<table tableName="shop_repertory" domainObjectName="Repertory"></table>
-		<table tableName="shop_shop" domainObjectName="Shop"></table>
-
+		<table tableName="shop_qsn" domainObjectName="Qsn"></table>
 
 
 	</context>

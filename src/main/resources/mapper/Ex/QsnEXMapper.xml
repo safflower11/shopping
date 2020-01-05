@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lut.shopping.mapper.ex.QqnEXMapper">
+    <resultMap id="abn" type="com.lut.shopping.bean.Ex.QqnEX">
+
+        <result column="sname" property="sname"></result>
+        <result column="uname" property="uname"></result>
+        <result column="label" property="label"></result>
+        <result column="aname" property="aname"></result>
+        <result column="score" property="score"></result>
+    </resultMap>
+    <select id="selectscore" resultMap="abn">
+        select s.name sname,u.name uname,a.label label,a.name aname,a.score score
+        from appraise a,qsn qsn,shop s,question q,user u
+        where a.question_id=qsn.question_id and qsn.shop_id=s.id and s.user_id=u.id
+        and a.user_id=u.id
+    </select>
+</mapper>
