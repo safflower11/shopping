@@ -11,6 +11,24 @@ public class LogisticEx implements Serializable {
     private String status;
     private Date getdate;
     private Date deliverdate;
+    private Integer orderId;
+    private Integer commodityId;
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getCommodityId() {
+        return commodityId;
+    }
+
+    public void setCommodityId(Integer commodityId) {
+        this.commodityId = commodityId;
+    }
 
     public int getId() {
         return id;

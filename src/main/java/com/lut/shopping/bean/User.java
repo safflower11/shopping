@@ -1,16 +1,22 @@
 package com.lut.shopping.bean;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
+    @ApiModelProperty(hidden = true)
     private Integer id;
 
+    @ApiModelProperty(required = true)
     private Integer unum;
 
+    @ApiModelProperty(hidden = true)
     private Integer code;
 
     private String name;
 
+    @ApiModelProperty(required = true)
     private String password;
 
     private String question;
