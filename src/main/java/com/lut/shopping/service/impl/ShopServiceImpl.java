@@ -1,8 +1,6 @@
-package com.lut.shopping.service.impl;
 
-import com.lut.shopping.service.IShopService;
-import org.springframework.stereotype.Service;
+public class ShopServiceImpl  {
 
-@Service
-public class ShopServiceImpl implements IShopService {
+
+
 }

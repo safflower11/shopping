@@ -8,6 +8,8 @@
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="getdate" jdbcType="TIMESTAMP" property="getdate" />
     <result column="deliverdate" jdbcType="TIMESTAMP" property="deliverdate" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="commodity_id" jdbcType="INTEGER" property="commodityId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, company, code, status, getdate, deliverdate
+    id, company, code, status, getdate, deliverdate, order_id, commodity_id
   </sql>
   <select id="selectByExample" parameterType="com.lut.shopping.bean.LogisticExample" resultMap="BaseResultMap">
     select
@@ -102,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.lut.shopping.bean.Logistic">
     insert into shop_logistic (id, company, code, 
-      status, getdate, deliverdate
-      )
+      status, getdate, deliverdate, 
+      order_id, commodity_id)
     values (#{id,jdbcType=INTEGER}, #{company,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{getdate,jdbcType=TIMESTAMP}, #{deliverdate,jdbcType=TIMESTAMP}
-      )
+      #{status,jdbcType=VARCHAR}, #{getdate,jdbcType=TIMESTAMP}, #{deliverdate,jdbcType=TIMESTAMP}, 
+      #{orderId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lut.shopping.bean.Logistic">
     insert into shop_logistic
@@ -129,6 +131,12 @@
       <if test="deliverdate != null">
         deliverdate,
       </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="commodityId != null">
+        commodity_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -148,6 +156,12 @@
       </if>
       <if test="deliverdate != null">
         #{deliverdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityId != null">
+        #{commodityId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -178,6 +192,12 @@
       <if test="record.deliverdate != null">
         deliverdate = #{record.deliverdate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.commodityId != null">
+        commodity_id = #{record.commodityId,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +210,9 @@
       code = #{record.code,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=VARCHAR},
       getdate = #{record.getdate,jdbcType=TIMESTAMP},
-      deliverdate = #{record.deliverdate,jdbcType=TIMESTAMP}
+      deliverdate = #{record.deliverdate,jdbcType=TIMESTAMP},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      commodity_id = #{record.commodityId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +235,12 @@
       <if test="deliverdate != null">
         deliverdate = #{deliverdate,jdbcType=TIMESTAMP},
       </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityId != null">
+        commodity_id = #{commodityId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -222,7 +250,9 @@
       code = #{code,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
       getdate = #{getdate,jdbcType=TIMESTAMP},
-      deliverdate = #{deliverdate,jdbcType=TIMESTAMP}
+      deliverdate = #{deliverdate,jdbcType=TIMESTAMP},
+      order_id = #{orderId,jdbcType=INTEGER},
+      commodity_id = #{commodityId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,6 +1,5 @@
 package com.lut.shopping.web.controller;
 
-import com.lut.shopping.bean.Ex.LogisticEx;
 import com.lut.shopping.service.ILogisticService;
 import com.lut.shopping.util.Message;
 import com.lut.shopping.util.MessageUtil;
@@ -20,13 +19,14 @@ public class LogisticController {
 
     @Autowired
     private ILogisticService iLogisticService;
-    @GetMapping("/selectAll")
-    @ApiOperation(value = "查询所有")
-    public Message selectAll(){
-        List<LogisticEx> logisticExes =iLogisticService.selectAll();
-        return MessageUtil.success(logisticExes);
-    }
+    /*@GetMapping("/search")
+    @ApiOperation(value = "搜索")
 
+    *//*public Message selectAll(){
+        List<LoEx> loExes =iLogisticService.selectAll();
+        return MessageUtil.success(loExes);
+    }*//*
+*/
 
 
 }
