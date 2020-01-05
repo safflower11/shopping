@@ -1,9 +1,9 @@
 package com.lut.shopping.service;
 
-import com.lut.shopping.bean.Ex.LogisticEx;
+import com.lut.shopping.bean.Ex.LoEx;
 
 import java.util.List;
 
 public interface ILogisticService {
-    List<LogisticEx> selectAll() throws RuntimeException;
+    List<LoEx> selectAll() throws RuntimeException;
 }

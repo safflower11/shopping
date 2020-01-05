@@ -1,6 +1,8 @@
 package com.lut.shopping.service.impl;
 
+import com.lut.shopping.bean.Ex.LoEx;
 import com.lut.shopping.bean.Ex.LogisticEx;
+import com.lut.shopping.mapper.Ex.LoExMapper;
 import com.lut.shopping.mapper.Ex.LogisticExMapper;
 import com.lut.shopping.mapper.LogisticMapper;
 import com.lut.shopping.service.ILogisticService;
@@ -12,13 +14,13 @@ import java.util.List;
 @Service
 public class LogisticServiceImpl implements ILogisticService {
     @Autowired
-    private LogisticExMapper logisticExMapper;
-    @Autowired
     private LogisticMapper logisticMapper;
+    @Autowired
+    private LoExMapper loExMapper;
 
     @Override
-    public List<LogisticEx> selectAll() throws RuntimeException{
-        List<LogisticEx> logisticExes = logisticExMapper.selectAll();
-        return logisticExes;
+    public List<LoEx> selectAll() throws RuntimeException{
+        List<LoEx> loExes = loExMapper.selectAll();
+        return loExes;
     }
 }

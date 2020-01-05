@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lut.shopping.mapper.Ex.LoExMapper">
+    <resultMap id="LoEx" type="com.lut.shopping.bean.Ex.LoEx">
+        <id column="id" property="id"></id>
+        <result column="company" property="company"></result>
+        <result column="status" property="status"></result>
+        <result column="getdate" property="getdate"></result>
+        <result column="deliverdate" property="deliverdate"></result>
+        <result column="order_id" property="order_id"></result>
+        <result column="commodity_id" property="commodity_id"></result>
+    </resultMap>
+    <select id="selectAll" resultMap="LoEx">
+        select lo.id id,lo.company company,lo.status status,lo.getdate getdate,lo.deliverdate deliverdate,o.id order_id,c.id commodity_id
+        from shop_commodity c ,shop_logistic lo,shop_order o
+        where lo.commodity_id=c.id and lo.order_id=o.id
+    </select>
+
+</mapper>

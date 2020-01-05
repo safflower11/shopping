@@ -1,5 +1,8 @@
 package com.lut.shopping.bean.Ex;
 
+import com.lut.shopping.bean.Commodity;
+import com.lut.shopping.bean.Order;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,24 +14,8 @@ public class LogisticEx implements Serializable {
     private String status;
     private Date getdate;
     private Date deliverdate;
-    private Integer orderId;
-    private Integer commodityId;
-
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
-    public Integer getCommodityId() {
-        return commodityId;
-    }
-
-    public void setCommodityId(Integer commodityId) {
-        this.commodityId = commodityId;
-    }
+    private Order order;
+    private Commodity commodity;
 
     public int getId() {
         return id;
@@ -74,8 +61,23 @@ public class LogisticEx implements Serializable {
         return deliverdate;
     }
 
-
     public void setDeliverdate(Date deliverdate) {
         this.deliverdate = deliverdate;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Commodity getCommodity() {
+        return commodity;
+    }
+
+    public void setCommodity(Commodity commodity) {
+        this.commodity = commodity;
     }
 }
