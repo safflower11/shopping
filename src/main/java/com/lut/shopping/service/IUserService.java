@@ -1,11 +1,20 @@
 package com.lut.shopping.service;
 
+import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.bean.User;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IUserService {
     User selectByUserName(Map<String, Object> map) throws RuntimeException;
 
-    boolean addUser(User user,String password) throws RuntimeException;
+    boolean addUser(User user) throws RuntimeException;
+
+    UserEX showById(int id) throws RuntimeException;
+
+
+    void shenhe(int unum, String shopname)throws RuntimeException;
+
+    UserEX findByUnum(int unum)throws RuntimeException;
 }
