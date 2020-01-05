@@ -1,9 +1,15 @@
 package com.lut.shopping.bean;
 
+import com.lut.shopping.bean.Ex.CommodityEx;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class Co implements Serializable {
     private Integer id;
+
+    private List<CommodityEx> commodxityExs;
+
 
     private Integer commodityId;
 
