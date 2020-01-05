@@ -50,7 +50,7 @@
 
 		<!-- 映射配置 -->
 
-		<table tableName="shop_order" domainObjectName="Order"></table>
+		<table tableName="shop_repertory" domainObjectName="Repertory"></table>
 
 
 

@@ -5,7 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="commodityname" jdbcType="VARCHAR" property="commodityname" />
     <result column="number" jdbcType="INTEGER" property="number" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="shop_id" jdbcType="INTEGER" property="shopId" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -103,7 +103,7 @@
     insert into shop_repertory (id, commodityname, number, 
       price, shop_id)
     values (#{id,jdbcType=INTEGER}, #{commodityname,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, 
-      #{price,jdbcType=DECIMAL}, #{shopId,jdbcType=INTEGER})
+      #{price,jdbcType=DOUBLE}, #{shopId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lut.shopping.bean.Repertory">
     insert into shop_repertory
@@ -135,7 +135,7 @@
         #{number,jdbcType=INTEGER},
       </if>
       <if test="price != null">
-        #{price,jdbcType=DECIMAL},
+        #{price,jdbcType=DOUBLE},
       </if>
       <if test="shopId != null">
         #{shopId,jdbcType=INTEGER},
@@ -161,7 +161,7 @@
         number = #{record.number,jdbcType=INTEGER},
       </if>
       <if test="record.price != null">
-        price = #{record.price,jdbcType=DECIMAL},
+        price = #{record.price,jdbcType=DOUBLE},
       </if>
       <if test="record.shopId != null">
         shop_id = #{record.shopId,jdbcType=INTEGER},
@@ -176,7 +176,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       commodityname = #{record.commodityname,jdbcType=VARCHAR},
       number = #{record.number,jdbcType=INTEGER},
-      price = #{record.price,jdbcType=DECIMAL},
+      price = #{record.price,jdbcType=DOUBLE},
       shop_id = #{record.shopId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -192,7 +192,7 @@
         number = #{number,jdbcType=INTEGER},
       </if>
       <if test="price != null">
-        price = #{price,jdbcType=DECIMAL},
+        price = #{price,jdbcType=DOUBLE},
       </if>
       <if test="shopId != null">
         shop_id = #{shopId,jdbcType=INTEGER},
@@ -204,7 +204,7 @@
     update shop_repertory
     set commodityname = #{commodityname,jdbcType=VARCHAR},
       number = #{number,jdbcType=INTEGER},
-      price = #{price,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DOUBLE},
       shop_id = #{shopId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

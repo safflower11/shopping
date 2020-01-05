@@ -9,7 +9,7 @@ public class Repertory implements Serializable {
 
     private Integer number;
 
-    private Long price;
+    private Double price;
 
     private Integer shopId;
 
@@ -39,11 +39,11 @@ public class Repertory implements Serializable {
         this.number = number;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

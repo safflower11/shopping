@@ -1,14 +1,16 @@
 package com.lut.shopping.service.impl;
 
+import com.lut.shopping.bean.*;
 import com.lut.shopping.bean.Ex.CommodityEx;
-import com.lut.shopping.bean.Order;
-import com.lut.shopping.bean.Shoppingcar;
+import com.lut.shopping.bean.Ex.CommodityshowEx;
+import com.lut.shopping.mapper.CommodityMapper;
 import com.lut.shopping.mapper.Ex.CommodityExMapper;
 import com.lut.shopping.mapper.OrderMapper;
 import com.lut.shopping.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -17,6 +19,9 @@ public class CommodityServiceImpl implements ICommodityService {
     private CommodityExMapper commodityExMapper;
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private CommodityMapper commodityMapper;
+
 
     @Override
     public List<CommodityEx> show() throws RuntimeException {
@@ -30,17 +35,98 @@ public class CommodityServiceImpl implements ICommodityService {
     }
 
     @Override
-    public void addorder(Order order) throws RuntimeException {
-        if(order==null){
-            throw new RuntimeException("参数为空");
-        }
-        if(order.getId()==null){
+    public void addorder(int user_id,int num,double totalprice,int address_id,int logistic_id) throws RuntimeException {
+        Order order=new Order();
             int code=(int) Math.round((Math.random()+1)*100000000);
-            order.setStatus("已下单");
+            order.setStatus("待付款");
             order.setCode(code);
+            order.setOrderdate(new Date());
+            order.setUserId(user_id);
+            order.setNumber(num);
+            order.setTotalprice(totalprice);
+            order.setAddressId(address_id);
+            order.setLogisticId(logistic_id);
             orderMapper.insert(order);
-        }else {
-            orderMapper.updateByPrimaryKey(order);
+
+    }
+
+    @Override
+    public Commodity selectname(String name) throws RuntimeException {
+           Commodity commodity=commodityExMapper.selectName(name);
+            return commodity;
         }
+
+    @Override
+    public Logistic selectcompany(String company) throws RuntimeException {
+        Logistic logistic=commodityExMapper.selectcom(company);
+        return logistic;
+    }
+
+    @Override
+    public Address selectaddid(String getaddress, String receivename, String receivephone) throws RuntimeException {
+        Address address=commodityExMapper.selectadd(getaddress,receivename,receivephone);
+        return address;
+    }
+
+    @Override
+    public void insertaddresee(String getaddress, String receivename, String receivephone) throws RuntimeException {
+        commodityExMapper.insertaddress(getaddress,receivename,receivephone);
+
+    }
+
+    @Override
+    public List<CommodityshowEx> commodityshow() throws RuntimeException {
+        List<CommodityshowEx> commodityshowExes=commodityExMapper.selectcommodity();
+        return commodityshowExes;
+    }
+
+    @Override
+    public void insertcs(int shop_id,int commodity_id) throws RuntimeException {
+        Cs cs=new Cs();
+        cs.setShop_id(shop_id);
+        cs.setCommodity_id(commodity_id);
+        commodityExMapper.insertcs(cs);
+    }
+
+    @Override
+    public Shop selectshop(String shopname) throws RuntimeException {
+        Shop shop=commodityExMapper.selectshop(shopname);
+        return shop;
+    }
+
+    @Override
+    public Cs selectcs(int shop_id, int commodity_id) throws RuntimeException {
+        Cs cs=commodityExMapper.selectcs(shop_id,commodity_id);
+        return cs;
+    }
+
+    @Override
+    public Repertory selere(String name) throws RuntimeException {
+        Repertory repertory=commodityExMapper.selectrepertory(name);
+        return repertory;
+    }
+
+    @Override
+    public void updateco(int afternum) throws RuntimeException {
+        CommodityshowEx commodityshowEx=new CommodityshowEx();
+        commodityshowEx.setNumber(afternum);
+        commodityExMapper.update(commodityshowEx);
+
+    }
+
+    @Override
+    public void updatere(int afterrnum) throws RuntimeException {
+        Repertory repertory=new Repertory();
+        repertory.setNumber(afterrnum);
+        commodityExMapper.updatere(repertory);
+    }
+
+    @Override
+    public void insertco(String name, int number,double price) throws RuntimeException {
+        Commodity commodity=new Commodity();
+        commodity.setName(name);
+        commodity.setNumber(number);
+        commodity.setPrice(price);
+        commodityMapper.insert(commodity);
     }
 }
