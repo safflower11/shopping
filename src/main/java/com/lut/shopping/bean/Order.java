@@ -8,13 +8,13 @@ public class Order implements Serializable {
 
     private String status;
 
-    private String code;
+    private Integer code;
 
     private Date orderdate;
 
     private Integer number;
 
-    private Long totalprice;
+    private Double totalprice;
 
     private Integer userId;
 
@@ -40,12 +40,12 @@ public class Order implements Serializable {
         this.status = status == null ? null : status.trim();
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
+    public void setCode(Integer code) {
+        this.code = code;
     }
 
     public Date getOrderdate() {
@@ -64,11 +64,11 @@ public class Order implements Serializable {
         this.number = number;
     }
 
-    public Long getTotalprice() {
+    public Double getTotalprice() {
         return totalprice;
     }
 
-    public void setTotalprice(Long totalprice) {
+    public void setTotalprice(Double totalprice) {
         this.totalprice = totalprice;
     }
 

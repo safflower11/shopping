@@ -245,62 +245,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andCodeEqualTo(String value) {
+        public Criteria andCodeEqualTo(Integer value) {
             addCriterion("code =", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotEqualTo(String value) {
+        public Criteria andCodeNotEqualTo(Integer value) {
             addCriterion("code <>", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andCodeGreaterThan(String value) {
+        public Criteria andCodeGreaterThan(Integer value) {
             addCriterion("code >", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andCodeGreaterThanOrEqualTo(String value) {
+        public Criteria andCodeGreaterThanOrEqualTo(Integer value) {
             addCriterion("code >=", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andCodeLessThan(String value) {
+        public Criteria andCodeLessThan(Integer value) {
             addCriterion("code <", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andCodeLessThanOrEqualTo(String value) {
+        public Criteria andCodeLessThanOrEqualTo(Integer value) {
             addCriterion("code <=", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andCodeLike(String value) {
-            addCriterion("code like", value, "code");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeNotLike(String value) {
-            addCriterion("code not like", value, "code");
-            return (Criteria) this;
-        }
-
-        public Criteria andCodeIn(List<String> values) {
+        public Criteria andCodeIn(List<Integer> values) {
             addCriterion("code in", values, "code");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotIn(List<String> values) {
+        public Criteria andCodeNotIn(List<Integer> values) {
             addCriterion("code not in", values, "code");
             return (Criteria) this;
         }
 
-        public Criteria andCodeBetween(String value1, String value2) {
+        public Criteria andCodeBetween(Integer value1, Integer value2) {
             addCriterion("code between", value1, value2, "code");
             return (Criteria) this;
         }
 
-        public Criteria andCodeNotBetween(String value1, String value2) {
+        public Criteria andCodeNotBetween(Integer value1, Integer value2) {
             addCriterion("code not between", value1, value2, "code");
             return (Criteria) this;
         }
@@ -435,52 +425,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andTotalpriceEqualTo(Long value) {
+        public Criteria andTotalpriceEqualTo(Double value) {
             addCriterion("totalprice =", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpriceNotEqualTo(Long value) {
+        public Criteria andTotalpriceNotEqualTo(Double value) {
             addCriterion("totalprice <>", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpriceGreaterThan(Long value) {
+        public Criteria andTotalpriceGreaterThan(Double value) {
             addCriterion("totalprice >", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpriceGreaterThanOrEqualTo(Long value) {
+        public Criteria andTotalpriceGreaterThanOrEqualTo(Double value) {
             addCriterion("totalprice >=", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpriceLessThan(Long value) {
+        public Criteria andTotalpriceLessThan(Double value) {
             addCriterion("totalprice <", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpriceLessThanOrEqualTo(Long value) {
+        public Criteria andTotalpriceLessThanOrEqualTo(Double value) {
             addCriterion("totalprice <=", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpriceIn(List<Long> values) {
+        public Criteria andTotalpriceIn(List<Double> values) {
             addCriterion("totalprice in", values, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpriceNotIn(List<Long> values) {
+        public Criteria andTotalpriceNotIn(List<Double> values) {
             addCriterion("totalprice not in", values, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpriceBetween(Long value1, Long value2) {
+        public Criteria andTotalpriceBetween(Double value1, Double value2) {
             addCriterion("totalprice between", value1, value2, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpriceNotBetween(Long value1, Long value2) {
+        public Criteria andTotalpriceNotBetween(Double value1, Double value2) {
             addCriterion("totalprice not between", value1, value2, "totalprice");
             return (Criteria) this;
         }

@@ -8,11 +8,89 @@
         <result column="coprice"  property="price" />
         <result column="shname" property="shname"></result>
     </resultMap>
+    <resultMap id="coshow" type="com.lut.shopping.bean.Ex.CommodityshowEx">
+        <id column="coid"  property="id" />
+        <result column="coname"  property="name" />
+        <result column="cotype"  property="type" />
+        <result column="coprice"  property="price" />
+        <result column="conumber" property="number" />
+        <result column="shname" property="shname"></result>
+    </resultMap>
+
+    <resultMap id="selectnam" type="com.lut.shopping.bean.Commodity">
+        <id column="id" property="id" />
+        <result column="price" property="price" />
+        <result column="name" property="name" />
+        <result column="type" property="type" />
+        <result column="number" property="number" />
+    </resultMap>
+
+    <resultMap id="sl" type="com.lut.shopping.bean.Logistic">
+        <id column="id" property="id" />
+    </resultMap>
+
+    <resultMap id="sa" type="com.lut.shopping.bean.Address">
+        <id column="id" property="id" />
+    </resultMap>
+
+    <resultMap id="ssc" type="com.lut.shopping.bean.Cs">
+        <id column="id" property="id" />
+
+    </resultMap>
+
+    <resultMap id="sshop" type="com.lut.shopping.bean.Shop">
+        <id column="id" property="id" />
+    </resultMap>
+
+    <resultMap id="sre" type="com.lut.shopping.bean.Repertory">
+        <result column="price" property="price" />
+        <result column="number" property="number" />
+    </resultMap>
+
 
 <select id="selectshow" resultMap="selectco">
     select co.id coid,co.name coname,co.type cotype,co.price coprice,sh.name shname
     from shop_commodity co,shop_shop sh,shop_cs cs
     where cs.shop_id=sh.id and cs.commodity_id=co.id
 </select>
+    <insert id="insertshopcar">
+        insert into shop_shoppingcar (user_id,commodity_id) values (#{user_id},#{commodity_id})
+    </insert>
+<select id="selectName" resultMap="selectnam">
+    select id,type,name,price,number from shop_commodity where name=#{name}
+</select>
+    <select id="selectcom" resultMap="sl">
+        select id from shop_logistic where company=#{company}
+    </select>
 
+    <select id="selectadd" resultMap="sa">
+        select id from shop_address where getaddress=#{getaddress} and receivename=#{receivename} and receivephone=#{receivephone}
+    </select>
+    <insert id="insertaddress">
+        insert into shop_address (getaddress,receivename,receivephone) values (#{getaddress},#{receivename},#{receivephone})
+</insert>
+    <select id="selectcommodity" resultMap="coshow">
+        select co.id coid,co.name coname,co.type cotype,co.price coprice,co.number conumber,sh.name shname
+        from shop_commodity co,shop_shop sh,shop_cs cs
+        where cs.shop_id=sh.id and cs.commodity_id=co.id
+    </select>
+    <insert id="insertcs">
+        insert into shop_cs (shop_id,commodity_id) values (#{shop_id},#{commodity_id})
+    </insert>
+
+    <select id="selectshop" resultMap="sshop">
+        select id from shop_shop where name=#{shopname}
+    </select>
+   <select id="selectcs" resultMap="ssc">
+       select id from shop_cs where shop_id=#{shop_id} and commodity_id=#{commodity_id}
+   </select>
+    <select id="selectrepertory" resultMap="sre">
+        select number,price from shop_repertory where commodityname=#{name}
+    </select>
+    <update id="update">
+        update shop_commodity set number=#{number} where name=#{name}
+    </update>
+    <update id="updatere">
+        update shop_repertory set number=#{number} where commodityname=#{commodityname}
+    </update>
 </mapper>

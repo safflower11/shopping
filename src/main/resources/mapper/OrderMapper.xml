@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.lut.shopping.bean.Order">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="code" jdbcType="INTEGER" property="code" />
     <result column="orderdate" jdbcType="TIMESTAMP" property="orderdate" />
     <result column="number" jdbcType="INTEGER" property="number" />
-    <result column="totalprice" jdbcType="DECIMAL" property="totalprice" />
+    <result column="totalprice" jdbcType="DOUBLE" property="totalprice" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="address_id" jdbcType="INTEGER" property="addressId" />
     <result column="logistic_id" jdbcType="INTEGER" property="logisticId" />
@@ -108,8 +108,8 @@
       orderdate, number, totalprice, 
       user_id, address_id, logistic_id
       )
-    values (#{id,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{orderdate,jdbcType=TIMESTAMP}, #{number,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, 
+    values (#{id,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{code,jdbcType=INTEGER}, 
+      #{orderdate,jdbcType=TIMESTAMP}, #{number,jdbcType=INTEGER}, #{totalprice,jdbcType=DOUBLE}, 
       #{userId,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, #{logisticId,jdbcType=INTEGER}
       )
   </insert>
@@ -152,7 +152,7 @@
         #{status,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
-        #{code,jdbcType=VARCHAR},
+        #{code,jdbcType=INTEGER},
       </if>
       <if test="orderdate != null">
         #{orderdate,jdbcType=TIMESTAMP},
@@ -161,7 +161,7 @@
         #{number,jdbcType=INTEGER},
       </if>
       <if test="totalprice != null">
-        #{totalprice,jdbcType=DECIMAL},
+        #{totalprice,jdbcType=DOUBLE},
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
@@ -190,7 +190,7 @@
         status = #{record.status,jdbcType=VARCHAR},
       </if>
       <if test="record.code != null">
-        code = #{record.code,jdbcType=VARCHAR},
+        code = #{record.code,jdbcType=INTEGER},
       </if>
       <if test="record.orderdate != null">
         orderdate = #{record.orderdate,jdbcType=TIMESTAMP},
@@ -199,7 +199,7 @@
         number = #{record.number,jdbcType=INTEGER},
       </if>
       <if test="record.totalprice != null">
-        totalprice = #{record.totalprice,jdbcType=DECIMAL},
+        totalprice = #{record.totalprice,jdbcType=DOUBLE},
       </if>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
@@ -219,10 +219,10 @@
     update shop_order
     set id = #{record.id,jdbcType=INTEGER},
       status = #{record.status,jdbcType=VARCHAR},
-      code = #{record.code,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=INTEGER},
       orderdate = #{record.orderdate,jdbcType=TIMESTAMP},
       number = #{record.number,jdbcType=INTEGER},
-      totalprice = #{record.totalprice,jdbcType=DECIMAL},
+      totalprice = #{record.totalprice,jdbcType=DOUBLE},
       user_id = #{record.userId,jdbcType=INTEGER},
       address_id = #{record.addressId,jdbcType=INTEGER},
       logistic_id = #{record.logisticId,jdbcType=INTEGER}
@@ -237,7 +237,7 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
-        code = #{code,jdbcType=VARCHAR},
+        code = #{code,jdbcType=INTEGER},
       </if>
       <if test="orderdate != null">
         orderdate = #{orderdate,jdbcType=TIMESTAMP},
@@ -246,7 +246,7 @@
         number = #{number,jdbcType=INTEGER},
       </if>
       <if test="totalprice != null">
-        totalprice = #{totalprice,jdbcType=DECIMAL},
+        totalprice = #{totalprice,jdbcType=DOUBLE},
       </if>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
@@ -263,10 +263,10 @@
   <update id="updateByPrimaryKey" parameterType="com.lut.shopping.bean.Order">
     update shop_order
     set status = #{status,jdbcType=VARCHAR},
-      code = #{code,jdbcType=VARCHAR},
+      code = #{code,jdbcType=INTEGER},
       orderdate = #{orderdate,jdbcType=TIMESTAMP},
       number = #{number,jdbcType=INTEGER},
-      totalprice = #{totalprice,jdbcType=DECIMAL},
+      totalprice = #{totalprice,jdbcType=DOUBLE},
       user_id = #{userId,jdbcType=INTEGER},
       address_id = #{addressId,jdbcType=INTEGER},
       logistic_id = #{logisticId,jdbcType=INTEGER}

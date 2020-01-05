@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Cs implements Serializable {
     private Integer id;
 
-    private Integer shopId;
+    private Integer shop_id;
 
-    private Integer commodityId;
+    private Integer commodity_id;
 
     private static final long serialVersionUID = 1L;
 
@@ -19,20 +19,24 @@ public class Cs implements Serializable {
         this.id = id;
     }
 
-    public Integer getShopId() {
-        return shopId;
+    public Integer getShop_id() {
+        return shop_id;
     }
 
-    public void setShopId(Integer shopId) {
-        this.shopId = shopId;
+    public void setShop_id(Integer shop_id) {
+        this.shop_id = shop_id;
     }
 
-    public Integer getCommodityId() {
-        return commodityId;
+    public Integer getCommodity_id() {
+        return commodity_id;
     }
 
-    public void setCommodityId(Integer commodityId) {
-        this.commodityId = commodityId;
+    public void setCommodity_id(Integer commodity_id) {
+        this.commodity_id = commodity_id;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     @Override
@@ -42,8 +46,8 @@ public class Cs implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", shopId=").append(shopId);
-        sb.append(", commodityId=").append(commodityId);
+        sb.append(", shopId=").append(shop_id);
+        sb.append(", commodityId=").append(commodity_id);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
