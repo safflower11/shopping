@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lut.shopping.mapper.Ex.LogisticResultExMapper">
+<resultMap id="aaa" type="com.lut.shopping.bean.Ex.LogisticResultEx">
+    <result column="cname" property="cname"></result>
+    <result column="oid" property="oid"></result>
+    <result column="daddress" property="daddress"></result>
+    <result column="gaddress" property="gaddress"></result>
+    <result column="odate" property="odate"></result>
+    <result column="ocode" property="ocode"></result>
+    <result column="status" property="status"></result>
+</resultMap>
+    <select id="selectByWord" resultMap="aaa">
+        select c.name cname,o.id oid,a.deliveraddress daddress,a.getaddress gaddress,o.orderdate odate,o.code ocode,l.status status
+        from shop_logistic l,shop_commodity c,shop_order o,shop_address a
+        where l.order_id=o.id and l.commodity_id=c.id and o.address_id=a.id and (c.name like #{word} or o.id like #{word} or a.deliveraddress like #{word} or
+        a.getaddress like #{word} or o.orderdate like #{word} or o.code like #{word} or l.status like #{word})
+    </select>
+    <select id="findAll" resultMap="aaa">
+        select c.name cname,o.id oid,a.deliveraddress daddress,a.getaddress gaddress,o.orderdate odate,o.code ocode,l.status status
+        from shop_logistic l,shop_commodity c,shop_order o,shop_address a
+        where l.order_id=o.id and l.commodity_id=c.id and o.address_id=a.id
+    </select>
+    <select id="findById" resultMap="aaa">
+        select c.name cname,o.id oid,a.deliveraddress daddress,a.getaddress gaddress,o.orderdate odate,o.code ocode,l.status status
+        from shop_logistic l,shop_commodity c,shop_order o,shop_address a
+        where l.order_id=o.id and l.commodity_id=c.id and o.address_id=a.id and l.id like#{id}
+    </select>
+</mapper>
