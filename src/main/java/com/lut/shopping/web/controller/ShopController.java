@@ -3,6 +3,7 @@ package com.lut.shopping.web.controller;
 import com.lut.shopping.bean.Ex.CoEx;
 import com.lut.shopping.mapper.CoMapper;
 import com.lut.shopping.mapper.Ex.CoExMapper;
+import com.lut.shopping.service.IShopService;
 import com.lut.shopping.util.Message;
 import com.lut.shopping.util.MessageUtil;
 import io.swagger.annotations.Api;
@@ -22,15 +23,32 @@ import java.util.List;
 @RequestMapping("/Order")
 public class ShopController {
     @Autowired
-    private CoExMapper coExMapper;
-    @Autowired
-    private CoMapper coMapper;
+    private IShopService iShopService;
+
     @GetMapping("/findall")
     @ApiOperation(value="查询订单信息")
     public Message findall(){
-        List<CoEx> list=coExMapper.selectAll();
+        List<CoEx> list=iShopService.findAll();
         return MessageUtil.success(list);
-
-
     }
+
+    @GetMapping("/deleteById")
+    @ApiOperation(value="根据id删除订单信息")
+    public Message deleteById(int id){
+        iShopService.deleteById(id);
+        return MessageUtil.success();
+    }
+
+    @GetMapping("/deleteBatch")
+    @ApiOperation(value = "批量删除")
+    public Message deleteBatch(int[] ids){
+        for (int id:ids){
+            iShopService.deleteById(id);
+            System.out.println(id);
+        }
+        return MessageUtil.success();
+    }
+
+
+
 }
