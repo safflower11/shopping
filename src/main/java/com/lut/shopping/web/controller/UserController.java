@@ -1,7 +1,10 @@
 package com.lut.shopping.web.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.lut.shopping.annotation.UserLoginToken;
 import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.bean.User;
+import com.lut.shopping.service.ITokenService;
 import com.lut.shopping.service.IUserService;
 import com.lut.shopping.util.Message;
 import com.lut.shopping.util.MessageUtil;
@@ -22,6 +25,8 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private ITokenService tokenService;
     @GetMapping("/login")
     public Message findByUsername(
             @RequestParam(value = "用户名", required = false) String userName,
@@ -72,6 +77,32 @@ public class UserController {
     public Message shehe(int unum,String shopname) {
         userService.shenhe(unum,shopname);
         return MessageUtil.success();
+    }
+
+    //登录
+    @PostMapping("/loginByToken")
+    public Object login(@RequestBody UserEX user){
+        JSONObject jsonObject=new JSONObject();
+        UserEX userForBase=userService.findByUsername(user);
+        if(userForBase==null){
+            jsonObject.put("message","登录失败,用户不存在");
+            return jsonObject;
+        }else {
+            if (!userForBase.getPassword().equals(user.getPassword())){
+                jsonObject.put("message","登录失败,密码错误");
+                return jsonObject;
+            }else {
+                String token = tokenService.getToken(userForBase);
+                jsonObject.put("token", token);
+                jsonObject.put("user", userForBase);
+                return jsonObject;
+            }
+        }
+    }
+    @UserLoginToken
+    @GetMapping("/getMessage")
+    public String getMessage(){
+        return "你已通过验证";
     }
 
 
