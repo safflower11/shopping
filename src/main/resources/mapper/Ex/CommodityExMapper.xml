@@ -88,9 +88,9 @@
         select number,price from shop_repertory where commodityname=#{name}
     </select>
     <update id="update">
-        update shop_commodity set number=#{number} where name=#{name}
+        update shop_commodity set number=#{number}
     </update>
     <update id="updatere">
-        update shop_repertory set number=#{number} where commodityname=#{commodityname}
+        update shop_repertory set number=#{number}
     </update>
 </mapper>
