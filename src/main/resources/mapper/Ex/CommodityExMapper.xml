@@ -14,5 +14,9 @@
     from shop_commodity co,shop_shop sh,shop_cs cs
     where cs.shop_id=sh.id and cs.commodity_id=co.id
 </select>
+    <insert id="insertshopcar">
+        insert into shop_shoppingcar(user_id,commodity_id) values (#{user_id},#{commodity_id})
+    </insert>
+
 
 </mapper>
