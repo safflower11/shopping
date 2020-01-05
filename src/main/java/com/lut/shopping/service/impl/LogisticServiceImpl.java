@@ -11,12 +11,7 @@ import java.util.List;
 public class LogisticServiceImpl implements ILogisticService {
     @Autowired
     private LogisticMapper logisticMapper;
-    @Autowired
-    private LoExMapper loExMapper;
 
-    @Override
-    public List<LoEx> selectAll() throws RuntimeException{
-        List<LoEx> loExes = loExMapper.selectAll();
-        return loExes;
-    }
+
+
 }
