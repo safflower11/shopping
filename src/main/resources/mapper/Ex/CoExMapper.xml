@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lut.shopping.mapper.Ex.CoExMapper">
-    <resultMap id="" type=""
-    <select id="findAll" resultMap="">
-        select * from shop_co
+    <resultMap id="sco" type="com.lut.shopping.bean.Ex.CoEx">
+        <id column="id" property="id"></id>
+        <result column="status" property="status"></result>
+        <result column="cname" property="cname"></result>
+    </resultMap>
+
+    <select id="selectAll" resultMap="sco">
+        select c.name cname,o.id id,o.status status
+        from shop_commodity c shop_co co,shop_order o
+        where co.commodity_id=c.id and co.order_id=o.id
     </select>
 </mapper>

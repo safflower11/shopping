@@ -5,13 +5,13 @@ import java.util.List;
 
 public class CommodityEx implements Serializable {
 
-    private String shname;
+    private String cname;
 
-    public String getShname() {
-        return shname;
+    public String getCname() {
+        return cname;
     }
 
-    public void setShname(String shname) {
-        this.shname = shname;
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 }

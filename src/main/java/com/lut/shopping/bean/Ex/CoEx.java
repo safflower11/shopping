@@ -7,8 +7,44 @@ import java.util.List;
 
 public class CoEx implements Serializable {
     private Integer id;
+    private String cname;
+    private String status;
     private List<CommodityEx> commodityExes;
     private List<OrderEx> orders;
+    private Integer commodityId;
+    private Integer orderId;
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getCommodityId() {
+        return commodityId;
+    }
+
+    public void setCommodityId(Integer commodityId) {
+        this.commodityId = commodityId;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
 
     public Integer getId() {
         return id;
