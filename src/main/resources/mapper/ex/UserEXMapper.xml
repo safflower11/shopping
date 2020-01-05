@@ -46,4 +46,15 @@
     where id = #{id}
   </update>
 
+    <select id="findByUsername" resultType="com.lut.shopping.bean.Ex.UserEX">
+      SELECT * FROM shop_user
+      where
+      unum=#{username}
+    </select>
+    <select id="findUserById" resultType="com.lut.shopping.bean.Ex.UserEX">
+        SELECT * FROM shop_user
+      where
+      id=#{Id}
+    </select>
+
 </mapper>

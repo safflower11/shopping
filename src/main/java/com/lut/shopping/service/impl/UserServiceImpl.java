@@ -67,4 +67,14 @@ public class UserServiceImpl implements IUserService {
         return userEXMapper.findByUnum(unum);
     }
 
+    @Override
+    public UserEX findByUsername(UserEX user) throws RuntimeException {
+        return userEXMapper.findByUsername(user.getUnum());
+    }
+
+    @Override
+    public UserEX findUserById(String userId) throws RuntimeException {
+        return userEXMapper.findUserById(userId);
+    }
+
 }

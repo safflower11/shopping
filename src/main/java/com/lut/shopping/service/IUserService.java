@@ -17,4 +17,8 @@ public interface IUserService {
     void shenhe(int unum, String shopname)throws RuntimeException;
 
     UserEX findByUnum(int unum)throws RuntimeException;
+
+    UserEX findByUsername(UserEX user) throws RuntimeException;
+
+    UserEX findUserById(String userId) throws RuntimeException;
 }
