@@ -6,7 +6,7 @@ public class OrderEx {
     private double totalprice;
     private String agetaddress;
     private String uname;
-    private String arecievenumber;
+    private String areceivephone;
     private String lcompany;
 
     public String getCname() {
@@ -49,12 +49,12 @@ public class OrderEx {
         this.uname = uname;
     }
 
-    public String getArecievenumber() {
-        return arecievenumber;
+    public String getAreceivephone() {
+        return areceivephone;
     }
 
-    public void setArecievenumber(String arecievenumber) {
-        this.arecievenumber = arecievenumber;
+    public void setAreceivephone(String areceivephone) {
+        this.areceivephone = areceivephone;
     }
 
     public String getLcompany() {

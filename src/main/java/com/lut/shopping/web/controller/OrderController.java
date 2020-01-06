@@ -23,15 +23,15 @@ public class OrderController {
     @GetMapping("/show")
     @ApiOperation(value = "预览")
     public Message showById(int id){
-        OrderEx list=iOderService.findById(id);
+        List<OrderEx> list=iOderService.findById(id);
         return MessageUtil.success(list);
 
     }
-
     @GetMapping("/findall")
     @ApiOperation(value="查询订单信息")
     public Message findall(){
         List<CoEx> list=iOderService.findAll();
+        System.out.println(list);
         return MessageUtil.success(list);
     }
 

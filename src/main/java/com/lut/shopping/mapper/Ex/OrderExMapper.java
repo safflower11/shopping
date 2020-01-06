@@ -5,5 +5,5 @@ import com.lut.shopping.bean.Ex.OrderEx;
 import java.util.List;
 
 public interface OrderExMapper {
-    OrderEx findById(int id);
+    List<OrderEx> findById(int id);
 }
