@@ -25,4 +25,16 @@ public class LogisticResultController {
         List<LogisticResultEx> logisticResultExList =iLogisticResultService.findBy(word);
         return MessageUtil.success(logisticResultExList);
     }
+    @GetMapping("/selectById")
+    @ApiOperation(value = "根据id查询")
+    public Message findById(int id){
+        LogisticResultEx logisticResultExList = iLogisticResultService.findById(id);
+        return MessageUtil.success(logisticResultExList);
+    }
+    @GetMapping("/selectAll")
+    @ApiOperation(value = "查询所有")
+    public Message findALl(){
+        List<LogisticResultEx> logisticResultExList = iLogisticResultService.findAll();
+        return MessageUtil.success(logisticResultExList);
+    }
 }
