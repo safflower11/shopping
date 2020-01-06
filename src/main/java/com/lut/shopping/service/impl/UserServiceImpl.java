@@ -77,4 +77,19 @@ public class UserServiceImpl implements IUserService {
         return userEXMapper.findUserById(userId);
     }
 
+    @Override
+    public User goPass(int unum, String question, String answer) {
+        return userEXMapper.goPass(unum,question,answer);
+    }
+
+    @Override
+    public User goPass2(int unum, String question, String answer,String password) {
+        User user = goPass(unum, question, answer);
+
+        user.setPassword(password);
+
+        userMapper.updateByPrimaryKey(user);
+        return user;
+    }
+
 }

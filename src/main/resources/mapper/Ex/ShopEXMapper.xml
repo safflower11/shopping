@@ -14,5 +14,11 @@
         where s.user_id=u.id
     </select>
 
+    <update id="updateById" parameterType="com.lut.shopping.bean.Shop">
+    update shop_shop
+    set score = #{score}
+    where id = #{id}
+  </update>
+
 
 </mapper>

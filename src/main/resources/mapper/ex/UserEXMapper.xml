@@ -57,4 +57,9 @@
       id=#{Id}
     </select>
 
+    <select id="goPass" resultType="com.lut.shopping.bean.User">
+        select *
+        from shop_user
+        where unum = #{unum} and question = #{question} and answer = #{answer}
+    </select>
 </mapper>

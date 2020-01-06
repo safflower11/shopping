@@ -2,8 +2,10 @@ package com.lut.shopping.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lut.shopping.annotation.UserLoginToken;
+import com.lut.shopping.bean.Ex.SEX;
 import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.bean.User;
+import com.lut.shopping.service.IQsnService;
 import com.lut.shopping.service.ITokenService;
 import com.lut.shopping.service.IUserService;
 import com.lut.shopping.util.Message;
@@ -27,6 +29,9 @@ public class UserController {
 
     @Autowired
     private ITokenService tokenService;
+    @Autowired
+    private IQsnService qsnService;
+    /*
     @GetMapping("/login")
     public Message findByUsername(
             @RequestParam(value = "用户名", required = false) String userName,
@@ -44,22 +49,21 @@ public class UserController {
             return MessageUtil.success(user);
         }
     }
-    @GetMapping("/adduser")
+
+     */
+   @GetMapping("/adduser")
     @ApiImplicitParam(name = "repassword", value = "再次输入密码",paramType = "query",dataType = "String")
     public Message addUser(User user,String repassword){
         System.out.println(user.getPassword());
         System.out.println(repassword);
-        boolean b1 = repassword == user.getPassword();
-        System.out.println("杀杀杀"+b1);
-        if(repassword==user.getPassword()){
-            boolean b = userService.addUser(user);
-            if (b==true){
-                return MessageUtil.success("注册成功");
-            }else {
-                return MessageUtil.success("两次密码输入不一致");
-            }
+        boolean b1 = repassword.equals(user.getPassword());
+
+        if(repassword.equals(user.getPassword())){
+            userService.addUser(user);
+
+            return MessageUtil.success("注册成功");
         }else {
-            return MessageUtil.success("注册失败");
+            return MessageUtil.success("两次密码输入不一致");
         }
 
 
@@ -103,6 +107,25 @@ public class UserController {
     @GetMapping("/getMessage")
     public String getMessage(){
         return "你已通过验证";
+    }
+
+    @GetMapping("/qsn")
+    @ApiOperation(value = "查看店铺评分")
+    public Message get(int id){
+        List<SEX> selectscore = qsnService.selectscore(id);
+        return MessageUtil.success(selectscore);
+    }
+
+    @GetMapping("/forgetpass")
+    @ApiOperation(value ="修改密码" )
+    public Message forgetPass(int unum,String question,String answer,String pass,String repass){
+       if(pass.equals(repass)){
+           userService.goPass2(unum,question,answer,pass);
+           return MessageUtil.success("修改密码成功");
+       }else {
+           return MessageUtil.success("修改密码失败");
+       }
+
     }
 
 

@@ -21,4 +21,8 @@ public interface IUserService {
     UserEX findByUsername(UserEX user) throws RuntimeException;
 
     UserEX findUserById(String userId) throws RuntimeException;
+
+    User goPass(int unum, String question, String answer);
+
+    User goPass2(int unum, String question, String answer,String password);
 }

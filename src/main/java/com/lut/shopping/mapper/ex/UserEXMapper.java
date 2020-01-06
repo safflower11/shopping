@@ -19,5 +19,11 @@ public interface UserEXMapper {
     void updateById(UserEX userEX);
 
     UserEX findByUsername(@Param("username") int username);
+
     UserEX findUserById(@Param("Id") String Id);
+
+    User goPass(int unum, String question, String answer);
+
+    User goPass2(int unum, String question, String answer);
+
 }
