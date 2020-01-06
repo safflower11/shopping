@@ -2,6 +2,7 @@ package com.lut.shopping.service.impl;
 
 import com.lut.shopping.bean.*;
 import com.lut.shopping.bean.Ex.CoEx;
+import com.lut.shopping.bean.Ex.OrderEXx;
 import com.lut.shopping.bean.Ex.OrderEx;
 import com.lut.shopping.mapper.CoMapper;
 import com.lut.shopping.mapper.Ex.CoExMapper;
@@ -65,7 +66,11 @@ public class OrderServiceImpl implements IOrderService {
         orderMapper.updateByPrimaryKey(order);
     }
 
-
+    @Override
+    public List<OrderEXx> selectAll() throws RuntimeException {
+        List<OrderEXx> list= orderExMapper.selectAll();
+        return list;
+    }
 
 
 }

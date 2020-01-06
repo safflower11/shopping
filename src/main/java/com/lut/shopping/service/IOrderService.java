@@ -1,6 +1,7 @@
 package com.lut.shopping.service;
 
 import com.lut.shopping.bean.Ex.CoEx;
+import com.lut.shopping.bean.Ex.OrderEXx;
 import com.lut.shopping.bean.Ex.OrderEx;
 import org.springframework.stereotype.Service;
 
@@ -11,4 +12,7 @@ public interface IOrderService {
     void deleteById(int id) throws RuntimeException;
     List<OrderEx> findById(int id) throws RuntimeException;
     void receiveById(int id) throws RuntimeException;
+    List<OrderEXx> selectAll() throws RuntimeException;
+    void deliverById(int id) throws RuntimeException;
+
 }
