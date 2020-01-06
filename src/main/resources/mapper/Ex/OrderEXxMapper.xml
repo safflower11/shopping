@@ -20,5 +20,15 @@
         and o.address_id=a.id and o.user_id=u.id and o.logistic_id=l.id
         and o.id=#{id}
     </select>
+    <resultMap id="sco" type="com.lut.shopping.bean.Co">
+        <result column="commodity_id" property="commodityId"></result>
+    </resultMap>
+    <select id="selectcommodity" resultMap="sco">
+        select commodity_id from shop_co where order_id=#{order_id}
+    </select>
+    <select id="selectid" resultType="com.lut.shopping.bean.Commodity">
+        select * from shop_commodity where id={id}
+    </select>
+
 
 </mapper>

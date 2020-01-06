@@ -31,6 +31,8 @@ public class OrderServiceImpl implements IOrderService {
     @Autowired
     private LogisticMapper logisticMapper;
     @Autowired
+    private LoMapper loMapper;
+    @Autowired
     private PayMapper payMapper;
     @Autowired
     private CommodityMapper commodityMapper;
@@ -45,7 +47,9 @@ public class OrderServiceImpl implements IOrderService {
         CoExample coExample = new CoExample();
         coExample.createCriteria().andOrderIdEqualTo(id);
         coMapper.deleteByExample(coExample);
-
+        LoExample loExample = new LoExample();
+        loExample.createCriteria().andOrderIdEqualTo(id);
+        loMapper.deleteByExample(loExample);
         PayExample payExample=new PayExample();
         payExample.createCriteria().andOrderIdEqualTo(id);
         payMapper.deleteByExample(payExample);
@@ -81,27 +85,38 @@ public class OrderServiceImpl implements IOrderService {
         return orderEXxMapper.selectById(id);
     }
 
+
+
     @Override
-    public void deliverById(int id, int beforenumber, int afternumber) throws RuntimeException {
+    public void deliverById(int id) throws RuntimeException {
         Order order = orderMapper.selectByPrimaryKey(id);
+        int order_id=order.getId();
+        Co co=orderEXxMapper.selectcommodity(order_id);
+        int commodity_id=co.getCommodityId();
+        Commodity commodity=orderEXxMapper.selectid(commodity_id);
+        String name=commodity.getName();
+        int beforenumber=commodity.getNumber();
         if ("待付款".equals(order.getStatus())) {
-            order.setStatus("已付款");
-            Commodity commodity = new Commodity();
-            int beforenumber = commodity.getNumber();
-            Order order = new Order();
+            order.setStatus("待发货");
             int number = order.getNumber();
             int afternumber = beforenumber - number;
             commodity.setNumber(afternumber);
-            commodityMapper.updateByExample(commodity);
+            commodityMapper.updateByPrimaryKey(commodity);
         }
     }
 
-    @Override
-    public void update(int id, int beforenumber, int afternumber) throws RuntimeException {
 
+    @Override
+    public Co selectorder(int order_id) throws RuntimeException {
+        Co co=orderEXxMapper.selectcommodity(order_id);
+        return co;
     }
 
-
+    @Override
+    public Commodity selectid(int commodity_id) throws RuntimeException {
+        Commodity commodity=orderEXxMapper.selectid(commodity_id);
+        return commodity;
+    }
 
 
 }

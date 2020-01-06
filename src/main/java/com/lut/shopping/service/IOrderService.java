@@ -1,5 +1,7 @@
 package com.lut.shopping.service;
 
+import com.lut.shopping.bean.Co;
+import com.lut.shopping.bean.Commodity;
 import com.lut.shopping.bean.Ex.CoEx;
 import com.lut.shopping.bean.Ex.OrderEXx;
 import com.lut.shopping.bean.Ex.OrderEx;
@@ -14,7 +16,10 @@ public interface IOrderService {
     void receiveById(int id) throws RuntimeException;
     List<OrderEXx> selectAll() throws RuntimeException;
     List<OrderEXx> selectById(int id) throws RuntimeException;
-    void deliverById(int id,int beforenumber,int afternumer) throws RuntimeException;
-    void update(int id,int beforenumber,int afternumber) throws RuntimeException;
+    void deliverById(int id) throws RuntimeException;
+    //void update(int id) throws RuntimeException;
+    Co selectorder(int order_id) throws RuntimeException;
+    Commodity selectid(int commodity_id) throws RuntimeException;
+
 
 }
