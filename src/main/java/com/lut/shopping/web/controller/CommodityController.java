@@ -3,6 +3,7 @@ package com.lut.shopping.web.controller;
 import com.lut.shopping.bean.*;
 import com.lut.shopping.bean.Ex.CommodityEx;
 import com.lut.shopping.bean.Ex.CommodityshowEx;
+import com.lut.shopping.bean.Ex.Comone;
 import com.lut.shopping.service.ICommodityService;
 import com.lut.shopping.util.Message;
 import com.lut.shopping.util.MessageUtil;
@@ -50,6 +51,7 @@ public class CommodityController {
     })
     public Message addorder(int user_id,String name,int num,String getaddress,String receivename,String receivephone,String company){
         Commodity commodity=iCommodityService.selectname(name);
+        int commodity_id=commodity.getId();
         double dprice=commodity.getPrice();
         int number=commodity.getNumber();
         System.out.println(number);
@@ -66,9 +68,15 @@ public class CommodityController {
             Address address2=iCommodityService.selectaddid(getaddress,receivename,receivephone);
             int address_id=address2.getId();
             iCommodityService.addorder(user_id,num,totalprice,address_id,logistic_id);
+            Order order= iCommodityService.selectmax();
+            int order_id=order.getId();
+            iCommodityService.addco(commodity_id,order_id);
         }else {
             int address_id=address.getId();
             iCommodityService.addorder(user_id,num,totalprice,address_id,logistic_id);
+            Order order= iCommodityService.selectmax();
+            int order_id=order.getId();
+            iCommodityService.addco(commodity_id,order_id);
         }}
         return MessageUtil.success("下单成功");
     }
@@ -81,22 +89,48 @@ public class CommodityController {
     }
 
     @PostMapping("/upnew")
-    @ApiOperation(value ="上新" )
+    @ApiOperation(value ="商品上新" )
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name",value = "商品名称",paramType = "query",dataType = "String"),
+            @ApiImplicitParam(name = "shopname",value = "店铺名称",paramType = "query",dataType = "String"),
+            @ApiImplicitParam(name = "upnum",value = "上新数量",paramType = "query",dataType = "int")
+    })
     public Message upnew(String name,String shopname,int upnum){
         Shop shop=iCommodityService.selectshop(shopname);
+        Repertory repertory=iCommodityService.selere(name);
         if(shop==null){
             throw new RuntimeException("不存在该店铺,请重新输入");
         }else {
             int shop_id=shop.getId();
-            Repertory repertory=iCommodityService.selere(name);
             if (repertory==null){
                 throw new RuntimeException("仓库中不存在该商品");
             }else {
                 Commodity commodity = iCommodityService.selectname(name);
                 if (commodity == null) {
                     int number = 0;
-                    double price = repertory.getPrice();
+                    double price = repertory.getPrice()*1.25;
                     iCommodityService.insertco(name, number, price);
+                    Commodity commodity1=iCommodityService.selectname(name);
+                    int commodity_id1 = commodity1.getId();
+                    System.out.println(commodity_id1);
+                    int rnum = repertory.getNumber();
+                    if (upnum > rnum) {
+                        throw new RuntimeException("库存不足，不能上新");
+                    } else {
+                        int beforenum = commodity1.getNumber();
+                        int afternum = beforenum + upnum;
+                        int afterrnum=rnum-upnum;
+                        System.out.println(afterrnum);
+                        Cs cs = iCommodityService.selectcs(shop_id, commodity_id1);
+                        if (cs == null) {
+                            iCommodityService.insertcs(shop_id, commodity_id1);
+                            iCommodityService.updateco(afternum);
+                            iCommodityService.updatere(afterrnum);
+                        } else {
+                            iCommodityService.updateco(afternum);
+                            iCommodityService.updatere(afterrnum);
+                        }
+                    }
                 } else {
                     int commodity_id = commodity.getId();
                     int rnum = repertory.getNumber();
@@ -120,7 +154,28 @@ public class CommodityController {
                 }
             }
         }
-        return MessageUtil.success("上新成功");
+        double payprice=repertory.getPrice()*upnum;
+        return MessageUtil.success(payprice);
+    }
+
+    @PostMapping("/pay")
+    public Message pay(){
+        return MessageUtil.success();
+    }
+
+    @GetMapping("/under")
+    @ApiOperation(value ="商品下架" )
+    public Message under(int id){
+        iCommodityService.under(id);
+        return  MessageUtil.success("下架成功");
+    }
+
+    @GetMapping("/showone")
+    @ApiOperation(value ="查询某一店铺的上架商品" )
+    @ApiImplicitParam(name = "name",value = "店铺名称",paramType = "query",dataType = "String")
+    public Message showone(String name){
+       List<Comone> comones=iCommodityService.showone(name);
+       return MessageUtil.success(comones);
 
     }
 }

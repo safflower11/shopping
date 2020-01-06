@@ -3,6 +3,8 @@ package com.lut.shopping.mapper.Ex;
 import com.lut.shopping.bean.*;
 import com.lut.shopping.bean.Ex.CommodityEx;
 import com.lut.shopping.bean.Ex.CommodityshowEx;
+import com.lut.shopping.bean.Ex.Comone;
+import com.lut.shopping.bean.Ex.ShowOne;
 
 
 import java.util.List;
@@ -21,4 +23,7 @@ public interface CommodityExMapper {
     Repertory selectrepertory(String name);
     void update(CommodityshowEx commodityshowEx);
     void updatere(Repertory repertory);
+    Order selectmax();
+    void deleteunder(int id);
+    List<Comone> showone(String name);
 }
