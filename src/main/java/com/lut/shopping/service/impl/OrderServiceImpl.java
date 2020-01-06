@@ -4,13 +4,13 @@ import com.lut.shopping.bean.*;
 import com.lut.shopping.bean.Ex.CoEx;
 import com.lut.shopping.bean.Ex.OrderEXx;
 import com.lut.shopping.bean.Ex.OrderEx;
-import com.lut.shopping.mapper.CoMapper;
+import com.lut.shopping.mapper.*;
 import com.lut.shopping.mapper.Ex.CoExMapper;
+import com.lut.shopping.mapper.Ex.CommodityExMapper;
+import com.lut.shopping.mapper.Ex.OrderEXxMapper;
 import com.lut.shopping.mapper.Ex.OrderExMapper;
-import com.lut.shopping.mapper.LogisticMapper;
-import com.lut.shopping.mapper.OrderMapper;
-import com.lut.shopping.mapper.PayMapper;
 import com.lut.shopping.service.IOrderService;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +21,8 @@ public class OrderServiceImpl implements IOrderService {
     @Autowired
     private OrderExMapper orderExMapper;
     @Autowired
+    private OrderEXxMapper orderEXxMapper;
+    @Autowired
     private CoExMapper coExMapper;
     @Autowired
     private OrderMapper orderMapper;
@@ -30,6 +32,8 @@ public class OrderServiceImpl implements IOrderService {
     private LogisticMapper logisticMapper;
     @Autowired
     private PayMapper payMapper;
+    @Autowired
+    private CommodityMapper commodityMapper;
     @Override
     public List<CoEx> findAll() throws RuntimeException {
         List<CoEx> list= coExMapper.selectAll();
@@ -41,9 +45,7 @@ public class OrderServiceImpl implements IOrderService {
         CoExample coExample = new CoExample();
         coExample.createCriteria().andOrderIdEqualTo(id);
         coMapper.deleteByExample(coExample);
-        LogisticExample logisticExample1 = new LogisticExample();
-        logisticExample1.createCriteria().andOrderIdEqualTo(id);
-        logisticMapper.deleteByExample(logisticExample1);
+
         PayExample payExample=new PayExample();
         payExample.createCriteria().andOrderIdEqualTo(id);
         payMapper.deleteByExample(payExample);
@@ -66,11 +68,40 @@ public class OrderServiceImpl implements IOrderService {
         orderMapper.updateByPrimaryKey(order);
     }
 
+
+
     @Override
     public List<OrderEXx> selectAll() throws RuntimeException {
-        List<OrderEXx> list= orderExMapper.selectAll();
+        List<OrderEXx> list= orderEXxMapper.selectAll();
         return list;
     }
+
+    @Override
+    public List<OrderEXx> selectById(int id) throws RuntimeException {
+        return orderEXxMapper.selectById(id);
+    }
+
+    @Override
+    public void deliverById(int id, int beforenumber, int afternumber) throws RuntimeException {
+        Order order = orderMapper.selectByPrimaryKey(id);
+        if ("待付款".equals(order.getStatus())) {
+            order.setStatus("已付款");
+            Commodity commodity = new Commodity();
+            int beforenumber = commodity.getNumber();
+            Order order = new Order();
+            int number = order.getNumber();
+            int afternumber = beforenumber - number;
+            commodity.setNumber(afternumber);
+            commodityMapper.updateByExample(commodity);
+        }
+    }
+
+    @Override
+    public void update(int id, int beforenumber, int afternumber) throws RuntimeException {
+
+    }
+
+
 
 
 }

@@ -13,6 +13,8 @@ public interface IOrderService {
     List<OrderEx> findById(int id) throws RuntimeException;
     void receiveById(int id) throws RuntimeException;
     List<OrderEXx> selectAll() throws RuntimeException;
-    void deliverById(int id) throws RuntimeException;
+    List<OrderEXx> selectById(int id) throws RuntimeException;
+    void deliverById(int id,int beforenumber,int afternumer) throws RuntimeException;
+    void update(int id,int beforenumber,int afternumber) throws RuntimeException;
 
 }
