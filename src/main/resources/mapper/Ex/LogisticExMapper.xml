@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lut.shopping.mapper.Ex.LogisticExMapper">
+<resultMap id="abc" type="com.lut.shopping.bean.Ex.LogisticEx">
+    <result column="cname" property="cname"></result>
+    <result column="oid" property="oid"></result>
+    <result column="daddress" property="daddress"></result>
+    <result column="gaddress" property="gaddress"></result>
+    <result column="gdate" property="gdate"></result>
+    <result column="company" property="company"></result>
+</resultMap>
+    <select id="selectByWord" resultMap="abc">
+        select c.name cname,o.id oid,a.deliveraddress daddress,a.getaddress gaddress,l.getdate gdate,l.company company
+        from shop_logistic l,shop_commodity c,shop_order o,shop_address a,shop_co co
+        where o.logistic_id=l.id  and o.address_id=a.id and co.order_id = o.id and c.id = co.commodity_id and o.statue = "已完成" and (c.name like #{word} or o.id like #{word} or a.deliveraddress like #{word} or
+        a.getaddress like #{word} or l.getdate like #{word} or l.company like #{word})
+    </select>
+    <select id="findAll" resultMap="abc">
+        select c.name cname,o.id oid,a.deliveraddress daddress,a.getaddress gaddress,l.getdate gdate,l.company company
+        from shop_logistic l,shop_commodity c,shop_order o,shop_address a,shop_co co
+        where o.logistic_id=l.id  and o.address_id=a.id and co.order_id = o.id and c.id = co.commodity_id and o.statue = "已完成"
+    </select>
+    <select id="findById" resultMap="abc">
+        select c.name cname,o.id oid,a.deliveraddress daddress,a.getaddress gaddress,l.getdate gdate,l.company company
+        from shop_logistic l,shop_commodity c,shop_order o,shop_address a,shop_co co
+        where o.logistic_id=l.id  and o.address_id=a.id and co.order_id = o.id and c.id = co.commodity_id and o.statue = "已完成" and l.id like #{id}
+    </select>
 
-<select id="selectAll" resultType="com.lut.shopping.bean.Ex.LogisticEx">
-    select * from shop_logistic
-</select>
 
 </mapper>
