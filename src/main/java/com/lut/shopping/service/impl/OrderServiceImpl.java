@@ -10,7 +10,6 @@ import com.lut.shopping.mapper.Ex.CommodityExMapper;
 import com.lut.shopping.mapper.Ex.OrderEXxMapper;
 import com.lut.shopping.mapper.Ex.OrderExMapper;
 import com.lut.shopping.service.IOrderService;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +30,6 @@ public class OrderServiceImpl implements IOrderService {
     @Autowired
     private LogisticMapper logisticMapper;
     @Autowired
-    private LoMapper loMapper;
-    @Autowired
     private PayMapper payMapper;
     @Autowired
     private CommodityMapper commodityMapper;
@@ -48,9 +45,7 @@ public class OrderServiceImpl implements IOrderService {
         coExample.createCriteria().andOrderIdEqualTo(id);
         coMapper.deleteByExample(coExample);
 
-        LoExample loExample = new LoExample();
-        loExample.createCriteria().andOrderIdEqualTo(id);
-        loMapper.deleteByExample(loExample);
+
 
         PayExample payExample=new PayExample();
         payExample.createCriteria().andOrderIdEqualTo(id);
@@ -73,8 +68,6 @@ public class OrderServiceImpl implements IOrderService {
         }
         orderMapper.updateByPrimaryKey(order);
     }
-
-
 
     @Override
     public List<OrderEXx> selectAll() throws RuntimeException {

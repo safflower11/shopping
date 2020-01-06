@@ -74,7 +74,6 @@ public class OrderController {
     @ApiOperation(value="卖家查询订单信息")
     public Message selectall(){
         List<OrderEXx> list=iOderService.selectAll();
-        System.out.println(list);
         return MessageUtil.success(list);
     }
     @GetMapping("/showseller")

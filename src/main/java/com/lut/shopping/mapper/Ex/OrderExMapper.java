@@ -1,4 +1,4 @@
-package com.lut.shopping.mapper.ex;
+package com.lut.shopping.mapper.Ex;
 
 import com.lut.shopping.bean.Ex.OrderEXx;
 import com.lut.shopping.bean.Ex.OrderEx;
