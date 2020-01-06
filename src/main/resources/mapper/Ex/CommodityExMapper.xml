@@ -33,6 +33,11 @@
         <id column="id" property="id" />
     </resultMap>
 
+    <resultMap id="show" type="com.lut.shopping.bean.Ex.Comone">
+       <result column="coname" property="name"></result>
+
+    </resultMap>
+
     <resultMap id="ssc" type="com.lut.shopping.bean.Cs">
         <id column="id" property="id" />
 
@@ -93,4 +98,16 @@
     <update id="updatere">
         update shop_repertory set number=#{number}
     </update>
+    <select id="selectmax" resultType="com.lut.shopping.bean.Order">
+       select * from shop_order order by id desc limit 1
+    </select>
+    <delete id="deleteunder">
+        delete from shop_commodity where id=#{id}
+    </delete>
+    <select id="showone" resultMap="show">
+        select co.name coname
+        from shop_commodity co,shop_shop sh,shop_cs cs
+        where cs.shop_id=sh.id and cs.commodity_id=co.id
+        and sh.name=#{name}
+    </select>
 </mapper>

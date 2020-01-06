@@ -3,9 +3,9 @@ package com.lut.shopping.service.impl;
 import com.lut.shopping.bean.*;
 import com.lut.shopping.bean.Ex.CommodityEx;
 import com.lut.shopping.bean.Ex.CommodityshowEx;
-import com.lut.shopping.mapper.CommodityMapper;
+import com.lut.shopping.bean.Ex.Comone;
+import com.lut.shopping.mapper.*;
 import com.lut.shopping.mapper.Ex.CommodityExMapper;
-import com.lut.shopping.mapper.OrderMapper;
 import com.lut.shopping.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +21,12 @@ public class CommodityServiceImpl implements ICommodityService {
     private OrderMapper orderMapper;
     @Autowired
     private CommodityMapper commodityMapper;
+    @Autowired
+    private CoMapper coMapper;
+    @Autowired
+    private CsMapper csMapper;
+    @Autowired
+    private ShoppingcarMapper shoppingcarMapper;
 
 
     @Override
@@ -106,6 +112,7 @@ public class CommodityServiceImpl implements ICommodityService {
         return repertory;
     }
 
+
     @Override
     public void updateco(int afternum) throws RuntimeException {
         CommodityshowEx commodityshowEx=new CommodityshowEx();
@@ -128,5 +135,41 @@ public class CommodityServiceImpl implements ICommodityService {
         commodity.setNumber(number);
         commodity.setPrice(price);
         commodityMapper.insert(commodity);
+    }
+
+    @Override
+    public Order selectmax() throws RuntimeException {
+        Order order=commodityExMapper.selectmax();
+        return order;
+    }
+
+    @Override
+    public void addco(int commodity_id, int order_id) throws RuntimeException {
+        Co co=new Co();
+        co.setCommodityId(commodity_id);
+        co.setOrderId(order_id);
+        coMapper.insert(co);
+
+    }
+
+    @Override
+    public void under(int id) throws RuntimeException {
+        CoExample coExample = new CoExample();
+        coExample.createCriteria().andCommodityIdEqualTo(id);
+        coMapper.deleteByExample(coExample);
+        CsExample csExample = new CsExample();
+        csExample.createCriteria().andCommodityIdEqualTo(id);
+        csMapper.deleteByExample(csExample);
+        ShoppingcarExample shoppingcarExample=new ShoppingcarExample();
+        shoppingcarExample.createCriteria().andCommodityIdEqualTo(id);
+        shoppingcarMapper.deleteByExample(shoppingcarExample);
+        commodityExMapper.deleteunder(id);
+
+    }
+
+    @Override
+    public List<Comone> showone(String name) {
+        List<Comone> comones=commodityExMapper.showone(name);
+        return comones;
     }
 }
