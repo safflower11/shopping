@@ -6,7 +6,7 @@
 <generatorConfiguration>
 
 	<classPathEntry
-		location="D:\Program Files\keshe2019\repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar"/>
+		location="D:\jiepusource\repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar"/>
 	<context id="DB2Tables" targetRuntime="MyBatis3">
 
 		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
@@ -50,7 +50,7 @@
 
 		<!-- 映射配置 -->
 
-		<table tableName="shop_question" domainObjectName="Question"></table>
+		<table tableName="shop_commodity" domainObjectName="Commodity"></table>
 
 
 	</context>

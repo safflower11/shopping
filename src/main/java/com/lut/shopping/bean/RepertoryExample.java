@@ -354,63 +354,73 @@ public class RepertoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andShopIdIsNull() {
-            addCriterion("shop_id is null");
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdIsNotNull() {
-            addCriterion("shop_id is not null");
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdEqualTo(Integer value) {
-            addCriterion("shop_id =", value, "shopId");
+        public Criteria andTypeEqualTo(String value) {
+            addCriterion("type =", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdNotEqualTo(Integer value) {
-            addCriterion("shop_id <>", value, "shopId");
+        public Criteria andTypeNotEqualTo(String value) {
+            addCriterion("type <>", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdGreaterThan(Integer value) {
-            addCriterion("shop_id >", value, "shopId");
+        public Criteria andTypeGreaterThan(String value) {
+            addCriterion("type >", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("shop_id >=", value, "shopId");
+        public Criteria andTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("type >=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdLessThan(Integer value) {
-            addCriterion("shop_id <", value, "shopId");
+        public Criteria andTypeLessThan(String value) {
+            addCriterion("type <", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdLessThanOrEqualTo(Integer value) {
-            addCriterion("shop_id <=", value, "shopId");
+        public Criteria andTypeLessThanOrEqualTo(String value) {
+            addCriterion("type <=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdIn(List<Integer> values) {
-            addCriterion("shop_id in", values, "shopId");
+        public Criteria andTypeLike(String value) {
+            addCriterion("type like", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdNotIn(List<Integer> values) {
-            addCriterion("shop_id not in", values, "shopId");
+        public Criteria andTypeNotLike(String value) {
+            addCriterion("type not like", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdBetween(Integer value1, Integer value2) {
-            addCriterion("shop_id between", value1, value2, "shopId");
+        public Criteria andTypeIn(List<String> values) {
+            addCriterion("type in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andShopIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("shop_id not between", value1, value2, "shopId");
+        public Criteria andTypeNotIn(List<String> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(String value1, String value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(String value1, String value2) {
+            addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
     }

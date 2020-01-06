@@ -6,31 +6,14 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ShoppingcarEx implements Serializable {
-    private int id;
-    private User user;
-    private List<CommodityEx> commodityExList;
 
-    public int getId() {
-        return id;
-    }
+    private List<CommodityshowEx> commodityExList;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<CommodityEx> getCommodityExList() {
+    public List<CommodityshowEx> getCommodityExList() {
         return commodityExList;
     }
 
-    public void setCommodityExList(List<CommodityEx> commodityExList) {
+    public void setCommodityExList(List<CommodityshowEx> commodityExList) {
         this.commodityExList = commodityExList;
     }
 }

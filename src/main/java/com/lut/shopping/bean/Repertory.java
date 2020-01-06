@@ -11,7 +11,7 @@ public class Repertory implements Serializable {
 
     private Double price;
 
-    private Integer shopId;
+    private String type;
 
     private static final long serialVersionUID = 1L;
 
@@ -47,12 +47,12 @@ public class Repertory implements Serializable {
         this.price = price;
     }
 
-    public Integer getShopId() {
-        return shopId;
+    public String getType() {
+        return type;
     }
 
-    public void setShopId(Integer shopId) {
-        this.shopId = shopId;
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Repertory implements Serializable {
         sb.append(", commodityname=").append(commodityname);
         sb.append(", number=").append(number);
         sb.append(", price=").append(price);
-        sb.append(", shopId=").append(shopId);
+        sb.append(", type=").append(type);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
