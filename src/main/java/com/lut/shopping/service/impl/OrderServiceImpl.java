@@ -40,9 +40,7 @@ public class OrderServiceImpl implements IOrderService {
         CoExample coExample = new CoExample();
         coExample.createCriteria().andOrderIdEqualTo(id);
         coMapper.deleteByExample(coExample);
-        LogisticExample logisticExample1 = new LogisticExample();
-        logisticExample1.createCriteria().andOrderIdEqualTo(id);
-        logisticMapper.deleteByExample(logisticExample1);
+
         PayExample payExample=new PayExample();
         payExample.createCriteria().andOrderIdEqualTo(id);
         payMapper.deleteByExample(payExample);

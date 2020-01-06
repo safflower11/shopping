@@ -35,7 +35,7 @@ public class CommodityController {
     @ApiOperation(value ="加入购物车" )
     public Message add(Shoppingcar shoppingcar){
         iCommodityService.insert(shoppingcar);
-        return MessageUtil.success(shoppingcar);
+        return MessageUtil.success("加入购物车成功");
     }
 
     @PostMapping("/addorder")
@@ -109,10 +109,10 @@ public class CommodityController {
                 if (commodity == null) {
                     int number = 0;
                     double price = repertory.getPrice()*1.25;
-                    iCommodityService.insertco(name, number, price);
+                    String type=repertory.getType();
+                    iCommodityService.insertco(name, number, price,type);
                     Commodity commodity1=iCommodityService.selectname(name);
                     int commodity_id1 = commodity1.getId();
-                    System.out.println(commodity_id1);
                     int rnum = repertory.getNumber();
                     if (upnum > rnum) {
                         throw new RuntimeException("库存不足，不能上新");
@@ -120,7 +120,6 @@ public class CommodityController {
                         int beforenum = commodity1.getNumber();
                         int afternum = beforenum + upnum;
                         int afterrnum=rnum-upnum;
-                        System.out.println(afterrnum);
                         Cs cs = iCommodityService.selectcs(shop_id, commodity_id1);
                         if (cs == null) {
                             iCommodityService.insertcs(shop_id, commodity_id1);
@@ -140,7 +139,6 @@ public class CommodityController {
                         int beforenum = commodity.getNumber();
                         int afternum = beforenum + upnum;
                         int afterrnum=rnum-upnum;
-                        System.out.println(afterrnum);
                         Cs cs = iCommodityService.selectcs(shop_id, commodity_id);
                         if (cs == null) {
                             iCommodityService.insertcs(shop_id, commodity_id);
@@ -159,6 +157,7 @@ public class CommodityController {
     }
 
     @PostMapping("/pay")
+    @ApiOperation(value ="付款" )
     public Message pay(){
         return MessageUtil.success();
     }

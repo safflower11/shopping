@@ -129,11 +129,12 @@ public class CommodityServiceImpl implements ICommodityService {
     }
 
     @Override
-    public void insertco(String name, int number,double price) throws RuntimeException {
+    public void insertco(String name, int number,double price,String type) throws RuntimeException {
         Commodity commodity=new Commodity();
         commodity.setName(name);
         commodity.setNumber(number);
         commodity.setPrice(price);
+        commodity.setType(type);
         commodityMapper.insert(commodity);
     }
 

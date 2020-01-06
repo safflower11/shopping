@@ -13,6 +13,8 @@ public class Commodity implements Serializable {
 
     private Integer number;
 
+    private Double discount;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -55,6 +57,14 @@ public class Commodity implements Serializable {
         this.number = number;
     }
 
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -66,6 +76,7 @@ public class Commodity implements Serializable {
         sb.append(", type=").append(type);
         sb.append(", price=").append(price);
         sb.append(", number=").append(number);
+        sb.append(", discount=").append(discount);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
