@@ -10,6 +10,6 @@ public interface ILogisticResultService {
     List<LogisticResultEx> findAll() throws RuntimeException;
     List<LogisticResultEx> findBy(String word) throws RuntimeException;
     LogisticResultEx findById(int id) throws RuntimeException;
-    Logistic insert(String company, String code, String status, Date getdate, Date deliverdate) throws RuntimeException;
+    Logistic insert(String company, int code, String status, Date getdate, Date deliverdate) throws RuntimeException;
     void deleteById(int id) throws RuntimeException;
 }

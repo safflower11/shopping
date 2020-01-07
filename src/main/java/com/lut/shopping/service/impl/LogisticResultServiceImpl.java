@@ -35,7 +35,7 @@ public class LogisticResultServiceImpl implements ILogisticResultService {
         return logisticResultExMapper.findById(id);
     }
     @Override
-    public Logistic insert(String company, String code, String status, Date getdate, Date deliverdate) {
+    public Logistic insert(String company, int code, String status, Date getdate, Date deliverdate) {
         Logistic logistic = new Logistic();
         logistic.setCompany(company);
         logistic.setStatus(status);
