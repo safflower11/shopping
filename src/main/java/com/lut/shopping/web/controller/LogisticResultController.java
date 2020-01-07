@@ -45,7 +45,7 @@ public class LogisticResultController {
     @ApiOperation(value = "添加")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "company",value = "物流公司",paramType = "query",dataType = "String"),
-            @ApiImplicitParam(name = "code",value = "物流编号",paramType = "query",dataType = "String"),
+            @ApiImplicitParam(name = "code",value = "物流编号",paramType = "query",dataType = "int"),
             @ApiImplicitParam(name = "status",value = "物流状态",paramType = "query",dataType = "String"),
             @ApiImplicitParam(name = "getdate",value = "收货时间",paramType = "query",dataType = "Date"),
             @ApiImplicitParam(name = "deliverdate",value = "发货时间",paramType = "query",dataType = "Date"),
