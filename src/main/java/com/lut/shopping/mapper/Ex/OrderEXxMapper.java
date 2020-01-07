@@ -11,4 +11,5 @@ public interface OrderEXxMapper {
     List<OrderEXx> selectById(int id);
     Co selectcommodity(int order_id);
     Commodity selectid(int id);
+    void updateById(OrderEXx orderEXx);
 }

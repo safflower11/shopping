@@ -3,6 +3,7 @@ package com.lut.shopping.web.controller;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.lut.shopping.bean.Address;
 import com.lut.shopping.bean.Commodity;
 import com.lut.shopping.bean.Ex.CoEx;
 import com.lut.shopping.bean.Ex.OrderEXx;
@@ -12,6 +13,7 @@ import com.lut.shopping.config.AlipayConfig;
 import com.lut.shopping.service.IOrderService;
 import com.lut.shopping.util.Message;
 import com.lut.shopping.util.MessageUtil;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.CellType;
@@ -98,7 +100,7 @@ public class OrderController {
     }
     @GetMapping("/pay")
     @ApiOperation(value = "确认支付")
-    protected void doGet(int id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(int orderEx_id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             AlipayClient alipayClient =
                     AlipayConfig.getAlipayClient();
@@ -108,7 +110,7 @@ public class OrderController {
 
             AlipayTradePayModel model =
                     new AlipayTradePayModel();
-            OrderEx orderEx=iOderService.findById(id);
+            OrderEx orderEx=iOderService.findById(orderEx_id);
             // 设定订单号 必须要写,且订单号不能重复，目前已经只是做测试，已经写死
             model.setOutTradeNo(System.currentTimeMillis() + "");
 
@@ -133,12 +135,13 @@ public class OrderController {
 
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().println(result);
+//            if ("待付款".equals(order.getStatus())) {
+//                order.setStatus("待发货");}
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-
 
     @GetMapping("/download")
     @ApiOperation(value = "下载")
@@ -184,5 +187,12 @@ public class OrderController {
         response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode("订单详细信息"+".xlsx", "utf-8"));
         workbook.write(response.getOutputStream());
     }
+    public void update(int order_id,String adeliveraddress, String adelivername, String adiliverphone){
+        Order order=iOderService.findorderId(order_id);
+        int address_id=order.getAddressId();
+        Address address=iOderService.findadress(address_id);
+        iOderService.update(adeliveraddress,adelivername,adiliverphone);
 
+
+    }
 }
