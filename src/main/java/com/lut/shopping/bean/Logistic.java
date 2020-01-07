@@ -8,7 +8,7 @@ public class Logistic implements Serializable {
 
     private String company;
 
-    private String code;
+    private Integer code;
 
     private String status;
 
@@ -34,12 +34,12 @@ public class Logistic implements Serializable {
         this.company = company == null ? null : company.trim();
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
+    public void setCode(Integer code) {
+        this.code = code;
     }
 
     public String getStatus() {

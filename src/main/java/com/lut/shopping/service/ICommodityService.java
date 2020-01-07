@@ -20,7 +20,7 @@ public interface ICommodityService {
     Repertory selere(String name) throws RuntimeException;
     void updateco(int afternum) throws RuntimeException;
     void updatere(int afterrnum) throws RuntimeException;
-    void insertco(String name, int number,double price,String type) throws RuntimeException;
+    void insertco(String name, int number,double price,String type,double discount) throws RuntimeException;
     Order selectmax() throws RuntimeException;
     void addco(int commodity_id,int order_id) throws RuntimeException;
     void under(int id) throws RuntimeException;
@@ -28,4 +28,5 @@ public interface ICommodityService {
     List<LeaguerEx> showleaguer() throws RuntimeException;
     User selectById(int user_id) throws RuntimeException;
     List<CommodityAll> selectallcom() throws RuntimeException;
+    void addlogistic(Logistic logistic) throws RuntimeException;
 }

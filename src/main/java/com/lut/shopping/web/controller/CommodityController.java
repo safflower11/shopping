@@ -110,7 +110,8 @@ public class CommodityController {
                     int number = 0;
                     double price = repertory.getPrice()*1.25;
                     String type=repertory.getType();
-                    iCommodityService.insertco(name, number, price,type);
+                    double discount=price*0.9;
+                    iCommodityService.insertco(name, number, price,type,discount);
                     Commodity commodity1=iCommodityService.selectname(name);
                     int commodity_id1 = commodity1.getId();
                     int rnum = repertory.getNumber();
@@ -154,7 +155,7 @@ public class CommodityController {
         }
         double payprice=repertory.getPrice()*upnum;
         return MessageUtil.success(payprice);
-    }
+     }
 
     @PostMapping("/pay")
     @ApiOperation(value ="付款" )

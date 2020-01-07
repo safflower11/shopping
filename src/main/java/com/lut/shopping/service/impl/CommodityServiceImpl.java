@@ -25,6 +25,8 @@ public class CommodityServiceImpl implements ICommodityService {
     private CsMapper csMapper;
     @Autowired
     private ShoppingcarMapper shoppingcarMapper;
+    @Autowired
+    private LogisticMapper logisticMapper;
 
 
     @Override
@@ -127,12 +129,13 @@ public class CommodityServiceImpl implements ICommodityService {
     }
 
     @Override
-    public void insertco(String name, int number,double price,String type) throws RuntimeException {
+    public void insertco(String name, int number,double price,String type,double discount) throws RuntimeException {
         Commodity commodity=new Commodity();
         commodity.setName(name);
         commodity.setNumber(number);
         commodity.setPrice(price);
         commodity.setType(type);
+        commodity.setDiscount(discount);
         commodityMapper.insert(commodity);
     }
 
@@ -188,5 +191,13 @@ public class CommodityServiceImpl implements ICommodityService {
     public List<CommodityAll> selectallcom() throws RuntimeException {
         List<CommodityAll> commodityAlls=commodityExMapper.selectallcom();
         return commodityAlls;
+    }
+
+    @Override
+    public void addlogistic(Logistic logistic) throws RuntimeException {
+        int code=(int) Math.round((Math.random()+1)*1000);
+        logistic.setCode(code);
+        logisticMapper.insert(logistic);
+
     }
 }
