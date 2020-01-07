@@ -7,6 +7,6 @@ import com.lut.shopping.bean.Order;
 import java.util.List;
 
 public interface OrderExMapper {
-    List<OrderEx> findById(int id);
+    OrderEx findById(int id);
     void update(Order order);
 }

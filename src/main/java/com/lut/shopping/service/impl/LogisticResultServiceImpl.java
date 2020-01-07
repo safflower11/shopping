@@ -15,6 +15,8 @@ import java.util.List;
 public class LogisticResultServiceImpl implements ILogisticResultService {
     @Autowired
     private LogisticResultExMapper logisticResultExMapper;
+    @Autowired
+    private LogisticMapper logisticMapper;
 
     @Override
     public List<LogisticResultEx> findAll() throws RuntimeException {
@@ -33,18 +35,19 @@ public class LogisticResultServiceImpl implements ILogisticResultService {
         return logisticResultExMapper.findById(id);
     }
     @Override
-    public void insert(int oid, String company, String status, Date getdate, Date deliverdate) {
+    public Logistic insert(String company, String code, String status, Date getdate, Date deliverdate) {
         Logistic logistic = new Logistic();
-        logistic.setId(oid);
         logistic.setCompany(company);
         logistic.setStatus(status);
         logistic.setGetdate(getdate);
         logistic.setDeliverdate(deliverdate);
-        logisticResultExMapper.insert(logistic);
+        logistic.setCode(code);
+        logisticMapper.insert(logistic);
+        return logistic;
     }
     @Override
     public void deleteById(int id){
-        
+        logisticMapper.deleteByPrimaryKey(id);
     }
 
 }

@@ -6,10 +6,11 @@ import com.lut.shopping.bean.Ex.OrderEXx;
 import com.lut.shopping.bean.Ex.OrderEx;
 import com.lut.shopping.mapper.*;
 import com.lut.shopping.mapper.Ex.CoExMapper;
-import com.lut.shopping.mapper.Ex.OrderExMapper;
 import com.lut.shopping.mapper.Ex.CommodityExMapper;
 import com.lut.shopping.mapper.Ex.OrderEXxMapper;
+import com.lut.shopping.mapper.Ex.OrderExMapper;
 import com.lut.shopping.service.IOrderService;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,8 +55,8 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public List<OrderEx> findById(int id) throws RuntimeException {
-        return orderExMapper.findById(id);
+    public OrderEx findById(int id) throws RuntimeException {
+         return orderExMapper.findById(id);
     }
 
     @Override
@@ -68,6 +69,8 @@ public class OrderServiceImpl implements IOrderService {
         }
         orderMapper.updateByPrimaryKey(order);
     }
+
+
 
     @Override
     public List<OrderEXx> selectAll() throws RuntimeException {
