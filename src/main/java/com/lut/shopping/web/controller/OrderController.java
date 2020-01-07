@@ -42,7 +42,7 @@ public class OrderController {
     @GetMapping("/showbuyer")
     @ApiOperation(value = "预览")
     public Message showById(int id){
-        List<OrderEx> list=iOderService.findById(id);
+        List<OrderEx> list= (List<OrderEx>) iOderService.findById(id);
         return MessageUtil.success(list);
 
     }
