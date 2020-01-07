@@ -12,7 +12,7 @@
     <select id="selectByWord" resultMap="abc">
         select c.name cname,o.id oid,a.deliveraddress daddress,a.getaddress gaddress,l.getdate gdate,l.company company
         from shop_logistic l,shop_commodity c,shop_order o,shop_address a,shop_co co
-        where o.logistic_id=l.id  and o.address_id=a.id and co.order_id = o.id and c.id = co.commodity_id and o.status = "已完成" and (c.name like #{word} or o.id like #{word} or a.deliveraddress like #{word} or
+        where o.logistic_id=l.id  and o.address_id=a.id and co.order_id = o.id and c.id = co.commodity_id and o.status = "已完成" and (c.name like #{word} or o.code like #{word} or a.deliveraddress like #{word} or
         a.getaddress like #{word} or l.getdate like #{word} or l.company like #{word})
     </select>
     <select id="findAll" resultMap="abc">
