@@ -3,13 +3,12 @@ package com.lut.shopping.service;
 import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.bean.User;
 
-import java.util.List;
 import java.util.Map;
 
 public interface IUserService {
     User selectByUserName(Map<String, Object> map) throws RuntimeException;
 
-    boolean addUser(User user) throws RuntimeException;
+    boolean addUser(User user, Integer leaguer) throws RuntimeException;
 
     UserEX showById(int id) throws RuntimeException;
 

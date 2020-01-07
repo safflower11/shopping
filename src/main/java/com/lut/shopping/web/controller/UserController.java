@@ -53,14 +53,13 @@ public class UserController {
      */
    @GetMapping("/adduser")
     @ApiImplicitParam(name = "repassword", value = "再次输入密码",paramType = "query",dataType = "String")
-    public Message addUser(User user,String repassword){
+    public Message addUser(User user,String repassword,int leaguer){
         System.out.println(user.getPassword());
         System.out.println(repassword);
         boolean b1 = repassword.equals(user.getPassword());
 
         if(repassword.equals(user.getPassword())){
-            userService.addUser(user);
-
+            userService.addUser(user,leaguer);
             return MessageUtil.success("注册成功");
         }else {
             return MessageUtil.success("两次密码输入不一致");

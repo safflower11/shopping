@@ -563,6 +563,66 @@ public class UserExample {
             addCriterion("answer not between", value1, value2, "answer");
             return (Criteria) this;
         }
+
+        public Criteria andMemberIsNull() {
+            addCriterion("member is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIsNotNull() {
+            addCriterion("member is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberEqualTo(Double value) {
+            addCriterion("member =", value, "member");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberNotEqualTo(Double value) {
+            addCriterion("member <>", value, "member");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberGreaterThan(Double value) {
+            addCriterion("member >", value, "member");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberGreaterThanOrEqualTo(Double value) {
+            addCriterion("member >=", value, "member");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberLessThan(Double value) {
+            addCriterion("member <", value, "member");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberLessThanOrEqualTo(Double value) {
+            addCriterion("member <=", value, "member");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIn(List<Double> values) {
+            addCriterion("member in", values, "member");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberNotIn(List<Double> values) {
+            addCriterion("member not in", values, "member");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberBetween(Double value1, Double value2) {
+            addCriterion("member between", value1, value2, "member");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberNotBetween(Double value1, Double value2) {
+            addCriterion("member not between", value1, value2, "member");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
