@@ -9,11 +9,28 @@
 
     <select id="findPrice" resultMap="a">
         select s.id id,s.name sname,SUM(o.number*c.price)-SUM(o.number*r.price) sumprice
-            FROM shop_order o,shop_cs cs,shop_co co,shop_commodity c,shop_repertory r,shop_shop s
-            where cs.shop_id=#{id}
+            FROM shop_order o,shop_cs cs,
+            shop_co co,shop_commodity c,shop_repertory r,shop_shop s,shop_user u
+            where cs.shop_id=#{id} and o.status='已完成' and u.`code`!=4
+            and YEAR(o.orderdate)=#{year} and MONTH(o.orderdate)=#{month}
             and cs.shop_id=s.id
             and co.order_id=o.id
             and cs.commodity_id=co.commodity_id
             and c.name=r.commodityname
+            and u.id=o.user_id
     </select>
+
+    <select id="findDiscount" resultMap="a">
+        select s.id id,s.name sname,SUM(o.number*0.9*c.price)-SUM(o.number*r.price) sumprice
+            FROM shop_order o,shop_cs cs,
+            shop_co co,shop_commodity c,shop_repertory r,shop_shop s,shop_user u
+            where cs.shop_id=#{id} and o.status='已完成' and u.`code`=4
+            and YEAR(o.orderdate)=#{year} and MONTH(o.orderdate)=#{month}
+            and cs.shop_id=s.id
+            and co.order_id=o.id
+            and cs.commodity_id=co.commodity_id
+            and c.name=r.commodityname
+            and u.id=o.user_id
+    </select>
+
 </mapper>

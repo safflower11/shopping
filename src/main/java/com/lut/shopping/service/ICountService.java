@@ -8,5 +8,5 @@ import java.util.List;
 public interface ICountService {
     List<Count> countByOrderId() throws RuntimeException;
 
-    Price findPrice(int id) throws RuntimeException;
+    Price findPrice(int id,int year,int month) throws RuntimeException;
 }

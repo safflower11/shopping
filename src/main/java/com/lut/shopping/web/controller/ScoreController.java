@@ -37,8 +37,8 @@ public class ScoreController {
     }
 
     @GetMapping("/countPrice")
-    public Message countPrice(int id){
-        Price price = countService.findPrice(id);
+    public Message countPrice(int id,int year,int month){
+        Price price = countService.findPrice(id,year,month);
         return MessageUtil.success(price);
     }
 

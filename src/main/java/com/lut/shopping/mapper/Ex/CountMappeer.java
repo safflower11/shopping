@@ -8,5 +8,8 @@ import java.util.List;
 public interface CountMappeer {
     List<Count> countByOrderId();
 
-    Price findPrice(int id);
+    Price findPrice(int id,int year,int month);
+
+    Price findDiscount(int id,int year,int month);
+
 }
