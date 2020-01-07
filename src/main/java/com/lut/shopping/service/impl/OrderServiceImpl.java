@@ -6,7 +6,7 @@ import com.lut.shopping.bean.Ex.OrderEXx;
 import com.lut.shopping.bean.Ex.OrderEx;
 import com.lut.shopping.mapper.*;
 import com.lut.shopping.mapper.Ex.CoExMapper;
-import com.lut.shopping.mapper.ex.OrderExMapper;
+import com.lut.shopping.mapper.Ex.OrderExMapper;
 import com.lut.shopping.mapper.Ex.CommodityExMapper;
 import com.lut.shopping.mapper.Ex.OrderEXxMapper;
 import com.lut.shopping.service.IOrderService;
@@ -29,10 +29,7 @@ public class OrderServiceImpl implements IOrderService {
     private CoMapper coMapper;
     @Autowired
     private LogisticMapper logisticMapper;
-<<<<<<< HEAD
-=======
 
->>>>>>> bca777accc86641e9be3b5ceee8d8622685621c9
     @Autowired
     private PayMapper payMapper;
     @Autowired
@@ -49,11 +46,7 @@ public class OrderServiceImpl implements IOrderService {
         coExample.createCriteria().andOrderIdEqualTo(id);
         coMapper.deleteByExample(coExample);
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> bca777accc86641e9be3b5ceee8d8622685621c9
         PayExample payExample=new PayExample();
         payExample.createCriteria().andOrderIdEqualTo(id);
         payMapper.deleteByExample(payExample);

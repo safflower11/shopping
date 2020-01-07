@@ -10,7 +10,6 @@ import com.lut.shopping.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -27,14 +26,20 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public boolean addUser(User user) throws RuntimeException {
+    public boolean addUser(User user, Integer leaguer) throws RuntimeException {
         if(user==null){
             throw new RuntimeException("参数错误");
         }
         //boolean b = password == user.getPassword();
         //System.out.println(b);
-        if(user.getId()==null){
+        if(user.getId()==null&&leaguer==null){
             user.setCode(3);
+            user.setMember(0.00);
+            userMapper.insert(user);
+            return true;
+        }else if (user.getId()==null&&!"".equals(leaguer)) {
+            user.setCode(4);
+            user.setMember(200.00);
             userMapper.insert(user);
             return true;
         }else {

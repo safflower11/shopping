@@ -1,27 +1,23 @@
 package com.lut.shopping.bean;
 
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 
 public class User implements Serializable {
-    @ApiModelProperty(hidden = true)
     private Integer id;
 
-    @ApiModelProperty(required = true)
     private Integer unum;
 
-    @ApiModelProperty(hidden = true)
     private Integer code;
 
     private String name;
 
-    @ApiModelProperty(required = true)
     private String password;
 
     private String question;
 
     private String answer;
+
+    private Double member;
 
     private static final long serialVersionUID = 1L;
 
@@ -81,6 +77,14 @@ public class User implements Serializable {
         this.answer = answer == null ? null : answer.trim();
     }
 
+    public Double getMember() {
+        return member;
+    }
+
+    public void setMember(Double member) {
+        this.member = member;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -94,6 +98,7 @@ public class User implements Serializable {
         sb.append(", password=").append(password);
         sb.append(", question=").append(question);
         sb.append(", answer=").append(answer);
+        sb.append(", member=").append(member);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
