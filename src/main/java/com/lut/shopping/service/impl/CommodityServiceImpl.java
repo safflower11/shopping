@@ -194,10 +194,21 @@ public class CommodityServiceImpl implements ICommodityService {
     }
 
     @Override
-    public void addlogistic(Logistic logistic) throws RuntimeException {
+    public void addlogistic(String company) throws RuntimeException {
+        Logistic logistic =new Logistic();
+        logistic.setCompany(company);
         int code=(int) Math.round((Math.random()+1)*1000);
         logistic.setCode(code);
         logisticMapper.insert(logistic);
 
     }
+
+    @Override
+    public void updatelogisticstatus(String status) throws RuntimeException {
+        Logistic logistic=new Logistic();
+        logistic.setStatus(status);
+        logisticMapper.updateByPrimaryKey(logistic);
+    }
+
+
 }

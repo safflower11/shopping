@@ -28,5 +28,6 @@ public interface ICommodityService {
     List<LeaguerEx> showleaguer() throws RuntimeException;
     User selectById(int user_id) throws RuntimeException;
     List<CommodityAll> selectallcom() throws RuntimeException;
-    void addlogistic(Logistic logistic) throws RuntimeException;
+    void addlogistic(String company) throws RuntimeException;
+    void updatelogisticstatus(String status) throws RuntimeException;
 }

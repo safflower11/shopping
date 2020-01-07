@@ -54,14 +54,13 @@ public class CommodityController {
         int commodity_id=commodity.getId();
         double dprice=commodity.getPrice();
         int number=commodity.getNumber();
-        System.out.println(number);
         if(num>number){
            throw new RuntimeException("商品数量剩余不足");
         }else{
         double totalprice=num*dprice;
+        iCommodityService.addlogistic(company);
         Logistic logistic=iCommodityService.selectcompany(company);
         int logistic_id=logistic.getId();
-        System.out.println(logistic_id);
         Address address=iCommodityService.selectaddid(getaddress,receivename,receivephone);
         if(address==null){
             iCommodityService.insertaddresee(getaddress,receivename,receivephone);
@@ -70,12 +69,18 @@ public class CommodityController {
             iCommodityService.addorder(user_id,num,totalprice,address_id,logistic_id);
             Order order= iCommodityService.selectmax();
             int order_id=order.getId();
+            String status=order.getStatus();
+            System.out.println(status);
+            iCommodityService.updatelogisticstatus(status);
             iCommodityService.addco(commodity_id,order_id);
         }else {
             int address_id=address.getId();
             iCommodityService.addorder(user_id,num,totalprice,address_id,logistic_id);
             Order order= iCommodityService.selectmax();
+            String status=order.getStatus();
+            System.out.println(status);
             int order_id=order.getId();
+            iCommodityService.updatelogisticstatus(status);
             iCommodityService.addco(commodity_id,order_id);
         }}
         return MessageUtil.success("下单成功");

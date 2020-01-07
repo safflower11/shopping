@@ -50,7 +50,7 @@ public class LogisticResultController {
             @ApiImplicitParam(name = "getdate",value = "收货时间",paramType = "query",dataType = "Date"),
             @ApiImplicitParam(name = "deliverdate",value = "发货时间",paramType = "query",dataType = "Date"),
     })
-    public Message insert(String company, String code, String status, Date getdate, Date deliverdate){
+    public Message insert(String company, int code, String status, Date getdate, Date deliverdate){
         Logistic logistic = iLogisticResultService.insert(company,code,status,getdate,deliverdate);
         return MessageUtil.success("添加成功");
     }
