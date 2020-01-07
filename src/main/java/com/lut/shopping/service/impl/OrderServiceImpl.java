@@ -37,30 +37,30 @@ public class OrderServiceImpl implements IOrderService {
     private CommodityMapper commodityMapper;
     @Autowired
     private AddressMapper addressMapper;
+    //订单显示（向买家展示订单信息）
     @Override
     public List<CoEx> findAll() throws RuntimeException {
         List<CoEx> list= coExMapper.selectAll();
         return list;
     }
-
+    //订单显示- 删除（根据订单Id删除订单信息）
     @Override
     public void deleteById(int id) throws RuntimeException {
         CoExample coExample = new CoExample();
         coExample.createCriteria().andOrderIdEqualTo(id);
         coMapper.deleteByExample(coExample);
 
-
         PayExample payExample=new PayExample();
         payExample.createCriteria().andOrderIdEqualTo(id);
         payMapper.deleteByExample(payExample);
         orderMapper.deleteByPrimaryKey(id);
     }
-
+    //订单显示- 预览（根据订单id浏览订单详细信息）
     @Override
     public OrderEx findById(int id) throws RuntimeException {
          return orderExMapper.findById(id);
     }
-
+    //订单显示- 确认收货
     @Override
     public void receiveById(int id) throws RuntimeException {
         Order order = orderMapper.selectByPrimaryKey(id);
@@ -71,22 +71,20 @@ public class OrderServiceImpl implements IOrderService {
         }
         orderMapper.updateByPrimaryKey(order);
     }
-
-
-
+    //订单监控（向卖家展示所有订单信息）
     @Override
     public List<OrderEXx> selectAll() throws RuntimeException {
         List<OrderEXx> list= orderEXxMapper.selectAll();
         return list;
     }
-
+    //订单监控 - 浏览
     @Override
     public List<OrderEXx> selectById(int id) throws RuntimeException {
         return orderEXxMapper.selectById(id);
     }
 
 
-
+    //订单监控 - 确认发货
     @Override
     public void deliverById(int id) throws RuntimeException {
         Order order = orderMapper.selectByPrimaryKey(id);
@@ -117,7 +115,7 @@ public class OrderServiceImpl implements IOrderService {
         Commodity commodity=orderEXxMapper.selectid(commodity_id);
         return commodity;
     }
-
+    //订单监控 - 编辑（更改发货地址、发件人、联系电话）
     @Override
     public void update(String adeliveraddress, String adelivername, String adiliverphone) throws RuntimeException {
         Address address=new Address();
@@ -134,6 +132,26 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public Address findadress(int address_id) {
         return addressMapper.selectByPrimaryKey(address_id);
+    }
+
+    //订单监控 - 根据关键字和下拉框搜索
+    @Override
+    public List<OrderEXx> search(String key, String word) throws RuntimeException {
+        word = word== null ? "" :word;
+        if ((key == null || "".equals(key) ) && (word == null || "".equals(word))){
+            return selectAll();
+        }else if((key==null || "".equals(key)) && !"".equals(word)){
+            word="%" + word +"%";
+            return orderEXxMapper.selectStatusOrCode(word);
+        }else if ("status".equals(key)){
+            word="%" + word +"%";
+            return orderEXxMapper.selectStatus(word);
+        }else if ("code".equals(key)){
+            word="%" + word +"%";
+            return orderEXxMapper.selectCode(word);
+        }
+        return null;
+
     }
 
 

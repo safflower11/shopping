@@ -25,7 +25,8 @@ public interface IOrderService {
     void update(String adeliveraddress, String delivername, String diliverphone) throws RuntimeException;
 
     Order findorderId(int order_id);
-
     Address findadress(int address_id);
+
+    List<OrderEXx> search(String key,String word) throws RuntimeException;
 
 }

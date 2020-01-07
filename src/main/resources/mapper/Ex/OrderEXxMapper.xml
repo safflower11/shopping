@@ -35,12 +35,19 @@
         select * from shop_commodity where id={id}
     </select>
 
-    <update id="updateById">
-        update shop_order o,shop_address a
-        set
-        where o.id = #{id}
-         and o.address_id=a.id
+    <update id="update">
+        update shop_address a
+        set a.deliveraddress = #{deliveraddress},a.delivername = #{delivername},a.deliverphone = #{delivername}
     </update>
+    <select id="selectStatusOrCode" resultMap="order">
+        select * from shop_order where status like #{word} or code like #{word}
+    </select>
 
+    <select id="selectStatus" resultMap="order">
+        select * from shop_order where status like #{word}
+    </select>
+    <select id="selectCode" resultMap="order">
+        select * from shop_order where code like #{word}
+    </select>
 </mapper>
 

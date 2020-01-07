@@ -98,7 +98,7 @@ public class OrderController {
     }
     @GetMapping("/pay")
     @ApiOperation(value = "确认支付")
-    protected void doGet(int orderEx_id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(int orderEx_id,int order_id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             AlipayClient alipayClient =
                     AlipayConfig.getAlipayClient();
@@ -133,8 +133,10 @@ public class OrderController {
 
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().println(result);
-//            if ("待付款".equals(order.getStatus())) {
-//                order.setStatus("待发货");}
+            Order order=iOderService.findorderId(order_id);
+            if ("待付款".equals(order.getStatus())) {
+            order.setStatus("待发货");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -191,6 +193,14 @@ public class OrderController {
         Address address=iOderService.findadress(address_id);
         iOderService.update(adeliveraddress,adelivername,adiliverphone);
 
+
+    }
+
+    @GetMapping("/select")
+    @ApiOperation(value="卖家根据status或者code查询订单信息")
+    public Message search(String key,String word){
+        List<OrderEXx> lists=iOderService.search(key,word);
+        return MessageUtil.success(lists);
 
     }
 }
