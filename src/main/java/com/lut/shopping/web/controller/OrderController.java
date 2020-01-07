@@ -13,7 +13,6 @@ import com.lut.shopping.config.AlipayConfig;
 import com.lut.shopping.service.IOrderService;
 import com.lut.shopping.util.Message;
 import com.lut.shopping.util.MessageUtil;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.CellType;
@@ -44,14 +43,8 @@ public class OrderController {
     @GetMapping("/showbuyer")
     @ApiOperation(value = "预览")
     public Message showById(int id){
-<<<<<<< HEAD
         List<OrderEx> list= (List<OrderEx>) iOderService.findById(id);
         return MessageUtil.success(list);
-=======
-        //List<OrderEx> list=iOderService.findById(id);
-        return MessageUtil.success();
->>>>>>> f6d2d86c99928475fc315d5359ed86fef880f44a
-
     }
     @GetMapping("/findall")
     @ApiOperation(value="买家查询订单信息")
