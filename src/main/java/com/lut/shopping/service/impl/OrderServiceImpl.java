@@ -30,8 +30,7 @@ public class OrderServiceImpl implements IOrderService {
     private CoMapper coMapper;
     @Autowired
     private LogisticMapper logisticMapper;
-    @Autowired
-    private LoMapper loMapper;
+
     @Autowired
     private PayMapper payMapper;
     @Autowired
@@ -48,9 +47,6 @@ public class OrderServiceImpl implements IOrderService {
         coExample.createCriteria().andOrderIdEqualTo(id);
         coMapper.deleteByExample(coExample);
 
-        LoExample loExample = new LoExample();
-        loExample.createCriteria().andOrderIdEqualTo(id);
-        loMapper.deleteByExample(loExample);
 
         PayExample payExample=new PayExample();
         payExample.createCriteria().andOrderIdEqualTo(id);
@@ -59,8 +55,8 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public List<OrderEx> findById(int id) throws RuntimeException {
-        return orderExMapper.findById(id);
+    public OrderEx findById(int id) throws RuntimeException {
+         return orderExMapper.findById(id);
     }
 
     @Override

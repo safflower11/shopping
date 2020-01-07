@@ -12,7 +12,7 @@ import java.util.List;
 public interface IOrderService {
     List<CoEx> findAll() throws RuntimeException;
     void deleteById(int id) throws RuntimeException;
-    List<OrderEx> findById(int id) throws RuntimeException;
+    OrderEx findById(int id) throws RuntimeException;
     void receiveById(int id) throws RuntimeException;
     List<OrderEXx> selectAll() throws RuntimeException;
     List<OrderEXx> selectById(int id) throws RuntimeException;
