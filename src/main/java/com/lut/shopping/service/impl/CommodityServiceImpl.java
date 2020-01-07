@@ -1,9 +1,7 @@
 package com.lut.shopping.service.impl;
 
 import com.lut.shopping.bean.*;
-import com.lut.shopping.bean.Ex.CommodityEx;
-import com.lut.shopping.bean.Ex.CommodityshowEx;
-import com.lut.shopping.bean.Ex.Comone;
+import com.lut.shopping.bean.Ex.*;
 import com.lut.shopping.mapper.*;
 import com.lut.shopping.mapper.Ex.CommodityExMapper;
 import com.lut.shopping.service.ICommodityService;
@@ -172,5 +170,23 @@ public class CommodityServiceImpl implements ICommodityService {
     public List<Comone> showone(String name) {
         List<Comone> comones=commodityExMapper.showone(name);
         return comones;
+    }
+
+    @Override
+    public List<LeaguerEx> showleaguer() throws RuntimeException {
+        List<LeaguerEx> leaguerExes=commodityExMapper.selectleaguer();
+        return leaguerExes;
+    }
+
+    @Override
+    public User selectById(int user_id) throws RuntimeException {
+        User user=commodityExMapper.selectById(user_id);
+        return user;
+    }
+
+    @Override
+    public List<CommodityAll> selectallcom() throws RuntimeException {
+        List<CommodityAll> commodityAlls=commodityExMapper.selectallcom();
+        return commodityAlls;
     }
 }

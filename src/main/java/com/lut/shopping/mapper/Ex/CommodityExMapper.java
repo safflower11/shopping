@@ -1,10 +1,7 @@
 package com.lut.shopping.mapper.Ex;
 
 import com.lut.shopping.bean.*;
-import com.lut.shopping.bean.Ex.CommodityEx;
-import com.lut.shopping.bean.Ex.CommodityshowEx;
-import com.lut.shopping.bean.Ex.Comone;
-import com.lut.shopping.bean.Ex.ShoppingcarEx;
+import com.lut.shopping.bean.Ex.*;
 
 
 import java.util.List;
@@ -27,4 +24,7 @@ public interface CommodityExMapper {
     void deleteunder(int id);
     List<Comone> showone(String name);
     List<ShoppingcarEx> showshopcar(int user_id);
+    User selectById(int id);
+    List<LeaguerEx> selectleaguer();
+    List<CommodityAll> selectallcom();
 }

@@ -26,4 +26,7 @@
         from shop_logistic l,shop_commodity c,shop_order o,shop_address a,shop_co co
         where o.logistic_id=l.id  and o.address_id=a.id and co.order_id = o.id and c.id = co.commodity_id and l.id like #{id}
     </select>
+    <insert id="insert">
+        insert into shop_logistic (company, code, status, getdate, deliverdate) values (#{company}, #{code}, #{status}, #{getdate}, #{deliverdate})
+    </insert>
 </mapper>

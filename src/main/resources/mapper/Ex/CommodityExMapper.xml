@@ -60,6 +60,23 @@
                     select="sscar" />
     </resultMap>
 
+    <resultMap id="sleaguer" type="com.lut.shopping.bean.Ex.LeaguerEx">
+        <result column="coname" property="name" />
+        <result column="cotype" property="type" />
+        <result column="codiscount" property="discount" />
+        <result column="shname" property="shname"></result>
+    </resultMap>
+
+    <resultMap id="allcom" type="com.lut.shopping.bean.Ex.CommodityAll">
+        <id column="coid"  property="id" />
+        <result column="coname"  property="name" />
+        <result column="cotype"  property="type" />
+        <result column="coprice"  property="price" />
+        <result column="conumber" property="number" />
+        <result column="codiscount" property="discount" />
+        <result column="shname" property="shname"></result>
+    </resultMap>
+
 <select id="selectshow" resultMap="selectco">
     select co.id coid,co.name coname,co.type cotype,co.price coprice,sh.name shname
     from shop_commodity co,shop_shop sh,shop_cs cs
@@ -129,6 +146,21 @@
 
     <select id="showshopcar" resultMap="scar">
         select commodity_id from shop_shoppingcar where user_id=#{user_id}
+    </select>
+
+    <select id="selectById" resultType="com.lut.shopping.bean.User">
+        select * from shop_user where id=#{id}
+    </select>
+    <select id="selectleaguer" resultMap="sleaguer">
+        select co.name coname,co.type cotype,co.discount codiscount,sh.name shname
+        from shop_commodity co,shop_shop sh,shop_cs cs
+        where cs.shop_id=sh.id and cs.commodity_id=co.id
+    </select>
+
+    <select id="selectallcom" resultMap="allcom">
+        select co.id coid,co.name coname,co.type cotype,co.price coprice,co.number conumber,co.discount codiscount,sh.name shname
+        from shop_commodity co,shop_shop sh,shop_cs cs
+        where cs.shop_id=sh.id and cs.commodity_id=co.id
     </select>
 
 </mapper>
