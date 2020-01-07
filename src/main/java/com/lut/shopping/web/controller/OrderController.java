@@ -42,8 +42,8 @@ public class OrderController {
     @GetMapping("/showbuyer")
     @ApiOperation(value = "预览")
     public Message showById(int id){
-        List<OrderEx> list=iOderService.findById(id);
-        return MessageUtil.success(list);
+        //List<OrderEx> list=iOderService.findById(id);
+        return MessageUtil.success();
 
     }
     @GetMapping("/findall")

@@ -10,7 +10,6 @@ import com.lut.shopping.mapper.Ex.CommodityExMapper;
 import com.lut.shopping.mapper.Ex.OrderEXxMapper;
 import com.lut.shopping.mapper.Ex.OrderExMapper;
 import com.lut.shopping.service.IOrderService;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
