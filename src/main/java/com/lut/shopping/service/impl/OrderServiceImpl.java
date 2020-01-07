@@ -35,6 +35,8 @@ public class OrderServiceImpl implements IOrderService {
     private PayMapper payMapper;
     @Autowired
     private CommodityMapper commodityMapper;
+    @Autowired
+    private AddressMapper addressMapper;
     @Override
     public List<CoEx> findAll() throws RuntimeException {
         List<CoEx> list= coExMapper.selectAll();
@@ -94,8 +96,8 @@ public class OrderServiceImpl implements IOrderService {
         Commodity commodity=orderEXxMapper.selectid(commodity_id);
         String name=commodity.getName();
         int beforenumber=commodity.getNumber();
-        if ("待付款".equals(order.getStatus())) {
-            order.setStatus("待发货");
+        if ("待发货".equals(order.getStatus())) {
+            order.setStatus("已发货");
             int number = order.getNumber();
             int afternumber = beforenumber - number;
             commodity.setNumber(afternumber);
@@ -114,6 +116,24 @@ public class OrderServiceImpl implements IOrderService {
     public Commodity selectid(int commodity_id) throws RuntimeException {
         Commodity commodity=orderEXxMapper.selectid(commodity_id);
         return commodity;
+    }
+
+    @Override
+    public void update(String adeliveraddress, String adelivername, String adiliverphone) throws RuntimeException {
+        Address address=new Address();
+        address.setDeliveraddress(adeliveraddress);
+        address.setDelivername(adelivername);
+        address.setDeliverphone(adiliverphone);
+    }
+
+    @Override
+    public Order findorderId(int order_id) {
+       return orderMapper.selectByPrimaryKey(order_id);
+    }
+
+    @Override
+    public Address findadress(int address_id) {
+        return addressMapper.selectByPrimaryKey(address_id);
     }
 
 

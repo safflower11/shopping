@@ -29,6 +29,11 @@
     <select id="selectid" resultType="com.lut.shopping.bean.Commodity">
         select * from shop_commodity where id={id}
     </select>
-
+`   <update id="updateById">
+        update shop_order o,shop_address a
+        set
+        where o.id = #{id}
+         and o.address_id=a.id
+    </update>
 
 </mapper>
