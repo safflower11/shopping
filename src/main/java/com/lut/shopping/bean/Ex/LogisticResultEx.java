@@ -7,9 +7,19 @@ public class LogisticResultEx {
     private int oid;
     private String daddress;
     private String gaddress;
-    private Date odate;
+    private Date ddate;
+    private Date gdate;
     private int ocode;
     private String status;
+    private String company;
+
+    public Date getGdate() {
+        return gdate;
+    }
+
+    public void setGdate(Date gdate) {
+        this.gdate = gdate;
+    }
 
     public String getCname() {
         return cname;
@@ -43,12 +53,12 @@ public class LogisticResultEx {
         this.gaddress = gaddress;
     }
 
-    public Date getOdate() {
-        return odate;
+    public Date getDdate() {
+        return ddate;
     }
 
-    public void setOdate(Date odate) {
-        this.odate = odate;
+    public void setDdate(Date ddate) {
+        this.ddate = ddate;
     }
 
     public int getOcode() {
@@ -65,5 +75,13 @@ public class LogisticResultEx {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 }
