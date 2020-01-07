@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lut.shopping.mapper.Ex.OrderEXxMapper">
+<<<<<<< HEAD
 <resultMap id="order" type="com.lut.shopping.bean.Ex.OrderEXx">
     <result column="id" property="id"></result>
     <result column="code" property="code"></result>
@@ -14,12 +15,33 @@
     <result column="areceivephone" property="areceivephone"></result>
 </resultMap>
 <select id="selectById" resultMap="order">
+=======
+    <resultMap id="order" type="com.lut.shopping.bean.Ex.OrderEXx">
+        <result column="id" property="id"></result>
+        <result column="code" property="code"></result>
+        <result column="status" property="status"></result>
+        <result column="cname" property="cname"></result>
+        <result column="number" property="number"></result>
+        <result column="totalprice" property="totalprice"></result>
+        <result column="agetaddress" property="agetaddress"></result>
+        <result column="lcompany" property="lcompany"></result>
+        <result column="uname" property="uname"></result>
+        <result column="areceivephone" property="areceivephone"></result>
+    </resultMap>
+
+    <resultMap id="sco" type="com.lut.shopping.bean.Co">
+        <result column="commodity_id" property="commodityId"></result>
+    </resultMap>
+
+    <select id="selectById" resultMap="order">
+>>>>>>> 006ba67caf4929203defdb17fca8da80d7939434
         select o.id id,o.code code,o.status status,c.name cname,o.number number,o.totalprice totalprice,a.getaddress agetaddress,u.name uname,a.receivephone areceivephone,l.company lcompany
         from shop_commodity c,shop_order o,shop_address a,shop_user u,shop_logistic l,shop_co co
         where co.order_id=c.id
         and o.address_id=a.id and o.user_id=u.id and o.logistic_id=l.id
         and o.id=#{id}
     </select>
+<<<<<<< HEAD
 <resultMap id="sco" type="com.lut.shopping.bean.Co">
 <result column="commodity_id" property="commodityId"></result>
 </resultMap>
@@ -30,9 +52,27 @@
         select * from shop_commodity where id={id}
     </select>
         `   <update id="updateById">
+=======
+
+    <select id="selectcommodity" resultMap="sco">
+        select commodity_id from shop_co where order_id=#{order_id}
+    </select>
+
+    <select id="selectid" resultType="com.lut.shopping.bean.Commodity">
+        select * from shop_commodity where id={id}
+    </select>
+
+    <update id="updateById">
+>>>>>>> 006ba67caf4929203defdb17fca8da80d7939434
         update shop_order o,shop_address a
         set
         where o.id = #{id}
          and o.address_id=a.id
     </update>
+<<<<<<< HEAD
         </mapper>
+=======
+
+
+</mapper>
+>>>>>>> 006ba67caf4929203defdb17fca8da80d7939434
