@@ -92,7 +92,7 @@ public class OrderController {
         return MessageUtil.success(list);
 
     }
-    @GetMapping("/deliverById")
+    @PostMapping("/deliverById")
     @ApiOperation(value = "确认发货")
     public Message deliverById(int id){
         iOderService.deliverById(id);
@@ -147,7 +147,7 @@ public class OrderController {
     }
 
      */
-    @GetMapping("/pay")
+    @PostMapping("/pay")
     @ApiOperation(value = "确认支付")
     protected Message pay(int order_id){
         iOderService.payById(order_id);
