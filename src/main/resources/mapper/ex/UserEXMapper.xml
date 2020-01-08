@@ -46,12 +46,12 @@
     where id = #{id}
   </update>
 
-    <select id="findByUsername" resultType="com.lut.shopping.bean.Ex.UserEX">
+    <select id="findByUsername" resultType="com.lut.shopping.bean.Ex.UserE">
       SELECT * FROM shop_user
       where
       unum=#{username}
     </select>
-    <select id="findUserById" resultType="com.lut.shopping.bean.Ex.UserEX">
+    <select id="findUserById" resultType="com.lut.shopping.bean.Ex.UserE">
         SELECT * FROM shop_user
       where
       id=#{Id}

@@ -2,19 +2,21 @@ package com.lut.shopping.service.impl;
 
 import com.lut.shopping.bean.*;
 import com.lut.shopping.bean.Ex.CoEx;
+import com.lut.shopping.bean.Ex.LogisticEx;
 import com.lut.shopping.bean.Ex.OrderEXx;
 import com.lut.shopping.bean.Ex.OrderEx;
 import com.lut.shopping.mapper.*;
 import com.lut.shopping.mapper.Ex.CoExMapper;
 import com.lut.shopping.mapper.Ex.CommodityExMapper;
 import com.lut.shopping.mapper.Ex.OrderEXxMapper;
-import com.lut.shopping.mapper.Ex.OrderExMapper;
+import com.lut.shopping.mapper.ex.OrderExMapper;
 import com.lut.shopping.service.IOrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 @Service
 public class OrderServiceImpl implements IOrderService {
@@ -50,6 +52,11 @@ public class OrderServiceImpl implements IOrderService {
         coExample.createCriteria().andOrderIdEqualTo(id);
         coMapper.deleteByExample(coExample);
 
+        Order order = orderMapper.selectByPrimaryKey(id);
+        System.out.println("物流id:"+order.getLogisticId());
+        Logistic logistic = logisticMapper.selectByPrimaryKey(order.getLogisticId());
+        logisticMapper.deleteByPrimaryKey(logistic.getId());
+
         PayExample payExample=new PayExample();
         payExample.createCriteria().andOrderIdEqualTo(id);
         payMapper.deleteByExample(payExample);
@@ -65,6 +72,13 @@ public class OrderServiceImpl implements IOrderService {
     public void receiveById(int id) throws RuntimeException {
         Order order = orderMapper.selectByPrimaryKey(id);
         if("已发货".equals(order.getStatus())) {
+            Logistic logistic = logisticMapper.selectByPrimaryKey(order.getLogisticId());
+            System.out.println(order.getLogisticId());
+            System.out.println(logistic.getId());
+            logistic.setStatus("已完成");
+            logistic.setDeliverdate(new Date());
+            logisticMapper.updateByPrimaryKey(logistic);
+
             order.setStatus("已完成");
         }else{
             throw new RuntimeException("异常信息！");
@@ -92,6 +106,7 @@ public class OrderServiceImpl implements IOrderService {
         Co co=orderEXxMapper.selectcommodity(order_id);
         int commodity_id=co.getCommodityId();
         Commodity commodity=orderEXxMapper.selectid(commodity_id);
+
         String name=commodity.getName();
         int beforenumber=commodity.getNumber();
         int ordernum=order.getNumber();
@@ -104,6 +119,14 @@ public class OrderServiceImpl implements IOrderService {
                 int number = order.getNumber();
                 int afternumber = beforenumber - number;
                 commodity.setNumber(afternumber);
+
+                Logistic logistic = logisticMapper.selectByPrimaryKey(order.getLogisticId());
+                System.out.println(order.getLogisticId());
+                System.out.println(logistic.getId());
+                logistic.setStatus("已发货");
+                logistic.setDeliverdate(new Date());
+                logisticMapper.updateByPrimaryKey(logistic);
+
                 commodityMapper.updateByPrimaryKey(commodity);
                 orderMapper.updateByPrimaryKey(order);
             }
@@ -159,6 +182,11 @@ public class OrderServiceImpl implements IOrderService {
         }
         return null;
 
+    }
+
+    @Override
+    public List<OrderEx> findBy(int id) {
+        return orderExMapper.findBy(id);
     }
 
 

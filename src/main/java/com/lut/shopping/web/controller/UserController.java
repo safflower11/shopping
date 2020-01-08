@@ -3,6 +3,7 @@ package com.lut.shopping.web.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.lut.shopping.annotation.UserLoginToken;
 import com.lut.shopping.bean.Ex.SEX;
+import com.lut.shopping.bean.Ex.UserE;
 import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.bean.User;
 import com.lut.shopping.service.IQsnService;
@@ -53,7 +54,7 @@ public class UserController {
      */
    @GetMapping("/adduser")
     @ApiImplicitParam(name = "repassword", value = "再次输入密码",paramType = "query",dataType = "String")
-    public Message addUser(User user,String repassword,int leaguer){
+    public Message addUser(User user,String repassword,Integer leaguer){
         System.out.println(user.getPassword());
         System.out.println(repassword);
         boolean b1 = repassword.equals(user.getPassword());
@@ -84,15 +85,18 @@ public class UserController {
 
     //登录
     @PostMapping("/loginByToken")
-    public Object login(@RequestBody UserEX user){
+    public Object login(@RequestBody UserE user){
         JSONObject jsonObject=new JSONObject();
-        UserEX userForBase=userService.findByUsername(user);
+        UserE userForBase=userService.findByUsername(user);
         if(userForBase==null){
             jsonObject.put("message","登录失败,用户不存在");
             return jsonObject;
         }else {
             if (!userForBase.getPassword().equals(user.getPassword())){
                 jsonObject.put("message","登录失败,密码错误");
+                return jsonObject;
+            }else if(!userForBase.getCode().equals(user.getCode())){
+                jsonObject.put("message","登录失败,身份编号错误");
                 return jsonObject;
             }else {
                 String token = tokenService.getToken(userForBase);
@@ -107,6 +111,7 @@ public class UserController {
     public String getMessage(){
         return "你已通过验证";
     }
+
 
     @GetMapping("/qsn")
     @ApiOperation(value = "查看店铺评分")

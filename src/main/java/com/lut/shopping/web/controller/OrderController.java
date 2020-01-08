@@ -148,7 +148,7 @@ public class OrderController {
     @GetMapping("/download")
     @ApiOperation(value = "下载")
     public void download(int id,HttpServletResponse response) throws Exception{
-        OrderEx orderEx = iOderService.findById(id);
+        List<OrderEx> orderEx = iOderService.findBy(id);
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet();
         XSSFRow row = sheet.createRow(0);
@@ -158,31 +158,65 @@ public class OrderController {
         //2
         XSSFRow row2 = sheet.createRow(1);
         row2.createCell(0).setCellValue("商品名称");
-        row2.createCell(1).setCellValue(orderEx.getCname());
+        for (OrderEx orderEx1:orderEx){
+            int i=1;
+            row2.createCell(i).setCellValue(orderEx1.getCname());
+            i++;
+        }
         //3
         XSSFRow row3 = sheet.createRow(2);
         row3.createCell(0).setCellValue("商品数量");
-        row3.createCell(1).setCellValue(orderEx.getNumber());
+        for (OrderEx orderEx1:orderEx){
+            int i=1;
+            row3.createCell(i).setCellValue(orderEx1.getNumber());
+            i++;
+        }
+        //row3.createCell(1).setCellValue(orderEx.getNumber());
         //4
         XSSFRow row4 = sheet.createRow(3);
         row4.createCell(0).setCellValue("总钱数");
-        row4.createCell(1).setCellValue(orderEx.getTotalprice());
+        for (OrderEx orderEx1:orderEx){
+            int i=1;
+            row4.createCell(i).setCellValue(orderEx1.getTotalprice());
+            i++;
+        }
+        //row4.createCell(1).setCellValue(orderEx.getTotalprice());
         //5
         XSSFRow row5 = sheet.createRow(4);
         row5.createCell(0).setCellValue("收货地址");
-        row5.createCell(1).setCellValue(orderEx.getAgetaddress());
+        for (OrderEx orderEx1:orderEx){
+            int i=1;
+            row5.createCell(i).setCellValue(orderEx1.getAgetaddress());
+            i++;
+        }
+        //row5.createCell(1).setCellValue(orderEx.getAgetaddress());
         //6
         XSSFRow row6 = sheet.createRow(5);
         row6.createCell(0).setCellValue("收货人");
-        row6.createCell(1).setCellValue(orderEx.getUname());
+        for (OrderEx orderEx1:orderEx){
+            int i=1;
+            row6.createCell(i).setCellValue(orderEx1.getUname());
+            i++;
+        }
+        //row6.createCell(1).setCellValue(orderEx.getUname());
         //7
         XSSFRow row7 = sheet.createRow(6);
         row7.createCell(0).setCellValue("联系电话");
-        row7.createCell(1).setCellValue(orderEx.getAreceivephone());
+        for (OrderEx orderEx1:orderEx){
+            int i=1;
+            row7.createCell(i).setCellValue(orderEx1.getAreceivephone());
+            i++;
+        }
+        //row7.createCell(1).setCellValue(orderEx.getAreceivephone());
         //8
         XSSFRow row8 = sheet.createRow(7);
         row8.createCell(0).setCellValue("物流公司");
-        row8.createCell(1).setCellValue(orderEx.getLcompany());
+        for (OrderEx orderEx1:orderEx){
+            int i=1;
+            row8.createCell(i).setCellValue(orderEx1.getLcompany());
+            i++;
+        }
+        //row8.createCell(1).setCellValue(orderEx.getLcompany());
 
         response.setHeader("content-Type", "application/vnd.ms-excel");
         // 下载文件的默认名称
