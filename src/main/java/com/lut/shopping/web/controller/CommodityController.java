@@ -1,9 +1,7 @@
 package com.lut.shopping.web.controller;
 
 import com.lut.shopping.bean.*;
-import com.lut.shopping.bean.Ex.CommodityEx;
-import com.lut.shopping.bean.Ex.CommodityshowEx;
-import com.lut.shopping.bean.Ex.Comone;
+import com.lut.shopping.bean.Ex.*;
 import com.lut.shopping.service.ICommodityService;
 import com.lut.shopping.util.Message;
 import com.lut.shopping.util.MessageUtil;
@@ -25,17 +23,29 @@ import java.util.List;
 public class CommodityController {
     @Autowired
     private ICommodityService iCommodityService;
-    @GetMapping("/show")
-    @ApiOperation(value ="商品信息展示" )
-    public Message show(){
-        List<CommodityEx> commodityExes=iCommodityService.show();
-        return MessageUtil.success(commodityExes);
-    }
     @PostMapping("/add")
     @ApiOperation(value ="加入购物车" )
     public Message add(Shoppingcar shoppingcar){
         iCommodityService.insert(shoppingcar);
         return MessageUtil.success("加入购物车成功");
+    }
+
+    @GetMapping("/show")
+    @ApiOperation(value = "商品展示")
+    public Message show(int user_id){
+        User user=iCommodityService.selectById(user_id);
+        if(user.getCode()==4){
+            List<LeaguerEx> leaguerExes=iCommodityService.showleaguer();
+            return MessageUtil.success(leaguerExes);
+        }else if(user.getCode()==3){
+            List<CommodityshowEx> commodityshowExes=iCommodityService.commodityshow();
+            return MessageUtil.success(commodityshowExes);
+        }else if(user.getCode()==1||user.getCode()==2){
+            List<CommodityAll> commodityAlls=iCommodityService.selectallcom();
+            return MessageUtil.success(commodityAlls);
+        }else {
+            throw new RuntimeException("不存在该用户");
+        }
     }
 
     @PostMapping("/addorder")
@@ -50,16 +60,18 @@ public class CommodityController {
             @ApiImplicitParam(name = "company",value = "物流公司",paramType = "query",dataType = "String")
     })
     public Message addorder(int user_id,String name,int num,String getaddress,String receivename,String receivephone,String company){
+        User user=iCommodityService.selectById(user_id);
         Commodity commodity=iCommodityService.selectname(name);
         int commodity_id=commodity.getId();
-        double dprice=commodity.getPrice();
         int number=commodity.getNumber();
+        if(user.getCode()!=4){
+        double dprice=commodity.getPrice();
         if(num>number){
            throw new RuntimeException("商品数量剩余不足");
         }else{
         double totalprice=num*dprice;
         iCommodityService.addlogistic(company);
-        Logistic logistic=iCommodityService.selectcompany(company);
+        Logistic logistic=iCommodityService.findmax();
         int logistic_id=logistic.getId();
         Address address=iCommodityService.selectaddid(getaddress,receivename,receivephone);
         if(address==null){
@@ -70,19 +82,59 @@ public class CommodityController {
             Order order= iCommodityService.selectmax();
             int order_id=order.getId();
             String status=order.getStatus();
-            System.out.println(status);
-            iCommodityService.updatelogisticstatus(status);
+            Logistic logistic1=iCommodityService.findmax();
+            int logistic_id3=logistic1.getId();
+            iCommodityService.updatelogisticstatus(status,logistic_id3);
             iCommodityService.addco(commodity_id,order_id);
         }else {
             int address_id=address.getId();
             iCommodityService.addorder(user_id,num,totalprice,address_id,logistic_id);
             Order order= iCommodityService.selectmax();
-            String status=order.getStatus();
-            System.out.println(status);
             int order_id=order.getId();
-            iCommodityService.updatelogisticstatus(status);
+            String status=order.getStatus();
+            Logistic logistic1=iCommodityService.findmax();
+            int logistic_id3=logistic1.getId();
+            iCommodityService.updatelogisticstatus(status,logistic_id3);
             iCommodityService.addco(commodity_id,order_id);
-        }}
+        }
+        }
+        }
+        if(user.getCode()==4) {
+            double dprice=commodity.getDiscount();
+            if (num > number) {
+                throw new RuntimeException("商品数量剩余不足");
+            } else {
+                double totalprice = num * dprice;
+                iCommodityService.addlogistic(company);
+                Logistic logistic=iCommodityService.findmax();
+                int logistic_id = logistic.getId();
+                System.out.println(logistic_id);
+                Address address = iCommodityService.selectaddid(getaddress, receivename, receivephone);
+                if (address == null) {
+                    iCommodityService.insertaddresee(getaddress, receivename, receivephone);
+                    Address address2 = iCommodityService.selectaddid(getaddress, receivename, receivephone);
+                    int address_id = address2.getId();
+                    iCommodityService.addorder(user_id, num, totalprice, address_id, logistic_id);
+                    Order order = iCommodityService.selectmax();
+                    int order_id = order.getId();
+                    String status = order.getStatus();
+                    Logistic logistic1=iCommodityService.findmax();
+                    int logistic_id3=logistic1.getId();
+                    iCommodityService.updatelogisticstatus(status,logistic_id3);
+                    iCommodityService.addco(commodity_id, order_id);
+                } else {
+                    int address_id = address.getId();
+                    iCommodityService.addorder(user_id, num, totalprice, address_id, logistic_id);
+                    Order order = iCommodityService.selectmax();
+                    int order_id = order.getId();
+                    String status = order.getStatus();
+                    Logistic logistic1=iCommodityService.findmax();
+                    int logistic_id3=logistic1.getId();
+                    iCommodityService.updatelogisticstatus(status,logistic_id3);
+                    iCommodityService.addco(commodity_id, order_id);
+                }
+            }
+        }
         return MessageUtil.success("下单成功");
     }
 
@@ -103,6 +155,8 @@ public class CommodityController {
     public Message upnew(String name,String shopname,int upnum){
         Shop shop=iCommodityService.selectshop(shopname);
         Repertory repertory=iCommodityService.selere(name);
+        int repertory_id=repertory.getId();
+        System.out.println(repertory_id);
         if(shop==null){
             throw new RuntimeException("不存在该店铺,请重新输入");
         }else {
@@ -129,11 +183,11 @@ public class CommodityController {
                         Cs cs = iCommodityService.selectcs(shop_id, commodity_id1);
                         if (cs == null) {
                             iCommodityService.insertcs(shop_id, commodity_id1);
-                            iCommodityService.updateco(afternum);
-                            iCommodityService.updatere(afterrnum);
+                            iCommodityService.updateco(afternum,commodity_id1);
+                            iCommodityService.updatere(afterrnum,repertory_id);
                         } else {
-                            iCommodityService.updateco(afternum);
-                            iCommodityService.updatere(afterrnum);
+                            iCommodityService.updateco(afternum,commodity_id1);
+                            iCommodityService.updatere(afterrnum,repertory_id);
                         }
                     }
                 } else {
@@ -148,11 +202,11 @@ public class CommodityController {
                         Cs cs = iCommodityService.selectcs(shop_id, commodity_id);
                         if (cs == null) {
                             iCommodityService.insertcs(shop_id, commodity_id);
-                            iCommodityService.updateco(afternum);
-                            iCommodityService.updatere(afterrnum);
+                            iCommodityService.updateco(afternum,commodity_id);
+                            iCommodityService.updatere(afterrnum,repertory_id);
                         } else {
-                            iCommodityService.updateco(afternum);
-                            iCommodityService.updatere(afterrnum);
+                            iCommodityService.updateco(afternum,commodity_id);
+                            iCommodityService.updatere(afterrnum,repertory_id);
                         }
                     }
                 }

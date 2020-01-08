@@ -18,10 +18,11 @@ public interface ICommodityService {
     Shop selectshop(String shopname) throws RuntimeException;
     Cs selectcs(int shop_id,int commodity_id) throws RuntimeException;
     Repertory selere(String name) throws RuntimeException;
-    void updateco(int afternum) throws RuntimeException;
-    void updatere(int afterrnum) throws RuntimeException;
+    void updateco(int afternum,int commodity_id1) throws RuntimeException;
+    void updatere(int afterrnum,int repertory_id) throws RuntimeException;
     void insertco(String name, int number,double price,String type,double discount) throws RuntimeException;
     Order selectmax() throws RuntimeException;
+    Logistic findmax() throws RuntimeException;
     void addco(int commodity_id,int order_id) throws RuntimeException;
     void under(int id) throws RuntimeException;
     List<Comone> showone(String name);
@@ -29,5 +30,5 @@ public interface ICommodityService {
     User selectById(int user_id) throws RuntimeException;
     List<CommodityAll> selectallcom() throws RuntimeException;
     void addlogistic(String company) throws RuntimeException;
-    void updatelogisticstatus(String status) throws RuntimeException;
+    void updatelogisticstatus(String status,int logistic_id) throws RuntimeException;
 }

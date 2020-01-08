@@ -18,9 +18,8 @@ public interface CommodityExMapper {
     void insertcs(Cs cs);
     Shop selectshop(String shopname);
     Repertory selectrepertory(String name);
-    void update(CommodityshowEx commodityshowEx);
-    void updatere(Repertory repertory);
     Order selectmax();
+    Logistic findmax();
     void deleteunder(int id);
     List<Comone> showone(String name);
     List<ShoppingcarEx> showshopcar(int user_id);

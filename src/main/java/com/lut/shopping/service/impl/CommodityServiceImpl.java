@@ -20,6 +20,8 @@ public class CommodityServiceImpl implements ICommodityService {
     @Autowired
     private CommodityMapper commodityMapper;
     @Autowired
+    private RepertoryMapper repertoryMapper;
+    @Autowired
     private CoMapper coMapper;
     @Autowired
     private CsMapper csMapper;
@@ -114,18 +116,18 @@ public class CommodityServiceImpl implements ICommodityService {
 
 
     @Override
-    public void updateco(int afternum) throws RuntimeException {
-        CommodityshowEx commodityshowEx=new CommodityshowEx();
-        commodityshowEx.setNumber(afternum);
-        commodityExMapper.update(commodityshowEx);
+    public void updateco(int afternum,int commodity_id1) throws RuntimeException {
+        Commodity commodity=commodityMapper.selectByPrimaryKey(commodity_id1);
+        commodity.setNumber(afternum);
+        commodityMapper.updateByPrimaryKey(commodity);
 
     }
 
     @Override
-    public void updatere(int afterrnum) throws RuntimeException {
-        Repertory repertory=new Repertory();
+    public void updatere(int afterrnum,int repertory_id) throws RuntimeException {
+        Repertory repertory=repertoryMapper.selectByPrimaryKey(repertory_id);
         repertory.setNumber(afterrnum);
-        commodityExMapper.updatere(repertory);
+        repertoryMapper.updateByPrimaryKey(repertory);
     }
 
     @Override
@@ -143,6 +145,12 @@ public class CommodityServiceImpl implements ICommodityService {
     public Order selectmax() throws RuntimeException {
         Order order=commodityExMapper.selectmax();
         return order;
+    }
+
+    @Override
+    public Logistic findmax() throws RuntimeException {
+        Logistic logistic=commodityExMapper.findmax();
+        return logistic;
     }
 
     @Override
@@ -204,8 +212,8 @@ public class CommodityServiceImpl implements ICommodityService {
     }
 
     @Override
-    public void updatelogisticstatus(String status) throws RuntimeException {
-        Logistic logistic=new Logistic();
+    public void updatelogisticstatus(String status,int logistic_id) throws RuntimeException {
+        Logistic logistic=logisticMapper.selectByPrimaryKey(logistic_id);
         logistic.setStatus(status);
         logisticMapper.updateByPrimaryKey(logistic);
     }
