@@ -249,7 +249,7 @@ public class OrderController {
      */
     @GetMapping("/QRCode")
     public void productcode() {
-        QRCodeUtil.zxingCodeCreate("http://127.0.0.1:9999/swagger-ui.html", "D:/lzlg/picture/2018/",500,"D:/lzlg/picture/2018/5.jpg");
+        QRCodeUtil.zxingCodeCreate("http://47.105.152.187:9999/swagger-ui.html", "D:/lzlg/picture/2018/",500,"D:/lzlg/picture/2018/5.jpg");
     }
 
     /**
