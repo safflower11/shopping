@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 二维码调用前端控制器
  */
-@RequestMapping("/Qrcode")
 @RestController
+@RequestMapping("/Qrcode")
+
 public class QrcodeController {
 
     /**

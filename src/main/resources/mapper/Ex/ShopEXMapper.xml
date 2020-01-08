@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lut.shopping.mapper.ex.ShopEXMapper">
+<mapper namespace="com.lut.shopping.mapper.Ex.ShopEXMapper">
     <resultMap id="abn" type="com.lut.shopping.bean.Ex.ShopResult">
         <id column="id" property="id" />
         <result column="name" property="name" />
@@ -14,11 +14,25 @@
         where s.user_id=u.id
     </select>
 
-    <update id="updateById" parameterType="com.lut.shopping.bean.Shop">
+    <update id="updateByPrimaryKey" parameterType="com.lut.shopping.bean.Shop">
     update shop_shop
     set score = #{score}
     where id = #{id}
   </update>
+
+    <select id="selectByPrimaryKey" resultMap="abn">
+        select s.id,s.name,s.score,u.name
+        from shop_shop s , shop_user u
+        where s.user_id = u.id
+    </select>
+    <insert id="add" parameterType="com.lut.shopping.bean.Shop" keyProperty="id" useGeneratedKeys="true">
+        insert into shop_shop
+        values (#{id},#{name},#{user_id},#{score})
+    </insert>
+    <delete id="deleteByPrimaryKey" parameterType="com.lut.shopping.bean.Shop">
+    delete from shop_shop
+    where id = #{id}
+  </delete>
 
 
 </mapper>

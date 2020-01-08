@@ -10,7 +10,7 @@ import com.lut.shopping.bean.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+
 public interface IOrderService {
     List<CoEx> findAll() throws RuntimeException;
     void deleteById(int id) throws RuntimeException;

@@ -8,7 +8,7 @@ import com.lut.shopping.bean.Shop;
 import com.lut.shopping.mapper.AppraiseMapper;
 import com.lut.shopping.mapper.ShopMapper;
 import com.lut.shopping.mapper.ex.QsnEXMapper;
-import com.lut.shopping.mapper.ex.ShopEXMapper;
+import com.lut.shopping.mapper.Ex.ShopEXMapper;
 import com.lut.shopping.service.IQsnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
