@@ -1,11 +1,10 @@
-package com.lut.shopping.mapper.ex;
+package com.lut.shopping.mapper.Ex;
 
 import com.lut.shopping.bean.Ex.UserE;
 import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.bean.User;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 import java.util.Map;
 
 public interface UserEXMapper {

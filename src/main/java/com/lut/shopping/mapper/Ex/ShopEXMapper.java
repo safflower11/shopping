@@ -1,6 +1,5 @@
-package com.lut.shopping.mapper.ex;
+package com.lut.shopping.mapper.Ex;
 
-import com.lut.shopping.bean.Ex.ShopEx;
 import com.lut.shopping.bean.Ex.ShopResult;
 import com.lut.shopping.bean.Shop;
 

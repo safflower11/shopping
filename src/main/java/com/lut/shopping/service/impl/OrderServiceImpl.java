@@ -2,20 +2,17 @@ package com.lut.shopping.service.impl;
 
 import com.lut.shopping.bean.*;
 import com.lut.shopping.bean.Ex.CoEx;
-import com.lut.shopping.bean.Ex.LogisticEx;
 import com.lut.shopping.bean.Ex.OrderEXx;
 import com.lut.shopping.bean.Ex.OrderEx;
 import com.lut.shopping.mapper.*;
 import com.lut.shopping.mapper.Ex.CoExMapper;
-import com.lut.shopping.mapper.Ex.CommodityExMapper;
 import com.lut.shopping.mapper.Ex.OrderEXxMapper;
-import com.lut.shopping.mapper.ex.OrderExMapper;
+import com.lut.shopping.mapper.Ex.OrderExMapper;
 import com.lut.shopping.service.IOrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 @Service

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lut.shopping.mapper.ex.OrderExMapper">
+<mapper namespace="com.lut.shopping.mapper.Ex.OrderExMapper">
     <resultMap id="sorder" type="com.lut.shopping.bean.Ex.OrderEx">
         <result column="cname" property="cname"></result>
         <result column="number" property="number"></result>

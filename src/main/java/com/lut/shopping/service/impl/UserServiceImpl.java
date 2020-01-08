@@ -6,7 +6,7 @@ import com.lut.shopping.bean.Shop;
 import com.lut.shopping.bean.User;
 import com.lut.shopping.mapper.ShopMapper;
 import com.lut.shopping.mapper.UserMapper;
-import com.lut.shopping.mapper.ex.UserEXMapper;
+import com.lut.shopping.mapper.Ex.UserEXMapper;
 import com.lut.shopping.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

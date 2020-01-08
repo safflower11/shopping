@@ -1,4 +1,4 @@
-package com.lut.shopping.mapper.ex;
+package com.lut.shopping.mapper.Ex;
 
 import com.lut.shopping.bean.Ex.Count;
 import com.lut.shopping.bean.Ex.Price;
