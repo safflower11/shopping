@@ -15,9 +15,8 @@ public class CountServiceImpl implements ICountService {
     private CountMappeer countMappeer;
 
     @Override
-    public List<Count> countByOrderId() throws RuntimeException {
-
-        return countMappeer.countByOrderId();
+    public List<Count> countByOrderId(int id, int year, int month) throws RuntimeException {
+        return countMappeer.countByOrderId(id,year,month);
     }
 
     @Override

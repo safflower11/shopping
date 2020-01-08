@@ -8,8 +8,10 @@
 
     <select id="countByOrderId" resultMap="abn">
         select COUNT(c.name) ct,c.name cname
-        from shop_co co,shop_commodity c,shop_order o
-        where co.commodity_id=c.id and o.id=co.order_id
+        from shop_co co,shop_commodity c,shop_order o,shop_cs cs
+        where cs.shop_id=#{id} and YEAR(o.orderdate)=#{year} and MONTH(o.orderdate)=#{month}
+        and co.commodity_id=c.id and o.id=co.order_id
+        and cs.commodity_id=co.commodity_id
         and o.status='已完成'
         GROUP BY c.name ORDER BY COUNT(c.name) DESC
     </select>

@@ -6,7 +6,7 @@ import com.lut.shopping.bean.Ex.Price;
 import java.util.List;
 
 public interface CountMappeer {
-    List<Count> countByOrderId();
+    List<Count> countByOrderId(int id,int year,int month);
 
     Price findPrice(int id,int year,int month);
 

@@ -186,5 +186,23 @@ public class OrderServiceImpl implements IOrderService {
         return orderExMapper.findBy(id);
     }
 
+    @Override
+    public void payById(int id) {
+        Order order = orderMapper.selectByPrimaryKey(id);
+        if("待付款".equals(order.getStatus())) {
+            Logistic logistic = logisticMapper.selectByPrimaryKey(order.getLogisticId());
+            System.out.println(order.getLogisticId());
+            System.out.println(logistic.getId());
+            logistic.setStatus("待发货");
+            logistic.setDeliverdate(new Date());
+            logisticMapper.updateByPrimaryKey(logistic);
+
+            order.setStatus("待发货");
+        }else{
+            throw new RuntimeException("异常信息！");
+        }
+        orderMapper.updateByPrimaryKey(order);
+    }
+
 
 }

@@ -98,6 +98,7 @@ public class OrderController {
         iOderService.deliverById(id);
         return MessageUtil.success();
     }
+    /*
     @GetMapping("/pay")
     @ApiOperation(value = "确认支付")
     protected void doGet(int orderEx_id,int order_id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -143,6 +144,14 @@ public class OrderController {
             e.printStackTrace();
         }
 
+    }
+
+     */
+    @GetMapping("/pay")
+    @ApiOperation(value = "确认支付")
+    protected Message pay(int order_id){
+        iOderService.payById(order_id);
+        return MessageUtil.success("支付成功");
     }
 
     @GetMapping("/download")
