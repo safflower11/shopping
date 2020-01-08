@@ -22,6 +22,7 @@
         <result column="price" property="price" />
         <result column="name" property="name" />
         <result column="type" property="type" />
+        <result column="discount" property="discount" />
         <result column="number" property="number" />
     </resultMap>
 
@@ -48,6 +49,7 @@
     </resultMap>
 
     <resultMap id="sre" type="com.lut.shopping.bean.Repertory">
+        <id column="id" property="id" />
         <result column="price" property="price" />
         <result column="number" property="number" />
         <result column="type" property="type" />
@@ -86,7 +88,7 @@
         insert into shop_shoppingcar (user_id,commodity_id) values (#{user_id},#{commodity_id})
     </insert>
 <select id="selectName" resultMap="selectnam">
-    select id,type,name,price,number from shop_commodity where name=#{name}
+    select * from shop_commodity where name=#{name}
 </select>
     <select id="selectcom" resultMap="sl">
         select id from shop_logistic where company=#{company}
@@ -123,16 +125,13 @@
        select id from shop_cs where shop_id=#{shop_id} and commodity_id=#{commodity_id}
    </select>
     <select id="selectrepertory" resultMap="sre">
-        select number,price,type from shop_repertory where commodityname=#{name}
+        select id,number,price,type from shop_repertory where commodityname=#{name}
     </select>
-    <update id="update">
-        update shop_commodity set number=#{number}
-    </update>
-    <update id="updatere">
-        update shop_repertory set number=#{number}
-    </update>
     <select id="selectmax" resultType="com.lut.shopping.bean.Order">
        select * from shop_order order by id desc limit 1
+    </select>
+    <select id="findmax" resultType="com.lut.shopping.bean.Logistic">
+        select * from shop_logistic order by id desc limit 1
     </select>
     <delete id="deleteunder">
         delete from shop_commodity where id=#{id}

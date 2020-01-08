@@ -2,7 +2,7 @@ package com.lut.shopping.service.impl;
 
 import com.lut.shopping.bean.Ex.Count;
 import com.lut.shopping.bean.Ex.Price;
-import com.lut.shopping.mapper.ex.CountMappeer;
+import com.lut.shopping.mapper.Ex.CountMappeer;
 import com.lut.shopping.service.ICountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,8 @@
-package com.lut.shopping.mapper.ex;
+package com.lut.shopping.mapper.Ex;
 
 import com.lut.shopping.bean.Appraise;
 import com.lut.shopping.bean.Ex.QuestionEX;
 import com.lut.shopping.bean.Ex.SEX;
-import com.lut.shopping.bean.Question;
 import com.lut.shopping.bean.Shop;
 
 import java.util.List;

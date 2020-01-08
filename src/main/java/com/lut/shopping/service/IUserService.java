@@ -1,5 +1,6 @@
 package com.lut.shopping.service;
 
+import com.lut.shopping.bean.Ex.UserE;
 import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.bean.User;
 
@@ -17,9 +18,9 @@ public interface IUserService {
 
     UserEX findByUnum(int unum)throws RuntimeException;
 
-    UserEX findByUsername(UserEX user) throws RuntimeException;
+    UserE findByUsername(UserE user) throws RuntimeException;
 
-    UserEX findUserById(String userId) throws RuntimeException;
+    UserE findUserById(String userId) throws RuntimeException;
 
     User goPass(int unum, String question, String answer);
 

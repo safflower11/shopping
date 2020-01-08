@@ -1,11 +1,12 @@
 package com.lut.shopping.service.impl;
 
+import com.lut.shopping.bean.Ex.UserE;
 import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.bean.Shop;
 import com.lut.shopping.bean.User;
 import com.lut.shopping.mapper.ShopMapper;
 import com.lut.shopping.mapper.UserMapper;
-import com.lut.shopping.mapper.ex.UserEXMapper;
+import com.lut.shopping.mapper.Ex.UserEXMapper;
 import com.lut.shopping.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,12 +74,12 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserEX findByUsername(UserEX user) throws RuntimeException {
+    public UserE findByUsername(UserE user) throws RuntimeException {
         return userEXMapper.findByUsername(user.getUnum());
     }
 
     @Override
-    public UserEX findUserById(String userId) throws RuntimeException {
+    public UserE findUserById(String userId) throws RuntimeException {
         return userEXMapper.findUserById(userId);
     }
 

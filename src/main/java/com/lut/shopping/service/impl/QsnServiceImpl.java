@@ -3,11 +3,14 @@ package com.lut.shopping.service.impl;
 import com.lut.shopping.bean.Appraise;
 import com.lut.shopping.bean.Ex.QuestionEX;
 import com.lut.shopping.bean.Ex.SEX;
-import com.lut.shopping.bean.Question;
 import com.lut.shopping.bean.Shop;
 import com.lut.shopping.mapper.AppraiseMapper;
+<<<<<<< HEAD
 import com.lut.shopping.mapper.ShopMapper;
 import com.lut.shopping.mapper.ex.QsnEXMapper;
+=======
+import com.lut.shopping.mapper.Ex.QsnEXMapper;
+>>>>>>> 4adcd9392fea923ab400f20c9c79cb00c0fa9d1c
 import com.lut.shopping.mapper.Ex.ShopEXMapper;
 import com.lut.shopping.service.IQsnService;
 import org.springframework.beans.factory.annotation.Autowired;

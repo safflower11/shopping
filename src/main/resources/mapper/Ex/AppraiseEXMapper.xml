@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lut.shopping.mapper.ex.QsnEXMapper">
+<mapper namespace="com.lut.shopping.mapper.Ex.QsnEXMapper">
 
     <resultMap id="abn2" type="com.lut.shopping.bean.Ex.QuestionEX">
         <association property="shop" column="shop_id" select="findByShop"></association>

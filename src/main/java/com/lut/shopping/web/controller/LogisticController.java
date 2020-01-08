@@ -34,7 +34,7 @@ public class LogisticController {
     }
     @GetMapping("/selectAll")
     @ApiOperation(value = "查询所有")
-    public Message findALl(){
+    public Message findAll(){
         List<LogisticEx> logisticResultExList = iLogisticService.findAll();
         return MessageUtil.success(logisticResultExList);
     }

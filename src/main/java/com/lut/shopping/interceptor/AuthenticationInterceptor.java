@@ -7,6 +7,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.lut.shopping.annotation.PassToken;
 import com.lut.shopping.annotation.UserLoginToken;
+import com.lut.shopping.bean.Ex.UserE;
 import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 } catch (JWTDecodeException j) {
                     throw new RuntimeException("401");
                 }
-                UserEX user = userService.findUserById(userId);
+                UserE user = userService.findUserById(userId);
                 if (user == null) {
                     throw new RuntimeException("用户不存在，请重新登录");
                 }

@@ -2,6 +2,7 @@ package com.lut.shopping.service.impl;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.lut.shopping.bean.Ex.UserE;
 import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.service.ITokenService;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class TokenServiceImpl implements ITokenService {
 
     @Override
-    public String getToken(UserEX user) throws RuntimeException {
+    public String getToken(UserE user) throws RuntimeException {
         String token="";
         String s=String.valueOf(user.getId());
         token= JWT.create().withAudience(s) // 将 user id 保存到 token 里面

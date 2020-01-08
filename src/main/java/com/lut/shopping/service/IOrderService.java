@@ -29,4 +29,5 @@ public interface IOrderService {
 
     List<OrderEXx> search(String key,String word) throws RuntimeException;
 
+    List<OrderEx> findBy(int id);
 }

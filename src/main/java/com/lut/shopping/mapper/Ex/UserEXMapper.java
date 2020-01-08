@@ -1,10 +1,10 @@
-package com.lut.shopping.mapper.ex;
+package com.lut.shopping.mapper.Ex;
 
+import com.lut.shopping.bean.Ex.UserE;
 import com.lut.shopping.bean.Ex.UserEX;
 import com.lut.shopping.bean.User;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 import java.util.Map;
 
 public interface UserEXMapper {
@@ -18,9 +18,9 @@ public interface UserEXMapper {
 
     void updateById(UserEX userEX);
 
-    UserEX findByUsername(@Param("username") int username);
+    UserE findByUsername(@Param("username") int username);
 
-    UserEX findUserById(@Param("Id") String Id);
+    UserE findUserById(@Param("Id") String Id);
 
     User goPass(int unum, String question, String answer);
 
