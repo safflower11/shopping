@@ -3,6 +3,7 @@ package com.lut.shopping.web.controller;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.google.zxing.Result;
 import com.lut.shopping.bean.Address;
 import com.lut.shopping.bean.Commodity;
 import com.lut.shopping.bean.Ex.CoEx;
@@ -13,6 +14,7 @@ import com.lut.shopping.config.AlipayConfig;
 import com.lut.shopping.service.IOrderService;
 import com.lut.shopping.util.Message;
 import com.lut.shopping.util.MessageUtil;
+import com.lut.shopping.util.QRCodeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.CellType;
@@ -90,8 +92,8 @@ public class OrderController {
         return MessageUtil.success(list);
 
     }
-    @GetMapping("/receive")
-    @ApiOperation(value = "确认收货")
+    @GetMapping("/deliverById")
+    @ApiOperation(value = "确认发货")
     public Message deliverById(int id){
         iOderService.deliverById(id);
         return MessageUtil.success();
@@ -187,6 +189,8 @@ public class OrderController {
         response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode("订单详细信息"+".xlsx", "utf-8"));
         workbook.write(response.getOutputStream());
     }
+    @PostMapping("/update")
+    @ApiOperation(value = "修改")
     public void update(int order_id,String adeliveraddress, String adelivername, String adiliverphone){
         Order order=iOderService.findorderId(order_id);
         int address_id=order.getAddressId();
@@ -202,5 +206,24 @@ public class OrderController {
         List<OrderEXx> lists=iOderService.search(key,word);
         return MessageUtil.success(lists);
 
+    }
+
+
+
+    /**
+     * 生成二维码
+     */
+    @GetMapping("/QRCode")
+    public void productcode() {
+        QRCodeUtil.zxingCodeCreate("http://127.0.0.1:9999/swagger-ui.html", "D:/lzlg/picture/2018/",500,"D:/lzlg/picture/2018/5.jpg");
+    }
+
+    /**
+     * 解析二维码
+     */
+    @GetMapping("/test")
+    public void analysiscode() {
+        Result result = QRCodeUtil.zxingCodeAnalyze("D:/lzlg/picture/2018/759.jpg");
+        System.err.println("二维码解析内容："+result.toString());
     }
 }

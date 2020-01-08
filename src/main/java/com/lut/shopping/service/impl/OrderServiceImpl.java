@@ -94,12 +94,19 @@ public class OrderServiceImpl implements IOrderService {
         Commodity commodity=orderEXxMapper.selectid(commodity_id);
         String name=commodity.getName();
         int beforenumber=commodity.getNumber();
-        if ("待发货".equals(order.getStatus())) {
-            order.setStatus("已发货");
-            int number = order.getNumber();
-            int afternumber = beforenumber - number;
-            commodity.setNumber(afternumber);
-            commodityMapper.updateByPrimaryKey(commodity);
+        int ordernum=order.getNumber();
+        if(ordernum>beforenumber){
+            throw new RuntimeException("商品数量不够，不能发货");
+        }else {
+            if ("待发货".equals(order.getStatus())) {
+                order.setStatus("已发货");
+                System.out.println(order.getStatus());
+                int number = order.getNumber();
+                int afternumber = beforenumber - number;
+                commodity.setNumber(afternumber);
+                commodityMapper.updateByPrimaryKey(commodity);
+                orderMapper.updateByPrimaryKey(order);
+            }
         }
     }
 
