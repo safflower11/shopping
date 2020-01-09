@@ -9,8 +9,9 @@
 
     <select id="selectAll" resultMap="sco">
         select c.name cname,o.id id,o.status status
-        from shop_commodity c,shop_co co,shop_order o
+        from shop_commodity c,shop_co co,shop_order o,shop_user u
         where co.commodity_id=c.id and co.order_id=o.id
+        and u.id=o.user_id and u.id=#{id}
     </select>
 
 

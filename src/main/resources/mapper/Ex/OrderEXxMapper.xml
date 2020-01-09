@@ -22,9 +22,11 @@
     </select>
 
     <select id="selectById" resultMap="order">
-        select o.id id,o.code code,o.status status,c.name cname,o.number number,o.totalprice totalprice,a.getaddress agetaddress,u.name uname,a.receivephone areceivenumber,l.company lcompany
+        select o.id id,o.code code,o.status status,c.name cname,
+       o.number number,o.totalprice totalprice,a.getaddress agetaddress,u.name uname,a.receivephone areceivenumber,l.company lcompany
         from shop_commodity c,shop_order o,shop_address a,shop_user u,shop_logistic l,shop_co co
-        where co.order_id=c.id
+        where co.commodity_id=c.id
+        and o.id=co.order_id
         and o.address_id=a.id and o.user_id=u.id and o.logistic_id=l.id
         and o.id=#{id}
     </select>

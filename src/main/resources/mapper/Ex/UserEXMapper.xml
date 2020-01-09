@@ -16,19 +16,23 @@
                     select="showShop"></collection>
     </resultMap>
 
-    <select id="selectByUserName" resultType="com.lut.shopping.bean.User">
+    <!--<select id="selectByUserName" resultType="com.lut.shopping.bean.User">
         select *
         from shop_user
         where unum = #{unum} and password = #{password} and code=#{code}
     </select>
 
+
     <insert id="addUser" parameterType="com.lut.shopping.bean.User" keyProperty="id" useGeneratedKeys="true">
         insert into shop_user
         values (#{id},#{unum},#{code},#{name},#{password},#{question},#{answer})
-    </insert>
+    </insert>-->
 
+    <select id="showById" resultMap="abn">
+        select * from shop_user where id=#{id}
+    </select>
     <select id="showShop" resultType="com.lut.shopping.bean.Shop">
-        select * from shop_shop s where user_id=#{id}
+        select * from shop_shop where user_id=#{id}
     </select>
 
     <select id="findByUnum" resultType="com.lut.shopping.bean.Ex.UserEX">

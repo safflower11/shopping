@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Logistic")
-@Api(description="物流管理/物流进度")
+@Api(description="物流进度")
 public class LogisticResultController {
     @Autowired
     private ILogisticResultService iLogisticResultService;

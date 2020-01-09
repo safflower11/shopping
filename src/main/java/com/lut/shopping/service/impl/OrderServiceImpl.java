@@ -37,11 +37,13 @@ public class OrderServiceImpl implements IOrderService {
     @Autowired
     private AddressMapper addressMapper;
     //订单显示（向买家展示订单信息）
+
     @Override
-    public List<CoEx> findAll() throws RuntimeException {
-        List<CoEx> list= coExMapper.selectAll();
+    public List<CoEx> findAll(int id) throws RuntimeException {
+        List<CoEx> list= coExMapper.selectAll(id);
         return list;
     }
+
     //订单显示- 删除（根据订单Id删除订单信息）
     @Override
     public void deleteById(int id) throws RuntimeException {
@@ -144,11 +146,14 @@ public class OrderServiceImpl implements IOrderService {
     }
     //订单监控 - 编辑（更改发货地址、发件人、联系电话）
     @Override
-    public void update(String adeliveraddress, String adelivername, String adiliverphone) throws RuntimeException {
-        Address address=new Address();
+    public void update(int order_id,String adeliveraddress, String adelivername, String adiliverphone) throws RuntimeException {
+        Order order = findorderId(order_id);
+        int address_id=order.getAddressId();
+        Address address=findadress(address_id);
         address.setDeliveraddress(adeliveraddress);
         address.setDelivername(adelivername);
         address.setDeliverphone(adiliverphone);
+        addressMapper.updateByPrimaryKey(address);
     }
 
     @Override

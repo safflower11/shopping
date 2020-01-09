@@ -21,10 +21,13 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
     @Autowired
     private ShopMapper shopMapper;
+    /*
     @Override
     public User selectByUserName(Map<String, Object> map) throws RuntimeException {
         return userEXMapper.selectByUserName(map);
     }
+
+     */
 
     @Override
     public boolean addUser(User user, Integer leaguer) throws RuntimeException {

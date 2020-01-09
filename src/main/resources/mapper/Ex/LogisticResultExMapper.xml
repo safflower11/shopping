@@ -6,6 +6,8 @@
         <result column="oid" property="oid"></result>
         <result column="daddress" property="daddress"></result>
         <result column="gaddress" property="gaddress"></result>
+        <result column="ddate" property="ddate"></result>
+        <result column="gdate" property="gdate"></result>
         <result column="odate" property="odate"></result>
         <result column="ocode" property="ocode"></result>
         <result column="status" property="status"></result>
@@ -17,9 +19,12 @@
         a.getaddress like #{word} or o.orderdate like #{word} or o.code like #{word} or l.status like #{word})
     </select>
     <select id="findAll" resultMap="aaa">
-        select c.name cname,o.id oid,a.deliveraddress daddress,a.getaddress gaddress,l.getdate,l.deliverdate,o.code ocode,l.status status
-        from shop_logistic l,shop_commodity c,shop_order o,shop_address a,shop_co co
-        where o.logistic_id=l.id  and o.address_id=a.id and co.order_id = o.id and c.id = co.commodity_id
+        select c.name cname,o.id oid,a.deliveraddress daddress,
+a.getaddress gaddress,l.getdate gdate,l.deliverdate ddate,o.code ocode,l.status status
+        from shop_logistic l,shop_commodity c,shop_order o,
+shop_address a,shop_co co
+        where o.logistic_id=l.id  and o.address_id=a.id
+ and co.order_id = o.id and c.id = co.commodity_id
     </select>
     <select id="findById" resultMap="aaa">
         select c.name cname,o.id oid,a.deliveraddress daddress,a.getaddress gaddress,l.getdate,l.deliverdate,o.code ocode,l.status status

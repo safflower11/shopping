@@ -27,31 +27,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private IUserService userService;
-
     @Autowired
     private ITokenService tokenService;
-    @Autowired
-    private IQsnService qsnService;
-    /*
-    @GetMapping("/login")
-    public Message findByUsername(
-            @RequestParam(value = "用户名", required = false) String userName,
-            @RequestParam(value = "密码", required = false) String password,
-            @RequestParam(value = "身份编号", required = false) String code) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("unum",userName);
-        map.put("password",password);
-        map.put("code",code);
-        User user = userService.selectByUserName(map);
-        if(user==null){
-            return MessageUtil.success("用户名或密码或身份编号错误");
 
-        }else {
-            return MessageUtil.success(user);
-        }
-    }
-
-     */
    @GetMapping("/adduser")
     @ApiImplicitParam(name = "repassword", value = "再次输入密码",paramType = "query",dataType = "String")
     public Message addUser(User user,String repassword,Integer leaguer){
@@ -112,13 +90,6 @@ public class UserController {
         return "你已通过验证";
     }
 
-
-    @GetMapping("/qsn")
-    @ApiOperation(value = "查看店铺评分")
-    public Message get(int id){
-        List<SEX> selectscore = qsnService.selectscore(id);
-        return MessageUtil.success(selectscore);
-    }
 
     @GetMapping("/forgetpass")
     @ApiOperation(value ="修改密码" )

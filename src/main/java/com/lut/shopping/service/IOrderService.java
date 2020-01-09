@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface IOrderService {
-    List<CoEx> findAll() throws RuntimeException;
+    List<CoEx> findAll(int id) throws RuntimeException;
     void deleteById(int id) throws RuntimeException;
     OrderEx findById(int id) throws RuntimeException;
     void receiveById(int id) throws RuntimeException;
@@ -22,7 +22,7 @@ public interface IOrderService {
 
     Co selectorder(int order_id) throws RuntimeException;
     Commodity selectid(int commodity_id) throws RuntimeException;
-    void update(String adeliveraddress, String delivername, String diliverphone) throws RuntimeException;
+    void update(int order_id,String adeliveraddress, String delivername, String diliverphone) throws RuntimeException;
 
     Order findorderId(int order_id);
     Address findadress(int address_id);

@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/logistic")
-@Api(description = "物流管理/历史取件信息")
+@Api(description = "历史取件信息")
 public class LogisticController {
 
     @Autowired

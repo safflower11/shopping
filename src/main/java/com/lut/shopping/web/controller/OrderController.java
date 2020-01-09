@@ -41,17 +41,19 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private IOrderService iOderService;
-
+/*
     @GetMapping("/showbuyer")
     @ApiOperation(value = "预览")
     public Message showById(int id){
         List<OrderEx> list= (List<OrderEx>) iOderService.findById(id);
         return MessageUtil.success(list);
     }
+
+ */
     @GetMapping("/findall")
     @ApiOperation(value="买家查询订单信息")
-    public Message findall(){
-        List<CoEx> list=iOderService.findAll();
+    public Message findall(int id){
+        List<CoEx> list=iOderService.findAll(id);
         System.out.println(list);
         return MessageUtil.success(list);
     }
@@ -86,18 +88,13 @@ public class OrderController {
         return MessageUtil.success(list);
     }
     @GetMapping("/showseller")
-    @ApiOperation(value = "预览并编辑")
+    @ApiOperation(value = "预览")
     public Message show(int id){
         List<OrderEXx> list=iOderService.selectById(id);
         return MessageUtil.success(list);
 
     }
-    @PostMapping("/deliverById")
-    @ApiOperation(value = "确认发货")
-    public Message deliverById(int id){
-        iOderService.deliverById(id);
-        return MessageUtil.success();
-    }
+
     /*
     @GetMapping("/pay")
     @ApiOperation(value = "确认支付")
@@ -233,12 +230,14 @@ public class OrderController {
         workbook.write(response.getOutputStream());
     }
     @PostMapping("/update")
-    @ApiOperation(value = "修改")
+    @ApiOperation(value = "确认发货")
     public void update(int order_id,String adeliveraddress, String adelivername, String adiliverphone){
-        Order order=iOderService.findorderId(order_id);
-        int address_id=order.getAddressId();
-        Address address=iOderService.findadress(address_id);
-        iOderService.update(adeliveraddress,adelivername,adiliverphone);
+        //Order order=iOderService.findorderId(order_id);
+        iOderService.deliverById(order_id);
+        //int address_id=order.getAddressId();
+        //Address address=iOderService.findadress(address_id);
+
+        iOderService.update(order_id,adeliveraddress,adelivername,adiliverphone);
 
 
     }
@@ -258,7 +257,7 @@ public class OrderController {
      */
     @GetMapping("/QRCode")
     public void productcode() {
-        QRCodeUtil.zxingCodeCreate("http://47.105.152.187:9999/swagger-ui.html", "D:/lzlg/picture/2018/",500,"D:/lzlg/picture/2018/5.jpg");
+        QRCodeUtil.zxingCodeCreate("http://47.105.152.187:9999/swagger-ui.html", "D:/lzlg/picture/2018/",500,"D:/lzlg/picture/2018/logoPic.jpg");
     }
 
     /**

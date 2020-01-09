@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Map;
 
 public interface UserEXMapper {
-    User selectByUserName(Map<String, Object> map);
+    //User selectByUserName(Map<String, Object> map);
 
     boolean addUser(User user);
 

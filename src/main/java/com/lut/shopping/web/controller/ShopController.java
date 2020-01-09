@@ -22,15 +22,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/shop")
-@Api(description = "店铺管理")
+@Api(description = "店铺基础管理")
 public class ShopController {
     @Autowired
     private IShopService shopService;
-
-    @Autowired
-    private IQsnService qsnService;
-    @Autowired
-    private ICountService countService;
 
     @GetMapping("/findAll")
     public Message findAll() {
@@ -44,12 +39,15 @@ public class ShopController {
         shopService.delete(id);
 
     }
+    /*
     @PostMapping("/add")
     @ApiOperation(value = "添加店铺")
     public Message add(Shop shop){
         shopService.addOrUpdate(shop);
         return MessageUtil.success();
     }
+
+     */
     @PostMapping("/update")
     @ApiOperation(value = "修改店铺")
     public Message update(Shop shop){
@@ -75,26 +73,7 @@ public class ShopController {
         return MessageUtil.success();
     }
 
-    @PostMapping("insert")
-    @ApiOperation(value = "用户对店铺评分")
-    public Message insert(Appraise appraise){
-        qsnService.score(appraise);
-        return MessageUtil.success();
-    }
 
-    @GetMapping("/count")
-    @ApiOperation(value = "统计已完成订单的商品数量")
-    public Message count(int id,int year,int month){
-        List<Count> counts = countService.countByOrderId(id,year,month);
-        return MessageUtil.success(counts);
-    }
-
-    @GetMapping("/countPrice")
-    @ApiOperation(value = "统计店铺的利润")
-    public Message countPrice(int id,int year,int month){
-        Price price = countService.findPrice(id,year,month);
-        return MessageUtil.success(price);
-    }
 
 
 }
