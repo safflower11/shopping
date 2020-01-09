@@ -216,11 +216,6 @@ public class CommodityController {
         return MessageUtil.success(payprice);
      }
 
-    @PostMapping("/pay")
-    @ApiOperation(value ="付款" )
-    public Message pay(){
-        return MessageUtil.success();
-    }
 
     @GetMapping("/under")
     @ApiOperation(value ="商品下架" )
