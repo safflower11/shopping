@@ -20,10 +20,10 @@ public interface CommodityExMapper {
     Repertory selectrepertory(String name);
     Order selectmax();
     Logistic findmax();
-    void deleteunder(int id);
     List<Comone> showone(String name);
     List<ShoppingcarEx> showshopcar(int user_id);
     User selectById(int id);
     List<LeaguerEx> selectleaguer();
     List<CommodityAll> selectallcom();
+    void deleteBy(int commodity_id, int shop_id);
 }

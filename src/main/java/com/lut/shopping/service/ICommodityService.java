@@ -24,7 +24,7 @@ public interface ICommodityService {
     Order selectmax() throws RuntimeException;
     Logistic findmax() throws RuntimeException;
     void addco(int commodity_id,int order_id) throws RuntimeException;
-    void under(int id) throws RuntimeException;
+    void under(int commodity_id,int shop_id) throws RuntimeException;
     List<Comone> showone(String name);
     List<LeaguerEx> showleaguer() throws RuntimeException;
     User selectById(int user_id) throws RuntimeException;

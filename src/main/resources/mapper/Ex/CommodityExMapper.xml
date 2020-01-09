@@ -133,8 +133,8 @@
     <select id="findmax" resultType="com.lut.shopping.bean.Logistic">
         select * from shop_logistic order by id desc limit 1
     </select>
-    <delete id="deleteunder">
-        delete from shop_commodity where id=#{id}
+    <delete id="deleteBy">
+        delete from shop_cs where shop_id=#{shop_id} and commodity_id=#{commodity_id}
     </delete>
     <select id="showone" resultMap="show">
         select co.name coname

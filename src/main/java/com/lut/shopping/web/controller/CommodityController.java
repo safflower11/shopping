@@ -219,8 +219,12 @@ public class CommodityController {
 
     @GetMapping("/under")
     @ApiOperation(value ="商品下架" )
-    public Message under(int id){
-        iCommodityService.under(id);
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "commodity_id",value = "商品Id",paramType = "query",dataType = "int"),
+            @ApiImplicitParam(name = "shop_id",value = "店铺Id",paramType = "query",dataType = "int"),
+    })
+    public Message under(int commodity_id,int shop_id){
+        iCommodityService.under(commodity_id,shop_id);
         return  MessageUtil.success("下架成功");
     }
 

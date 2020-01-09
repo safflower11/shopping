@@ -163,17 +163,10 @@ public class CommodityServiceImpl implements ICommodityService {
     }
 
     @Override
-    public void under(int id) throws RuntimeException {
-        CoExample coExample = new CoExample();
-        coExample.createCriteria().andCommodityIdEqualTo(id);
-        coMapper.deleteByExample(coExample);
-        CsExample csExample = new CsExample();
-        csExample.createCriteria().andCommodityIdEqualTo(id);
-        csMapper.deleteByExample(csExample);
-        ShoppingcarExample shoppingcarExample=new ShoppingcarExample();
-        shoppingcarExample.createCriteria().andCommodityIdEqualTo(id);
-        shoppingcarMapper.deleteByExample(shoppingcarExample);
-        commodityExMapper.deleteunder(id);
+    public void under(int commodity_id,int shop_id) throws RuntimeException {
+
+       commodityExMapper.deleteBy(commodity_id,shop_id);
+
 
     }
 
