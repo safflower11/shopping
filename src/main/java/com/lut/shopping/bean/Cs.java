@@ -9,6 +9,10 @@ public class Cs implements Serializable {
 
     private Integer commodity_id;
 
+    private Double pay;
+
+    private Integer number;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -39,6 +43,22 @@ public class Cs implements Serializable {
         return serialVersionUID;
     }
 
+    public Double getPay() {
+        return pay;
+    }
+
+    public void setPay(Double pay) {
+        this.pay = pay;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -48,6 +68,8 @@ public class Cs implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", shopId=").append(shop_id);
         sb.append(", commodityId=").append(commodity_id);
+        sb.append(", pay=").append(pay);
+        sb.append(", number=").append(number);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

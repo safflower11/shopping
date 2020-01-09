@@ -50,7 +50,7 @@
 
 		<!-- 映射配置 -->
 
-		<table tableName="shop_logistic" domainObjectName="Logistic"></table>
+		<table tableName="shop_cs" domainObjectName="Cs"></table>
 
 
 	</context>

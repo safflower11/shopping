@@ -41,6 +41,10 @@
 
     <resultMap id="ssc" type="com.lut.shopping.bean.Cs">
         <id column="id" property="id" />
+        <result column="shop_id" property="shop_id" />
+        <result column="commodity_id"  property="commodity_id" />
+        <result column="pay" property="pay" />
+        <result column="number" property="number" />
 
     </resultMap>
 
@@ -115,14 +119,14 @@
         and co.id=#{commodity_id}
     </select>
     <insert id="insertcs">
-        insert into shop_cs (shop_id,commodity_id) values (#{shop_id},#{commodity_id})
+        insert into shop_cs (shop_id,commodity_id,pay,number) values (#{shop_id},#{commodity_id},#{pay},#{number})
     </insert>
 
     <select id="selectshop" resultMap="sshop">
         select id from shop_shop where name=#{shopname}
     </select>
    <select id="selectcs" resultMap="ssc">
-       select id from shop_cs where shop_id=#{shop_id} and commodity_id=#{commodity_id}
+       select * from shop_cs where shop_id=#{shop_id} and commodity_id=#{commodity_id}
    </select>
     <select id="selectrepertory" resultMap="sre">
         select id,number,price,type from shop_repertory where commodityname=#{name}

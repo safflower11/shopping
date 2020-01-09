@@ -14,7 +14,7 @@ public interface ICommodityService {
     Address selectaddid(String getaddress,String receivename,String receivephone) throws RuntimeException;
     void insertaddresee(String getaddress, String receivename, String receivephone) throws RuntimeException;
     List<CommodityshowEx> commodityshow() throws RuntimeException;
-    void insertcs(int shop_id,int commodity_id) throws RuntimeException;
+    void insertcs(int shop_id,int commodity_id,double pay,int number) throws RuntimeException;
     Shop selectshop(String shopname) throws RuntimeException;
     Cs selectcs(int shop_id,int commodity_id) throws RuntimeException;
     Repertory selere(String name) throws RuntimeException;
@@ -31,4 +31,6 @@ public interface ICommodityService {
     List<CommodityAll> selectallcom() throws RuntimeException;
     void addlogistic(String company) throws RuntimeException;
     void updatelogisticstatus(String status,int logistic_id) throws RuntimeException;
+    void updatecs(int id,double pay,int number);
+    Commodity selectcommo(int commodity_id);
 }

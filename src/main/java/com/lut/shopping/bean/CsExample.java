@@ -283,6 +283,126 @@ public class CsExample {
             addCriterion("commodity_id not between", value1, value2, "commodityId");
             return (Criteria) this;
         }
+
+        public Criteria andPayIsNull() {
+            addCriterion("pay is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayIsNotNull() {
+            addCriterion("pay is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayEqualTo(Double value) {
+            addCriterion("pay =", value, "pay");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayNotEqualTo(Double value) {
+            addCriterion("pay <>", value, "pay");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayGreaterThan(Double value) {
+            addCriterion("pay >", value, "pay");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayGreaterThanOrEqualTo(Double value) {
+            addCriterion("pay >=", value, "pay");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayLessThan(Double value) {
+            addCriterion("pay <", value, "pay");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayLessThanOrEqualTo(Double value) {
+            addCriterion("pay <=", value, "pay");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayIn(List<Double> values) {
+            addCriterion("pay in", values, "pay");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayNotIn(List<Double> values) {
+            addCriterion("pay not in", values, "pay");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayBetween(Double value1, Double value2) {
+            addCriterion("pay between", value1, value2, "pay");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayNotBetween(Double value1, Double value2) {
+            addCriterion("pay not between", value1, value2, "pay");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberIsNull() {
+            addCriterion("number is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberIsNotNull() {
+            addCriterion("number is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberEqualTo(Integer value) {
+            addCriterion("number =", value, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberNotEqualTo(Integer value) {
+            addCriterion("number <>", value, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberGreaterThan(Integer value) {
+            addCriterion("number >", value, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberGreaterThanOrEqualTo(Integer value) {
+            addCriterion("number >=", value, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberLessThan(Integer value) {
+            addCriterion("number <", value, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberLessThanOrEqualTo(Integer value) {
+            addCriterion("number <=", value, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberIn(List<Integer> values) {
+            addCriterion("number in", values, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberNotIn(List<Integer> values) {
+            addCriterion("number not in", values, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberBetween(Integer value1, Integer value2) {
+            addCriterion("number between", value1, value2, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberNotBetween(Integer value1, Integer value2) {
+            addCriterion("number not between", value1, value2, "number");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

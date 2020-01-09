@@ -89,10 +89,12 @@ public class CommodityServiceImpl implements ICommodityService {
     }
 
     @Override
-    public void insertcs(int shop_id,int commodity_id) throws RuntimeException {
+    public void insertcs(int shop_id,int commodity_id,double pay,int number) throws RuntimeException {
         Cs cs=new Cs();
         cs.setShop_id(shop_id);
         cs.setCommodity_id(commodity_id);
+        cs.setPay(pay);
+        cs.setNumber(number);
         commodityExMapper.insertcs(cs);
     }
 
@@ -164,7 +166,6 @@ public class CommodityServiceImpl implements ICommodityService {
 
     @Override
     public void under(int commodity_id,int shop_id) throws RuntimeException {
-
        commodityExMapper.deleteBy(commodity_id,shop_id);
 
 
@@ -209,6 +210,20 @@ public class CommodityServiceImpl implements ICommodityService {
         Logistic logistic=logisticMapper.selectByPrimaryKey(logistic_id);
         logistic.setStatus(status);
         logisticMapper.updateByPrimaryKey(logistic);
+    }
+
+    @Override
+    public void updatecs(int id,double pay,int number) {
+        Cs cs=csMapper.selectByPrimaryKey(id);
+        cs.setPay(pay);
+        cs.setNumber(number);
+        csMapper.updateByPrimaryKey(cs);
+    }
+
+    @Override
+    public Commodity selectcommo(int commodity_id) {
+        Commodity commodity=commodityMapper.selectByPrimaryKey(commodity_id);
+        return commodity;
     }
 
 

@@ -1,7 +1,11 @@
 package com.lut.shopping.web.controller;
 
+import com.alipay.api.AlipayClient;
+import com.alipay.api.domain.AlipayTradePayModel;
+import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.lut.shopping.bean.*;
 import com.lut.shopping.bean.Ex.*;
+import com.lut.shopping.config.AlipayConfig;
 import com.lut.shopping.service.ICommodityService;
 import com.lut.shopping.util.Message;
 import com.lut.shopping.util.MessageUtil;
@@ -15,6 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -156,7 +164,6 @@ public class CommodityController {
         Shop shop=iCommodityService.selectshop(shopname);
         Repertory repertory=iCommodityService.selere(name);
         int repertory_id=repertory.getId();
-        System.out.println(repertory_id);
         if(shop==null){
             throw new RuntimeException("不存在该店铺,请重新输入");
         }else {
@@ -170,7 +177,7 @@ public class CommodityController {
                     double price = repertory.getPrice()*1.25;
                     String type=repertory.getType();
                     double discount=price*0.9;
-                    iCommodityService.insertco(name, number, price,type,discount);
+                    iCommodityService.insertco(name,number,price,type,discount);
                     Commodity commodity1=iCommodityService.selectname(name);
                     int commodity_id1 = commodity1.getId();
                     int rnum = repertory.getNumber();
@@ -180,17 +187,25 @@ public class CommodityController {
                         int beforenum = commodity1.getNumber();
                         int afternum = beforenum + upnum;
                         int afterrnum=rnum-upnum;
-                        Cs cs = iCommodityService.selectcs(shop_id, commodity_id1);
+                        double payprice=repertory.getPrice()*upnum;
+                        Cs cs = iCommodityService.selectcs(shop_id,commodity_id1);
                         if (cs == null) {
-                            iCommodityService.insertcs(shop_id, commodity_id1);
+                            iCommodityService.insertcs(shop_id,commodity_id1,payprice,upnum);
                             iCommodityService.updateco(afternum,commodity_id1);
                             iCommodityService.updatere(afterrnum,repertory_id);
-                        } else {
+                        }
+                        else {
+                            double pay=cs.getPay()+payprice;
+                            int id=cs.getId();
+                            int num=cs.getNumber();
+                            int csnumber=num+upnum;
+                            iCommodityService.updatecs(id,pay,csnumber);
                             iCommodityService.updateco(afternum,commodity_id1);
                             iCommodityService.updatere(afterrnum,repertory_id);
                         }
                     }
-                } else {
+                }
+                else {
                     int commodity_id = commodity.getId();
                     int rnum = repertory.getNumber();
                     if (upnum > rnum) {
@@ -199,12 +214,18 @@ public class CommodityController {
                         int beforenum = commodity.getNumber();
                         int afternum = beforenum + upnum;
                         int afterrnum=rnum-upnum;
+                        double payprice=repertory.getPrice()*upnum;
                         Cs cs = iCommodityService.selectcs(shop_id, commodity_id);
                         if (cs == null) {
-                            iCommodityService.insertcs(shop_id, commodity_id);
+                            iCommodityService.insertcs(shop_id,commodity_id,payprice,upnum);
                             iCommodityService.updateco(afternum,commodity_id);
                             iCommodityService.updatere(afterrnum,repertory_id);
                         } else {
+                            double pay=cs.getPay()+payprice;
+                            int id=cs.getId();
+                            int num=cs.getNumber();
+                            int csnumber=num+upnum;
+                            iCommodityService.updatecs(id,pay,csnumber);
                             iCommodityService.updateco(afternum,commodity_id);
                             iCommodityService.updatere(afterrnum,repertory_id);
                         }
@@ -212,8 +233,7 @@ public class CommodityController {
                 }
             }
         }
-        double payprice=repertory.getPrice()*upnum;
-        return MessageUtil.success(payprice);
+        return MessageUtil.success();
      }
 
 
@@ -224,9 +244,16 @@ public class CommodityController {
             @ApiImplicitParam(name = "shop_id",value = "店铺Id",paramType = "query",dataType = "int"),
     })
     public Message under(int commodity_id,int shop_id){
+        Cs cs = iCommodityService.selectcs(shop_id, commodity_id);
+        int number= cs.getNumber();
+        Commodity commodity=iCommodityService.selectcommo(commodity_id);
+        int cnumber=commodity.getNumber();
+        int endnumber=cnumber-number;
         iCommodityService.under(commodity_id,shop_id);
+        iCommodityService.updateco(endnumber,commodity_id);
         return  MessageUtil.success("下架成功");
     }
+
 
     @GetMapping("/showone")
     @ApiOperation(value ="查询某一店铺的上架商品" )
@@ -236,4 +263,49 @@ public class CommodityController {
        return MessageUtil.success(comones);
 
     }
+
+    @GetMapping("/pay")
+    @ApiOperation(value = "商家支付")
+    protected void doGet(int shop_id,int commodity_id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            AlipayClient alipayClient =
+                    AlipayConfig.getAlipayClient();
+            //设置请求参数
+            AlipayTradePagePayRequest alipayRequest =
+                    new AlipayTradePagePayRequest();
+
+            AlipayTradePayModel model =
+                    new AlipayTradePayModel();
+            Cs cs = iCommodityService.selectcs(shop_id, commodity_id);
+            // 设定订单号 必须要写,且订单号不能重复，目前已经只是做测试，已经写死
+            model.setOutTradeNo(System.currentTimeMillis() + "");
+
+            Double price=cs.getPay();
+            // 设置订单金额
+            model.setTotalAmount(String.valueOf(price));
+            System.out.println(price);
+            model.setSubject("付款");
+
+            // 订单描述
+            model.setBody(System.currentTimeMillis()+"");
+            // 产品码
+            model.setProductCode("FAST_INSTANT_TRADE_PAY");
+
+            // 设置参数
+            alipayRequest.setBizModel(model);
+
+            // 设置回调地址
+            alipayRequest.setReturnUrl(AlipayConfig.return_url);
+
+            String result = alipayClient.pageExecute(alipayRequest).getBody();
+
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().println(result);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
